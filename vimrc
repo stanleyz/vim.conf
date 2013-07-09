@@ -9,6 +9,8 @@ filetype plugin indent on
 let mapleader = ","
 let g:mapleader = ","
 inoremap ,, <Esc>
+inoremap ,o <ESC>o
+inoremap ,O <ESC>O
 
 "  ---------------------------------------------------------------------------
 "  UI
