@@ -1,4 +1,5 @@
 set nocompatible               " be iMproved
+set nobackup
 
 silent! runtime bundles.vim
 
