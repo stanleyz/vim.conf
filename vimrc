@@ -20,7 +20,7 @@ inoremap <C-k> <Esc>:m .-2<CR>==gi
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 "set auto change dir
-autocmd BufEnter * silent! lcd %:p
+autocmd BufEnter * silent! lcd %:p:h
 
 "  ---------------------------------------------------------------------------
 "  UI
