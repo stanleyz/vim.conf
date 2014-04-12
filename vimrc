@@ -64,3 +64,6 @@ let g:ctrlp_map = ',f'
 
 " Auto pairs
 let g:AutoPairsFlyMode = 1
+
+set foldmethod=indent
+set foldlevel=1
