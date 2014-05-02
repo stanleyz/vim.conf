@@ -35,7 +35,6 @@ colors desert
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
-set expandtab
 
 set pastetoggle=<C-p>
 "  ---------------------------------------------------------------------------
@@ -55,7 +54,7 @@ let NERDTreeHijackNetrw = 1
 let NERDTreeQuitOnOpen = 1
 let NERDTreeWinSize = 50 
 let NERDTreeChDirMode = 2
-let NERDTreeDirArrows = 1
+let NERDTreeDirArrows = 0
 " open file browser
 map <leader>p :NERDTreeToggle<cr>
 
