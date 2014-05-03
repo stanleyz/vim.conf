@@ -62,7 +62,7 @@ map <leader>p :NERDTreeToggle<cr>
 let g:ctrlp_map = ',f'
 
 " Auto pairs
-let g:AutoPairsFlyMode = 1
+let g:AutoPairsShortcutJump = '<C-c>'
 
 set foldmethod=indent
 set foldlevel=1
