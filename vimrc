@@ -1,18 +1,29 @@
 set nocompatible               " be iMproved
 set nobackup
+"set noswapfile
 
 silent! runtime bundles.vim
 
 "  ---------------------------------------------------------------------------
 "  General
 "  ---------------------------------------------------------------------------
-filetype plugin indent on     
 let mapleader = ","
 let g:mapleader = ","
+
+filetype on
+filetype indent on
+filetype plugin on
+filetype plugin indent on     
+
+syntax on
+set rnu
+set autoread			"auto load changes
+"set history=40
+
 inoremap ,, <Esc>
 inoremap ,o <ESC>o
 inoremap ,O <ESC>O
-set nu
+
 nnoremap <C-j> :m .+1<CR>==
 nnoremap <C-k> :m .-2<CR>==
 inoremap <C-j> <Esc>:m .+1<CR>==gi
@@ -21,13 +32,53 @@ vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 nmap <C-h> xhhp
 nmap <C-l> xp
+
+inoremap <C-a> <ESC>^
+inoremap <C-e> <ESC>$
+noremap <C-a> ^
+noremap <C-e> $
+
 "set auto change dir
 autocmd BufEnter * silent! lcd %:p:h
+
+"create undo file
+if has('persistent_undo')
+	call system('mkdir ~/.vim/undo')	
+	set undodir=~/.vim/undo
+	set undofile                " keep a persistent backup file
+	set undolevels=1000         " How many undos
+	set undoreload=10000        " number of lines to save for undo
+endif
+
+set wildignore=*.class,*.so,*.zip,*.png,*.jpg,*.gif
+
+set mouse-=a  "disable changing cursor position using mouse
+
+set ruler  "display current line & column number
+
+"keep at least 7 lines when scrolling
+set scrolloff=7
+
+" Always show the status line - use 2 lines for the status bar
+set laststatus=2
+
+autocmd InsertEnter * :set nu
+autocmd InsertLeave * :set rnu
+
+"Reselect visual block after indent/outdent.
+vnoremap < <gv
+vnoremap > >gv
 
 "  ---------------------------------------------------------------------------
 "  UI
 "  ---------------------------------------------------------------------------
-colors desert
+colors evening
+set t_Co=256
+
+"highlight line and column of curosr
+"set cuc cul
+"hi CursorLine cterm=NONE ctermbg=6 ctermfg=black guibg=grey guifg=black
+"hi CursorColumn cterm=NONE ctermbg=6 ctermfg=black guibg=grey guifg=black
 
 "  ---------------------------------------------------------------------------
 "  Text Formatting
@@ -35,12 +86,25 @@ colors desert
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
+set smarttab
 
 set pastetoggle=<leader>t
+
 "  ---------------------------------------------------------------------------
 "  Search
 "  ---------------------------------------------------------------------------
 set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+"  ---------------------------------------------------------------------------
+"	 Command 
+"  ---------------------------------------------------------------------------
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-f> <Right>
+cnoremap <C-b> <Left>
 
 "  ---------------------------------------------------------------------------
 "  Plugins
@@ -70,15 +134,11 @@ set foldlevel=1
 " Supertab
 
 " Remap autocomplete menu control keys
-inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
-inoremap <expr> j pumvisible() ? "\<C-n>" : "j"
-inoremap <expr> k pumvisible() ? "\<C-p>" : "k"
-inoremap <expr> h pumvisible() ? "\<PageUp>\<C-n>\<C-p>" : "h"
-inoremap <expr> l pumvisible() ? "\<PageDown>\<C-n>\<C-p>" : "l"
+inoremap <expr> <CR> pumvisible() ? "\<C-n>\<C-y>" : "\<CR>"
 
 let g:SuperTabCrMapping = 0 " prevent remap from breaking supertab
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
+set completeopt=longest,menu
 set wildmode=list:longest,full
 let g:SuperTabClosePreviewOnPopupClose = 1 " close scratch window on autocompletion
