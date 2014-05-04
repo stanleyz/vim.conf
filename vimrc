@@ -34,8 +34,11 @@ nmap <C-l> xp
 
 inoremap <C-a> <ESC>^i
 inoremap <C-e> <ESC>$a
-noremap <C-a> ^
-noremap <C-e> $
+nnoremap <leader>a ^
+nnoremap <leader>e $
+
+nnoremap <C-n> :lne<CR>
+nnoremap <C-p> :lp<CR>
 
 "set auto change dir
 autocmd BufEnter * silent! lcd %:p
@@ -66,8 +69,8 @@ set laststatus=2
 
 if exists('+relativenumber')
   set rnu
-  autocmd InsertEnter * :set nu
-  autocmd InsertLeave * :set rnu
+  autocmd InsertEnter * :set nornu nu
+  autocmd InsertLeave * :set nonu rnu
 else
   set nu
 endif
@@ -124,7 +127,7 @@ cnoremap <C-b> <Left>
 let NERDTreeShowBookmarks = 0
 let NERDChristmasTree = 1
 let NERDTreeWinPos = "left"
-let NERDTreeHijackNetrw = 1
+let NERDTreeHijackNetrw = 0
 let NERDTreeQuitOnOpen = 1
 let NERDTreeWinSize = 50 
 let NERDTreeChDirMode = 2
@@ -138,8 +141,10 @@ let g:ctrlp_map = ',f'
 " Auto pairs
 let g:AutoPairsShortcutJump = '<C-c>'
 
-set foldmethod=indent
-set foldlevel=1
+if has('folding')
+	set foldmethod=indent
+	set foldlevel=1
+endif
 
 " Supertab
 
@@ -155,3 +160,12 @@ let g:SuperTabClosePreviewOnPopupClose = 1 " close scratch window on autocomplet
 
 "Gundo
 nnoremap <leader>g :GundoToggle<CR>
+
+"Tagbar
+nnoremap <silent> <leader>t :TagbarToggle<CR>
+let g:tagbar_autoclose = 1
+let g:tagbar_autofocus = 1
+
+"multiple-cursor
+let g:multi_cursor_next_key = '<C-v>'
+let g:multi_cursor_prev_key= '<C-p>'
