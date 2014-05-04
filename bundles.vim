@@ -27,7 +27,7 @@ Bundle "rstacruz/sparkup"
 Bundle "scrooloose/syntastic"
 Bundle "terryma/vim-multiple-cursors"
 Bundle "sjl/gundo.vim"
-if version > 703
+if version > 701
 	Bundle 'majutsushi/tagbar'
 endif
 
