@@ -27,6 +27,8 @@ Bundle "rstacruz/sparkup"
 Bundle "scrooloose/syntastic"
 Bundle "terryma/vim-multiple-cursors"
 Bundle "sjl/gundo.vim"
-Bundle 'majutsushi/tagbar'
+if version > 703
+	Bundle 'majutsushi/tagbar'
+endif
 
 filetype plugin indent on     " required!

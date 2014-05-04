@@ -16,7 +16,6 @@ filetype plugin on
 filetype plugin indent on     
 
 syntax on
-set rnu
 set autoread			"auto load changes
 "set history=40
 
@@ -43,8 +42,10 @@ autocmd BufEnter * silent! lcd %:p
 
 "create undo file
 if has('persistent_undo')
-	call system('mkdir ~/.vim/undo')	
 	set undodir=~/.vim/undo
+	if !isdirectory(&undodir)
+		call system('mkdir ' . &undodir, 'p')	
+	endif
 	set undofile                " keep a persistent backup file
 	set undolevels=1000         " How many undos
 	set undoreload=10000        " number of lines to save for undo
@@ -63,8 +64,13 @@ set scrolloff=7
 " Always show the status line - use 2 lines for the status bar
 set laststatus=2
 
-autocmd InsertEnter * :set nu
-autocmd InsertLeave * :set rnu
+if exists('+relativenumber')
+  set rnu
+  autocmd InsertEnter * :set nu
+  autocmd InsertLeave * :set rnu
+else
+  set nu
+endif
 
 "Reselect visual block after indent/outdent.
 vnoremap < <gv
