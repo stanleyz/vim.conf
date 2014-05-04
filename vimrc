@@ -39,7 +39,7 @@ noremap <C-a> ^
 noremap <C-e> $
 
 "set auto change dir
-autocmd BufEnter * silent! lcd %:p:h
+autocmd BufEnter * silent! lcd %:p
 
 "create undo file
 if has('persistent_undo')
@@ -54,7 +54,8 @@ set wildignore=*.class,*.so,*.zip,*.png,*.jpg,*.gif
 
 set mouse-=a  "disable changing cursor position using mouse
 
-set ruler  "display current line & column number
+"do not display ruler to bypass the conflict bug of integration of cursorcolumn and completion
+set noruler
 
 "keep at least 7 lines when scrolling
 set scrolloff=7
@@ -76,9 +77,12 @@ colors evening
 set t_Co=256
 
 "highlight line and column of curosr
-"set cuc cul
-"hi CursorLine cterm=NONE ctermbg=6 ctermfg=black guibg=grey guifg=black
-"hi CursorColumn cterm=NONE ctermbg=6 ctermfg=black guibg=grey guifg=black
+set cuc cul
+hi CursorLine cterm=NONE ctermbg=grey ctermfg=black guibg=grey guifg=black
+hi CursorColumn cterm=NONE ctermbg=grey ctermfg=black guibg=grey guifg=black
+
+"status line
+set statusline=%f%m%r%=%c,%l/%L\ \ %P
 
 "  ---------------------------------------------------------------------------
 "  Text Formatting
@@ -134,11 +138,11 @@ set foldlevel=1
 " Supertab
 
 " Remap autocomplete menu control keys
-inoremap <expr> <CR> pumvisible() ? "\<C-n>\<C-y>" : "\<CR>"
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 
 let g:SuperTabCrMapping = 0 " prevent remap from breaking supertab
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
-set completeopt=longest,menu
+set completeopt=longest,preview,menuone
 set wildmode=list:longest,full
 let g:SuperTabClosePreviewOnPopupClose = 1 " close scratch window on autocompletion

@@ -17,8 +17,16 @@ Bundle "tomtom/tlib_vim"
 Bundle "garbas/vim-snipmate"
 
 "Ruby
-"Bundle "git://github.com/vim-ruby/vim-ruby"
+Bundle "git://github.com/vim-ruby/vim-ruby"
 "Rails
-"Bundle "git://github.com/tpope/vim-rails"
+Bundle "git://github.com/tpope/vim-rails"
+"Php
+Bundle "StanAngeloff/php.vim"
+
+Bundle "rstacruz/sparkup"
+Bundle "scrooloose/syntastic"
+Bundle "terryma/vim-multiple-cursors"
+Bundle "sjl/gundo.vim"
+Bundle 'majutsushi/tagbar'
 
 filetype plugin indent on     " required!
