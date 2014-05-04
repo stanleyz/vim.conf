@@ -33,8 +33,8 @@ vnoremap <C-k> :m '<-2<CR>gv=gv
 nmap <C-h> xhhp
 nmap <C-l> xp
 
-inoremap <C-a> <ESC>^
-inoremap <C-e> <ESC>$
+inoremap <C-a> <ESC>^i
+inoremap <C-e> <ESC>$a
 noremap <C-a> ^
 noremap <C-e> $
 
@@ -92,7 +92,7 @@ set shiftwidth=2
 set softtabstop=2
 set smarttab
 
-set pastetoggle=<leader>t
+set pastetoggle=<leader>p
 
 "  ---------------------------------------------------------------------------
 "  Search
@@ -146,3 +146,6 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>"
 set completeopt=longest,preview,menuone
 set wildmode=list:longest,full
 let g:SuperTabClosePreviewOnPopupClose = 1 " close scratch window on autocompletion
+
+"Gundo
+nnoremap <leader>g :GundoToggle<CR>
