@@ -168,4 +168,7 @@ let g:tagbar_autofocus = 1
 
 "multiple-cursor
 let g:multi_cursor_next_key = '<C-v>'
-let g:multi_cursor_prev_key= '<C-p>'
+
+"Syntastic
+let g:syntastic_aggregate_errors = 1
+nnoremap <leader>c :SyntasticCheck<CR>

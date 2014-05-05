@@ -16,13 +16,6 @@ Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "garbas/vim-snipmate"
 
-"Ruby
-Bundle "git://github.com/vim-ruby/vim-ruby"
-"Rails
-Bundle "git://github.com/tpope/vim-rails"
-"Php
-Bundle "StanAngeloff/php.vim"
-
 Bundle "rstacruz/sparkup"
 Bundle "scrooloose/syntastic"
 Bundle "terryma/vim-multiple-cursors"
