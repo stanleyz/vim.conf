@@ -12,7 +12,7 @@ Bundle "git://github.com/jiangmiao/auto-pairs"
 Bundle "git://github.com/tpope/vim-surround.git"
 Bundle "git://github.com/honza/vim-snippets"
 Bundle "git://github.com/ervandew/supertab"
-"Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "MarcWeber/vim-addon-mw-utils"
 "Bundle "tomtom/tlib_vim"
 Bundle "garbas/vim-snipmate"
 
