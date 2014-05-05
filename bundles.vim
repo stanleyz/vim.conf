@@ -26,4 +26,6 @@ if version > 701
 	Bundle 'majutsushi/tagbar'
 endif
 
+Bundle "Chiel92/vim-autoformat"
+
 filetype plugin indent on     " required!

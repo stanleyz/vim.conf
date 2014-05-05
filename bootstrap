@@ -1,19 +1,19 @@
 #!/bin/sh
 OIFS="`echo $IFS`"
 if ! which git > /dev/null; then
-  echo "There is no git command in your system, please install one."
-  exit
+	echo "There is no git command in your system, please install one."
+	exit
 fi
 
 if [[ -f ~/.stanley-vim ]]; then
 	rm -rf ~/.stanley-vim
 fi
 if [[ -f ~/.vimrc.old ]]; then
-  rm -rf ~/.vimrc.old
+	rm -rf ~/.vimrc.old
 fi
 
 if [[ -f ~/.vimrc ]]; then
-  mv ~/.vimrc ~/.vimrc.old
+	mv ~/.vimrc ~/.vimrc.old
 fi
 if [[ ! -d ~/.vim ]]; then
 	mkdir ~/.vim
@@ -22,12 +22,34 @@ fi
 git clone git://github.com/stanleyz/vim.conf ~/.stanley-vim
 cp ~/.stanley-vim/vimrc ~/.vim/vimrc
 cp ~/.stanley-vim/bundles.vim ~/.vim/bundles.vim
-rm -rf ~/.stanley-vim
 ln -s ~/.vim/vimrc ~/.vimrc
 
 cd ~/.vim
 if [[ ! -d ~/.vim/bundle/vundle/.git ]]; then
-  git clone git://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+	git clone git://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 fi
 vim -c BundleInstall! -c q -c q -u bundles.vim
 IFS="`echo $OIFS`"
+
+if ! which astyle > /dev/null; then
+	echo "No astyle installed, will require your password to install it!"
+
+	if ! which svn > /dev/null; then
+		echo "No svn installed!!!"
+	else
+		svn  checkout  "https://svn.code.sf.net/p/astyle/code/trunk/AStyle" ~/.stanley-vim/AStyle
+		cd ~/.stanley-vim/AStyle/build/gcc
+		make
+		sudo make install
+	fi
+fi
+
+if ! which npm > /dev/null ; then
+	echo "No nodejs or npm installed!!"
+else
+	if [[ "X`npm list -g js-beautify | grep js-beautify | wc -l`" == "X0" ]]; then
+		npm install -g js-beautify
+	fi
+fi
+
+rm -rf ~/.stanley-vim

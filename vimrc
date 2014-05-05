@@ -68,11 +68,11 @@ set scrolloff=7
 set laststatus=2
 
 if exists('+relativenumber')
-  set rnu
-  autocmd InsertEnter * :set nornu nu
-  autocmd InsertLeave * :set nonu rnu
+	set rnu
+	autocmd InsertEnter * :set nornu nu
+	autocmd InsertLeave * :set nonu rnu
 else
-  set nu
+	set nu
 endif
 
 "Reselect visual block after indent/outdent.
@@ -127,13 +127,27 @@ cnoremap <C-b> <Left>
 let NERDTreeShowBookmarks = 0
 let NERDChristmasTree = 1
 let NERDTreeWinPos = "left"
-let NERDTreeHijackNetrw = 0
+let NERDTreeHijackNetrw = 1
 let NERDTreeQuitOnOpen = 1
 let NERDTreeWinSize = 50 
 let NERDTreeChDirMode = 2
 let NERDTreeDirArrows = 1
+" Check if NERDTree is open or active
+function! rc:isNERDTreeOpen()        
+	return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
+" file, and we're not in vimdiff
+function sz:openNerdTree()
+	if &modifiable && !rc:isNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+		NERDTreeFind
+	else
+		NERDTreeToggle
+	endif
+endfunction
 " open file browser
-map <leader>p :NERDTreeToggle<cr>
+map <leader>p :call sz:openNerdTree()<CR>
 
 " CtrlP
 let g:ctrlp_map = ',f'
@@ -172,3 +186,6 @@ let g:multi_cursor_next_key = '<C-v>'
 "Syntastic
 let g:syntastic_aggregate_errors = 1
 nnoremap <leader>c :SyntasticCheck<CR>
+
+"vim-autoformat
+nnoremap <C-g> :Autoformat<CR><CR>
