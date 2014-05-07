@@ -1,12 +1,12 @@
 set nocompatible               " be iMproved
-set nobackup
-"set noswapfile
-
-silent! runtime bundles.vim
 
 "  ---------------------------------------------------------------------------
 "  General
 "  ---------------------------------------------------------------------------
+set nobackup
+"set noswapfile
+set directory=/var/tmp,/tmp
+
 let mapleader = ","
 let g:mapleader = ","
 
@@ -29,13 +29,16 @@ inoremap <C-j> <Esc>:m .+1<CR>==gi
 inoremap <C-k> <Esc>:m .-2<CR>==gi
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
-nmap <C-h> xhhp
-nmap <C-l> xp
+
+nnoremap <C-h> xhhp
+nnoremap <C-l> xp
+vnoremap <C-h> xhPgvhoho
+vnoremap <C-l> xpgvlolo
 
 inoremap <C-a> <ESC>^i
 inoremap <C-e> <ESC>$a
-nnoremap <leader>a ^
-nnoremap <leader>e $
+nnoremap <C-a> ^
+nnoremap <C-e> $
 
 nnoremap <C-n> :lne<CR>
 nnoremap <C-p> :lp<CR>
@@ -139,7 +142,7 @@ endfunction
 
 " Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
 " file, and we're not in vimdiff
-function sz:openNerdTree()
+function! sz:openNerdTree()
 	if &modifiable && !rc:isNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
 		NERDTreeFind
 	else
@@ -147,13 +150,10 @@ function sz:openNerdTree()
 	endif
 endfunction
 " open file browser
-map <leader>p :call sz:openNerdTree()<CR>
+nnoremap <leader>p :call sz:openNerdTree()<CR>
 
 " CtrlP
 let g:ctrlp_map = ',f'
-
-" Auto pairs
-let g:AutoPairsShortcutJump = '<C-c>'
 
 if has('folding')
 	set foldmethod=indent
@@ -161,7 +161,6 @@ if has('folding')
 endif
 
 " Supertab
-
 " Remap autocomplete menu control keys
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 
@@ -189,3 +188,17 @@ nnoremap <leader>c :SyntasticCheck<CR>
 
 "vim-autoformat
 nnoremap <C-g> :Autoformat<CR><CR>
+
+
+"  ---------------------------------------------------------------------------
+"  Functions
+"  ---------------------------------------------------------------------------
+function! sz:checkTest()
+	let l:nextChar = getline('.')[col('.')]
+	if strlen (l:nextChar) == 0
+		echom "Hello"
+	else
+		echom "no"
+	endif
+endfunction
+nnoremap <C-t> :call sz:checkTest()<CR>
