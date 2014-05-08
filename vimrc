@@ -1,4 +1,4 @@
-set nocompatible               " be iMproved
+silent! runtime bundles.vim
 
 "  ---------------------------------------------------------------------------
 "  General
@@ -9,11 +9,6 @@ set directory=/var/tmp,/tmp
 
 let mapleader = ","
 let g:mapleader = ","
-
-filetype on
-filetype indent on
-filetype plugin on
-filetype plugin indent on     
 
 syntax on
 set autoread			"auto load changes
@@ -30,18 +25,15 @@ inoremap <C-k> <Esc>:m .-2<CR>==gi
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 
-nnoremap <C-h> xhhp
+nnoremap <C-h> :call sz:hCharacter()<CR>
 nnoremap <C-l> xp
-vnoremap <C-h> xhPgvhoho
-vnoremap <C-l> xpgvlolo
+vnoremap <C-h> :call sz:hVChars()<CR>
+vnoremap <C-l> :call sz:lVChars()<CR>
 
 inoremap <C-a> <ESC>^i
 inoremap <C-e> <ESC>$a
 nnoremap <C-a> ^
 nnoremap <C-e> $
-
-nnoremap <C-n> :lne<CR>
-nnoremap <C-p> :lp<CR>
 
 "set auto change dir
 autocmd BufEnter * silent! lcd %:p
@@ -166,7 +158,7 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 
 let g:SuperTabCrMapping = 0 " prevent remap from breaking supertab
 let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextDefaultCompletionType = "<c-n>"
+"let g:SuperTabContextDefaultCompletionType = "<C-n>"
 set completeopt=longest,preview,menuone
 set wildmode=list:longest,full
 let g:SuperTabClosePreviewOnPopupClose = 1 " close scratch window on autocompletion
@@ -187,18 +179,77 @@ let g:syntastic_aggregate_errors = 1
 nnoremap <leader>c :SyntasticCheck<CR>
 
 "vim-autoformat
-nnoremap <C-g> :Autoformat<CR><CR>
-
+nnoremap <C-g> :call sz:autoFormat()<CR>
 
 "  ---------------------------------------------------------------------------
 "  Functions
 "  ---------------------------------------------------------------------------
-function! sz:checkTest()
+function! sz:checkNewline()
 	let l:nextChar = getline('.')[col('.')]
 	if strlen (l:nextChar) == 0
-		echom "Hello"
-	else
-		echom "no"
+		return 1
 	endif
 endfunction
-nnoremap <C-t> :call sz:checkTest()<CR>
+
+function! sz:hCharacter()
+	if sz:checkNewline()
+		exe "normal! xhp"
+	elseif col('.') == 2
+		exe "normal! hxph"
+	elseif col('.') != 1
+		exe "normal! xhhp"
+	endif
+endfunction
+
+function! sz:hVChars()
+	normal! gv
+	"If the last character selected is the last in this line
+	if strlen(getline('.')) == getpos("'>")[2]
+		exe 'normal! xPgvhoho'
+		"If the first character selected is NOT at the head of this line
+	elseif getpos("'<'")[2] != 1
+		exe 'normal! xhPgvhoho'
+	endif
+endfunction
+
+function! sz:lVChars()
+	normal! gv
+	"If the selection is NOT already at the end of this line
+	if strlen(getline('.')) != getpos("'>")[2]
+		exe 'normal! xpgvlolo'
+	endif
+endfunction
+
+function! sz:autoFormat()
+	let l:astyle = ['c', 'cpp', 'cs', 'java']
+	let l:tidy = ['xml', 'xhtml']
+
+	if !exists("b:formatprg")	
+		if index(l:astyle, &filetype) != -1 && executable('astyle')
+			let b:formatprg = eval('"astyle -pc".(&expandtab ? "s".&shiftwidth : "t") . 
+						\	" --mode=".(&filetype ==? "cpp" ? "c" : &filetype)')
+		elseif index(l:tidy, &filetype) != -1 && executable('tidy')
+			let b:formatprg = eval('"tidy -q --show-errors 0 --show-warnings 0 --force-output
+						\ --indent auto --indent-spaces ".&shiftwidth." --vertical-space yes
+						\ --tidy-mark no -asxhtml -wrap ".&textwidth.(&filetype ==? "xml"
+						\ ? " -xml" : "")')
+		elseif &filetype ==? 'html'
+			let b:formatprg = eval('"html-beautify -f - -s ".&shiftwidth')
+		elseif &filetype ==? 'javascript'
+			let b:formatprg = eval('"js-beautify -f - -".(&expandtab ? "s ".&shiftwidth : "t")')
+		else
+			let b:formatprg = 'nop'
+		endif
+	endif
+
+	"Save window state
+	let l:winview = winsaveview()
+	if b:formatprg ==? 'nop'
+		exe "normal gg=G"
+	else
+		echo b:formatprg
+		exe "1,$!".b:formatprg
+	endif
+	"Restore window state
+	call winrestview(l:winview)
+endfunction

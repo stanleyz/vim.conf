@@ -22,6 +22,7 @@ fi
 git clone git://github.com/stanleyz/vim.conf ~/.stanley-vim
 cp ~/.stanley-vim/vimrc ~/.vim/vimrc
 cp ~/.stanley-vim/bundles.vim ~/.vim/bundles.vim
+rm -rf ~/.stanley-vim
 ln -s ~/.vim/vimrc ~/.vimrc
 
 cd ~/.vim
@@ -31,25 +32,4 @@ fi
 vim -c BundleInstall! -c q -c q -u bundles.vim
 IFS="`echo $OIFS`"
 
-if ! which astyle > /dev/null; then
-	echo "No astyle installed, will require your password to install it!"
-
-	if ! which svn > /dev/null; then
-		echo "No svn installed!!!"
-	else
-		svn  checkout  "https://svn.code.sf.net/p/astyle/code/trunk/AStyle" ~/.stanley-vim/AStyle
-		cd ~/.stanley-vim/AStyle/build/gcc
-		make
-		sudo make install
-	fi
-fi
-
-if ! which npm > /dev/null ; then
-	echo "No nodejs or npm installed!!"
-else
-	if [[ "X`npm list -g js-beautify | grep js-beautify | wc -l`" == "X0" ]]; then
-		npm install -g js-beautify
-	fi
-fi
-
-rm -rf ~/.stanley-vim
+echo -e "\033[33;31m Please ensure you have astyle / tidy / js-beautify installed for autoformat"
