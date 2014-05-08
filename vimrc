@@ -160,7 +160,8 @@ let g:tagbar_autoclose = 1
 let g:tagbar_autofocus = 1
 
 "multiple-cursor
-let g:multi_cursor_next_key = '<C-v>'
+"mapping own keys breaks this plugin, probably better fix it yourself later
+"let g:multi_cursor_next_key = '<C-v>'
 
 "Syntastic
 let g:syntastic_aggregate_errors = 1
