@@ -14,9 +14,9 @@ syntax on
 set autoread			"auto load changes
 "set history=40
 
-inoremap ,, <Esc>
-inoremap ,o <ESC>o
-inoremap ,O <ESC>O
+inoremap <leader><leader> <Esc>
+inoremap <leader>o <ESC>o
+inoremap <leader>O <ESC>O
 
 nnoremap <C-j> :m .+1<CR>==
 nnoremap <C-k> :m .-2<CR>==
@@ -29,6 +29,8 @@ nnoremap <C-h> :call sz:hCharacter()<CR>
 nnoremap <C-l> xp
 vnoremap <C-h> :call sz:hVChars()<CR>
 vnoremap <C-l> :call sz:lVChars()<CR>
+
+nnoremap <leader>q :call sz:toggleQuickfixWindow()<CR>
 
 inoremap <C-a> <ESC>^i
 inoremap <C-e> <ESC>$a
@@ -127,20 +129,6 @@ let NERDTreeQuitOnOpen = 1
 let NERDTreeWinSize = 50 
 let NERDTreeChDirMode = 2
 let NERDTreeDirArrows = 1
-" Check if NERDTree is open or active
-function! rc:isNERDTreeOpen()        
-	return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-endfunction
-
-" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
-" file, and we're not in vimdiff
-function! sz:openNerdTree()
-	if &modifiable && !rc:isNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-		NERDTreeFind
-	else
-		NERDTreeToggle
-	endif
-endfunction
 " open file browser
 nnoremap <leader>p :call sz:openNerdTree()<CR>
 
@@ -176,6 +164,9 @@ let g:multi_cursor_next_key = '<C-v>'
 
 "Syntastic
 let g:syntastic_aggregate_errors = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 1
 nnoremap <leader>c :SyntasticCheck<CR>
 
 "vim-autoformat
@@ -253,3 +244,28 @@ function! sz:autoFormat()
 	"Restore window state
 	call winrestview(l:winview)
 endfunction
+
+" Check if NERDTree is open or active
+function! rc:isNERDTreeOpen()        
+	return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
+" file, and we're not in vimdiff
+function! sz:openNerdTree()
+	if &modifiable && !rc:isNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+		NERDTreeFind
+	else
+		NERDTreeToggle
+	endif
+endfunction
+
+fun! sz:toggleQuickfixWindow()
+	if !exists("g:quickfixToggle") || ! g:quickfixToggle		
+		let g:quickfixToggle = 1
+		exe ":cw"
+	else
+		let g:quickfixToggle = 0
+		exe ":ccl"
+	endif
+endf

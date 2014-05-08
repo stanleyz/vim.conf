@@ -33,4 +33,4 @@ fi
 vim -c BundleInstall! -c q -c q -u bundles.vim
 IFS="`echo $OIFS`"
 
-echo -e "\033[33;31m Please ensure you have astyle / tidy / js-beautify installed for autoformat"
+echo -e "\n\n\033[33;31m Please ensure you have astyle / tidy / js-beautify installed for autoformat\n\n"
