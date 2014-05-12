@@ -14,9 +14,9 @@ syntax on
 set autoread			"auto load changes
 "set history=40
 
-inoremap ,, <Esc>
-inoremap ,o <ESC>o
-inoremap ,O <ESC>O
+inoremap <leader><leader> <Esc>
+inoremap <leader>o <ESC>o
+inoremap <leader>O <ESC>O
 
 nnoremap <C-j> :m .+1<CR>==
 nnoremap <C-k> :m .-2<CR>==
@@ -30,10 +30,10 @@ nnoremap <C-l> xp
 vnoremap <C-h> :call sz:hVChars()<CR>
 vnoremap <C-l> :call sz:lVChars()<CR>
 
+nnoremap <leader>q :call sz:toggleQuickfixWindow()<CR>
+
 inoremap <C-a> <ESC>^i
 inoremap <C-e> <ESC>$a
-nnoremap <C-a> ^
-nnoremap <C-e> $
 
 "set auto change dir
 autocmd BufEnter * silent! lcd %:p
@@ -127,20 +127,6 @@ let NERDTreeQuitOnOpen = 1
 let NERDTreeWinSize = 50 
 let NERDTreeChDirMode = 2
 let NERDTreeDirArrows = 1
-" Check if NERDTree is open or active
-function! rc:isNERDTreeOpen()        
-	return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-endfunction
-
-" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
-" file, and we're not in vimdiff
-function! sz:openNerdTree()
-	if &modifiable && !rc:isNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-		NERDTreeFind
-	else
-		NERDTreeToggle
-	endif
-endfunction
 " open file browser
 nnoremap <leader>p :call sz:openNerdTree()<CR>
 
@@ -172,10 +158,15 @@ let g:tagbar_autoclose = 1
 let g:tagbar_autofocus = 1
 
 "multiple-cursor
-let g:multi_cursor_next_key = '<C-v>'
+"mapping own keys breaks this plugin, probably better fix it yourself later
+"let g:multi_cursor_next_key = '<C-v>'
 
 "Syntastic
 let g:syntastic_aggregate_errors = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
 nnoremap <leader>c :SyntasticCheck<CR>
 
 "vim-autoformat
@@ -226,7 +217,7 @@ function! sz:autoFormat()
 
 	if !exists("b:formatprg")	
 		if index(l:astyle, &filetype) != -1 && executable('astyle')
-			let b:formatprg = eval('"astyle -pc".(&expandtab ? "s".&shiftwidth : "t") . 
+			let b:formatprg = eval('"astyle -xC80 -pc".(&expandtab ? "s".&shiftwidth : "t") . 
 						\	" --mode=".(&filetype ==? "cpp" ? "c" : &filetype)')
 		elseif index(l:tidy, &filetype) != -1 && executable('tidy')
 			let b:formatprg = eval('"tidy -q --show-errors 0 --show-warnings 0 --force-output
@@ -253,3 +244,28 @@ function! sz:autoFormat()
 	"Restore window state
 	call winrestview(l:winview)
 endfunction
+
+" Check if NERDTree is open or active
+function! rc:isNERDTreeOpen()        
+	return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
+" file, and we're not in vimdiff
+function! sz:openNerdTree()
+	if &modifiable && !rc:isNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+		NERDTreeFind
+	else
+		NERDTreeToggle
+	endif
+endfunction
+
+fun! sz:toggleQuickfixWindow()
+	if !exists("g:quickfixToggle") || ! g:quickfixToggle		
+		let g:quickfixToggle = 1
+		exe ":cw"
+	else
+		let g:quickfixToggle = 0
+		exe ":ccl"
+	endif
+endf
