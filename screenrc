@@ -1,0 +1,16 @@
+# Make the shell in every window as your login shell
+shell -$SHELL
+ 
+# Instead of Control-a, make the escape/command character be Control-x
+escape ^Xx
+ 
+# Autodetach session on hangup instead of terminating screen completely
+autodetach on
+ 
+# Turn off the splash screen
+startup_message off
+ 
+# Use a 100000-line scrollback buffer
+defscrollback 100000
+
+caption always "%{-b ..}%-w%{+b ..}[%n%f*%t]%{-}%+w"
