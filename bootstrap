@@ -19,10 +19,18 @@ if [[ ! -d ~/.vim ]]; then
 	mkdir ~/.vim
 fi
 
+if [[ -f ~/.screenrc.old ]]; then
+	rm -rf ~/.screenrc.old
+fi
+if [[ -f ~/.screenrc ]]; then
+	mv ~/.screenrc ~/.screenrc.old
+fi
+
 git clone git://github.com/stanleyz/vim.conf ~/.stanley-vim
 cp ~/.stanley-vim/vimrc ~/.vim/vimrc
 cp ~/.stanley-vim/bundles.vim ~/.vim/bundles.vim
 cp ~/.stanley-vim/bootstrap ~/.vim/bootstrap
+cp ~/.stanley-vim/screenrc ~/.screenrc
 rm -rf ~/.stanley-vim
 ln -s ~/.vim/vimrc ~/.vimrc
 
