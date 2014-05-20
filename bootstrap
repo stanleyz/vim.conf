@@ -19,6 +19,7 @@ if [[ ! -d ~/.vim ]]; then
 	mkdir ~/.vim
 fi
 
+#change screeen settings
 if [[ -f ~/.screenrc.old ]]; then
 	rm -rf ~/.screenrc.old
 fi
@@ -26,11 +27,20 @@ if [[ -f ~/.screenrc ]]; then
 	mv ~/.screenrc ~/.screenrc.old
 fi
 
+#change tmux settings
+if [[ -f ~/.tmux.conf.old ]]; then
+	rm -rf ~/.tmux.conf.old
+fi
+if [[ -f ~/.tmux.conf ]]; then
+	mv ~/.tmux.conf ~/.tmux.conf.old
+fi
+
 git clone git://github.com/stanleyz/vim.conf ~/.stanley-vim
 cp ~/.stanley-vim/vimrc ~/.vim/vimrc
 cp ~/.stanley-vim/bundles.vim ~/.vim/bundles.vim
 cp ~/.stanley-vim/bootstrap ~/.vim/bootstrap
 cp ~/.stanley-vim/screenrc ~/.screenrc
+cp ~/.stanley-vim/tmux.conf ~/.tmux.conf
 rm -rf ~/.stanley-vim
 ln -s ~/.vim/vimrc ~/.vimrc
 
