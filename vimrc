@@ -77,12 +77,12 @@ vnoremap > >gv
 "  ---------------------------------------------------------------------------
 "  UI
 "  ---------------------------------------------------------------------------
-colors desert 
+colors evening
 set t_Co=256
 
 "highlight line and column of curosr
 set cuc cul
-hi CursorLine cterm=NONE ctermbg=grey ctermfg=black guibg=grey guifg=black
+"hi CursorLine cterm=NONE ctermbg=grey ctermfg=black guibg=grey guifg=black
 hi CursorColumn cterm=NONE ctermbg=grey ctermfg=black guibg=grey guifg=black
 
 "status line
