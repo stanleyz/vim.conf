@@ -9,4 +9,4 @@ It's easy anyway, please run the following command in your console:
 
 Or you can choose this short one:
 
-      curl -L http://is.gd/vimconf | bash
+      curl -L goo.gl/76GT4 | bash
