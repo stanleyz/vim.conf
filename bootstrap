@@ -35,12 +35,21 @@ if [[ -f ~/.tmux.conf ]]; then
 	mv ~/.tmux.conf ~/.tmux.conf.old
 fi
 
+#change git settings
+if [[ -f ~/.gitconfig.old ]]; then
+	rm -rf ~/.gitconfig.old
+fi
+if [[ -f ~/.gitconfig ]]; then
+	mv ~/.gitconfig ~/.gitconfig.old
+fi
+
 git clone git://github.com/stanleyz/vim.conf ~/.stanley-vim
 cp ~/.stanley-vim/vimrc ~/.vim/vimrc
 cp ~/.stanley-vim/bundles.vim ~/.vim/bundles.vim
 cp ~/.stanley-vim/bootstrap ~/.vim/bootstrap
 cp ~/.stanley-vim/screenrc ~/.screenrc
 cp ~/.stanley-vim/tmux.conf ~/.tmux.conf
+cp ~/.stanley-vim/gitconfig ~/.gitconfig
 rm -rf ~/.stanley-vim
 ln -s ~/.vim/vimrc ~/.vimrc
 
