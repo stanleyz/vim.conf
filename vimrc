@@ -18,6 +18,16 @@ inoremap <leader><leader> <Esc>
 inoremap <leader>o <ESC>o
 inoremap <leader>O <ESC>O
 
+nnoremap <leader>qq :q<CR>
+nnoremap <leader>q! :q!<CR>
+nnoremap <leader>qa :qa<CR>
+inoremap <leader>qq <ESC>:qq<CR>
+inoremap <leader>q! <ESC>:q!<CR>
+inoremap <leader>qa <ESC>:qa<CR>
+
+nnoremap <leader>s :w<CR>
+inoremap <leader>s <ESC>:w<CR>gi
+
 nnoremap <C-j> :m .+1<CR>==
 nnoremap <C-k> :m .-2<CR>==
 inoremap <C-j> <Esc>:m .+1<CR>==gi
@@ -30,7 +40,7 @@ nnoremap <C-l> xp
 vnoremap <C-h> :call sz:hVChars()<CR>
 vnoremap <C-l> :call sz:lVChars()<CR>
 
-nnoremap <leader>q :call sz:toggleQuickfixWindow()<CR>
+nnoremap <leader>qf :call sz:toggleQuickfixWindow()<CR>
 
 inoremap <C-a> <ESC>^i
 inoremap <C-e> <ESC>$a
