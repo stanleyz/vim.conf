@@ -40,7 +40,7 @@ nnoremap <C-l> xp
 vnoremap <C-h> :call sz:hVChars()<CR>
 vnoremap <C-l> :call sz:lVChars()<CR>
 
-nnoremap <C-a> :call sz:toggleQuickfixWindow()<CR>
+nnoremap <C-e> :call sz:toggleQuickfixWindow()<CR>
 
 inoremap <C-a> <ESC>^i
 inoremap <C-e> <ESC>$a
