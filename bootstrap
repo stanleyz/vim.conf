@@ -43,6 +43,14 @@ if [[ -f ~/.gitconfig ]]; then
 	mv ~/.gitconfig ~/.gitconfig.old
 fi
 
+#change vimperator settings
+if [[ -f ~/.vimperatorrc.old ]]; then
+	rm -rf ~/.vimperatorrc.old
+fi
+if [[ -f ~/.vimperatorrc ]]; then
+	mv ~/.vimperatorrc ~/.vimperatorrc.old
+fi
+
 git clone git://github.com/stanleyz/vim.conf ~/.stanley-vim
 cp ~/.stanley-vim/vimrc ~/.vim/vimrc
 cp ~/.stanley-vim/bundles.vim ~/.vim/bundles.vim
@@ -50,6 +58,7 @@ cp ~/.stanley-vim/bootstrap ~/.vim/bootstrap
 cp ~/.stanley-vim/screenrc ~/.screenrc
 cp ~/.stanley-vim/tmux.conf ~/.tmux.conf
 cp ~/.stanley-vim/gitconfig ~/.gitconfig
+cp ~/.stanley-vim/vimperatorrc ~/.vimperatorrc
 rm -rf ~/.stanley-vim
 ln -s ~/.vim/vimrc ~/.vimrc
 

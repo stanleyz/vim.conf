@@ -1,0 +1,21 @@
+let mapleader = ","
+
+set incsearch
+
+nnoremap ",," <ESC>
+vnoremap ",," <ESC>
+cnoremap ",," <ESC>
+inoremap ",," <ESC>
+
+nnoremap j 5j
+nnoremap k 5k
+nnoremap <leader>b b
+nnoremap <leader>f f
+nnoremap <leader>F F
+nnoremap f <PageDown>
+nnoremap b <PageUp>
+
+nnoremap l <C-n>
+nnoremap h <C-p>
+cnoremap <C-n> <Down>
+cnoremap <C-p> <Up>
