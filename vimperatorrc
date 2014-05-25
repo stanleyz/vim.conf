@@ -5,7 +5,7 @@ set incsearch
 nnoremap ",," <ESC>
 vnoremap ",," <ESC>
 cnoremap ",," <ESC>
-inoremap ",," <ESC>
+"inoremap ",," <ESC>
 
 nnoremap j 5j
 nnoremap k 5k
