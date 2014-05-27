@@ -10,8 +10,8 @@ cnoremap ",," <ESC>
 nnoremap j 5j
 nnoremap k 5k
 nnoremap <leader>b b
-nnoremap <leader>f f
-nnoremap <leader>F F
+nnoremap <leader>F f
+nnoremap <leader>f F
 nnoremap f <PageDown>
 nnoremap b <PageUp>
 
