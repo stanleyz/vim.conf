@@ -25,6 +25,7 @@ Bundle "sjl/gundo.vim"
 if version > 701
 	Bundle 'majutsushi/tagbar'
 endif
+Bundle 'Lokaltog/vim-easymotion'
 
 "Bundle "Chiel92/vim-autoformat"
 

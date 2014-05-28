@@ -10,8 +10,6 @@ inoremap ";;" <ESC>
 nnoremap j 5j
 nnoremap k 5k
 nnoremap <leader>b b
-nnoremap <leader>F f
-nnoremap <leader>f F
 nnoremap f <PageDown>
 nnoremap b <PageUp>
 
@@ -19,3 +17,6 @@ nnoremap l <C-n>
 nnoremap h <C-p>
 cnoremap <C-n> <Down>
 cnoremap <C-p> <Up>
+
+:ignorekeys add -except o,t,: mail\\.google\\.com
+set hintchars=abcdefghigklmnopqrstuvwxyz

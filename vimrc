@@ -15,6 +15,18 @@ set autoread			"auto load changes
 "set history=40
 
 inoremap <leader><leader> <Esc>
+cnoremap <leader><leader> <Esc>
+vnoremap <leader><leader> <Esc>
+
+nnoremap <leader>h <C-w>h
+nnoremap <leader>j <C-w>j
+nnoremap <leader>k <C-w>k
+nnoremap <leader>l <C-w>l
+inoremap <leader>h <ESC><C-w>h
+inoremap <leader>l <ESC><C-w>l
+inoremap <leader>j <ESC><C-w>j
+inoremap <leader>k <ESC><C-w>k
+
 inoremap <leader>o <ESC>o
 inoremap <leader>O <ESC>O
 
@@ -40,7 +52,7 @@ nnoremap <C-l> xp
 vnoremap <C-h> :call sz:hVChars()<CR>
 vnoremap <C-l> :call sz:lVChars()<CR>
 
-nnoremap <C-e> :call sz:toggleQuickfixWindow()<CR>
+nnoremap <leader>w :call sz:toggleQuickfixWindow()<CR>
 
 inoremap <C-a> <ESC>^i
 inoremap <C-e> <ESC>$a
