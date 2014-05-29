@@ -20,4 +20,4 @@ cnoremap <C-n> <Down>
 cnoremap <C-p> <Up>
 
 :ignorekeys add -except o,t,:,B mail\\.google\\.com
-set hintchars=abcdefghijk
+set hintchars=abcdgistuwmxyz
