@@ -47,15 +47,15 @@ inoremap <C-k> <Esc>:m .-2<CR>==gi
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 
-nnoremap <C-h> :call sz:hCharacter()<CR>
+nnoremap <C-h> :call s:hCharacter()<CR>
 nnoremap <C-l> xp
-vnoremap <C-h> :call sz:hVChars()<CR>
-vnoremap <C-l> :call sz:lVChars()<CR>
+vnoremap <C-h> :call s:hVChars()<CR>
+vnoremap <C-l> :call s:lVChars()<CR>
 
-nnoremap <leader>w :call sz:toggleQuickfixWindow()<CR>
+nnoremap <leader>w :call s:toggleQuickfixWindow()<CR>
 
-inoremap <C-a> <ESC>^i
-inoremap <C-e> <ESC>$a
+inoremap <leader>a <ESC>^i
+inoremap <leader>e <ESC>$a
 
 "set auto change dir
 autocmd BufEnter * silent! lcd %:p
@@ -157,7 +157,7 @@ let NERDTreeWinSize = 50
 let NERDTreeChDirMode = 2
 let NERDTreeDirArrows = 1
 " open file browser
-nnoremap <leader>p :call sz:openNerdTree()<CR>
+nnoremap <leader>p :call s:openNerdTree()<CR>
 
 " CtrlP
 let g:ctrlp_map = ',f'
@@ -173,7 +173,7 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 
 let g:SuperTabCrMapping = 0 " prevent remap from breaking supertab
 let g:SuperTabDefaultCompletionType = "context"
-"let g:SuperTabContextDefaultCompletionType = "<C-n>"
+let g:SuperTabContextDefaultCompletionType = "<C-n>"
 set completeopt=longest,preview,menuone
 set wildmode=list:longest,full
 let g:SuperTabClosePreviewOnPopupClose = 1 " close scratch window on autocompletion
@@ -199,20 +199,20 @@ let g:syntastic_auto_loc_list = 1
 nnoremap <leader>c :SyntasticCheck<CR>
 
 "vim-autoformat
-nnoremap <C-g> :call sz:autoFormat()<CR>
+nnoremap <C-g> :call s:autoFormat()<CR>
 
 "  ---------------------------------------------------------------------------
 "  Functions
 "  ---------------------------------------------------------------------------
-function! sz:checkNewline()
+function! s:checkNewline()
 	let l:nextChar = getline('.')[col('.')]
 	if strlen (l:nextChar) == 0
 		return 1
 	endif
 endfunction
 
-function! sz:hCharacter()
-	if sz:checkNewline()
+function! s:hCharacter()
+	if s:checkNewline()
 		exe "normal! xhp"
 	elseif col('.') == 2
 		exe "normal! hxph"
@@ -221,7 +221,7 @@ function! sz:hCharacter()
 	endif
 endfunction
 
-function! sz:hVChars()
+function! s:hVChars()
 	normal! gv
 	"If the last character selected is the last in this line
 	if strlen(getline('.')) == getpos("'>")[2]
@@ -232,7 +232,7 @@ function! sz:hVChars()
 	endif
 endfunction
 
-function! sz:lVChars()
+function! s:lVChars()
 	normal! gv
 	"If the selection is NOT already at the end of this line
 	if strlen(getline('.')) != getpos("'>")[2]
@@ -240,7 +240,7 @@ function! sz:lVChars()
 	endif
 endfunction
 
-function! sz:autoFormat()
+function! s:autoFormat()
 	let l:astyle = ['c', 'cpp', 'cs', 'java']
 	let l:tidy = ['xml', 'xhtml']
 
@@ -275,21 +275,21 @@ function! sz:autoFormat()
 endfunction
 
 " Check if NERDTree is open or active
-function! rc:isNERDTreeOpen()        
+function! s:isNERDTreeOpen()        
 	return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction
 
 " Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
 " file, and we're not in vimdiff
-function! sz:openNerdTree()
-	if &modifiable && !rc:isNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+function! s:openNerdTree()
+	if &modifiable && !s:isNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
 		NERDTreeFind
 	else
 		NERDTreeToggle
 	endif
 endfunction
 
-fun! sz:toggleQuickfixWindow()
+fun! s:toggleQuickfixWindow()
 	if !exists("g:quickfixToggle") || ! g:quickfixToggle		
 		let g:quickfixToggle = 1
 		exe ":cw"
