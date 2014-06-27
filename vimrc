@@ -47,12 +47,12 @@ inoremap <C-k> <Esc>:m .-2<CR>==gi
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 
-nnoremap <C-h> :call s:hCharacter()<CR>
+nnoremap <C-h> :call SZHCharacter()<CR>
 nnoremap <C-l> xp
-vnoremap <C-h> :call s:hVChars()<CR>
-vnoremap <C-l> :call s:lVChars()<CR>
+vnoremap <C-h> :call SZHVChars()<CR>
+vnoremap <C-l> :call SZLVChars()<CR>
 
-nnoremap <leader>w :call s:toggleQuickfixWindow()<CR>
+nnoremap <leader>w :call SZToggleQuickfixWindow()<CR>
 
 inoremap <leader>a <ESC>^i
 inoremap <leader>e <ESC>$a
@@ -157,7 +157,7 @@ let NERDTreeWinSize = 50
 let NERDTreeChDirMode = 2
 let NERDTreeDirArrows = 1
 " open file browser
-nnoremap <leader>p :call s:openNerdTree()<CR>
+nnoremap <leader>p :call SZOpenNerdTree()<CR>
 
 " CtrlP
 let g:ctrlp_map = ',f'
@@ -199,7 +199,7 @@ let g:syntastic_auto_loc_list = 1
 nnoremap <leader>c :SyntasticCheck<CR>
 
 "vim-autoformat
-nnoremap <C-g> :call s:autoFormat()<CR>
+nnoremap <C-g> :call SZAutoFormat()<CR>
 
 "  ---------------------------------------------------------------------------
 "  Functions
@@ -211,7 +211,7 @@ function! s:checkNewline()
 	endif
 endfunction
 
-function! s:hCharacter()
+function! SZHCharacter()
 	if s:checkNewline()
 		exe "normal! xhp"
 	elseif col('.') == 2
@@ -221,7 +221,7 @@ function! s:hCharacter()
 	endif
 endfunction
 
-function! s:hVChars()
+function! SZHVChars()
 	normal! gv
 	"If the last character selected is the last in this line
 	if strlen(getline('.')) == getpos("'>")[2]
@@ -232,7 +232,7 @@ function! s:hVChars()
 	endif
 endfunction
 
-function! s:lVChars()
+function! SZLVChars()
 	normal! gv
 	"If the selection is NOT already at the end of this line
 	if strlen(getline('.')) != getpos("'>")[2]
@@ -240,7 +240,7 @@ function! s:lVChars()
 	endif
 endfunction
 
-function! s:autoFormat()
+function! SZAutoFormat()
 	let l:astyle = ['c', 'cpp', 'cs', 'java']
 	let l:tidy = ['xml', 'xhtml']
 
@@ -279,9 +279,9 @@ function! s:isNERDTreeOpen()
 	return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction
 
-" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
+" Call NERDTreeFind if NERDTree is active, current window contains a modifiable
 " file, and we're not in vimdiff
-function! s:openNerdTree()
+function! SZOpenNerdTree()
 	if &modifiable && !s:isNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
 		NERDTreeFind
 	else
@@ -289,7 +289,7 @@ function! s:openNerdTree()
 	endif
 endfunction
 
-fun! s:toggleQuickfixWindow()
+fun! SZToggleQuickfixWindow()
 	if !exists("g:quickfixToggle") || ! g:quickfixToggle		
 		let g:quickfixToggle = 1
 		exe ":cw"
