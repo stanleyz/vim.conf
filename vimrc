@@ -30,12 +30,10 @@ inoremap <leader>k <ESC><C-w>k
 inoremap <leader>o <ESC>o
 inoremap <leader>O <ESC>O
 
-nnoremap <leader>q :q<CR>
-nnoremap <leader>1 :q!<CR>
-nnoremap <leader>a :qa<CR>
-inoremap <leader>q <ESC>:q<CR>
-inoremap <leader>1 <ESC>:q!<CR>
-inoremap <leader>a <ESC>:qa<CR>
+nnoremap <leader>q :q!<CR>
+nnoremap <leader>1 :qa<CR>
+inoremap <leader>q <ESC>:q!<CR>
+inoremap <leader>1 <ESC>:qa<CR>
 
 nnoremap <leader>s :w<CR>
 inoremap <leader>s <ESC>:w<CR>gi
