@@ -33,7 +33,7 @@ inoremap <leader>O <ESC>O
 nnoremap <leader>q :q<CR>
 nnoremap <leader>1 :q!<CR>
 nnoremap <leader>a :qa<CR>
-inoremap <leader>q <ESC>:qq<CR>
+inoremap <leader>q <ESC>:q<CR>
 inoremap <leader>1 <ESC>:q!<CR>
 inoremap <leader>a <ESC>:qa<CR>
 
@@ -54,8 +54,10 @@ vnoremap <C-l> :call SZLVChars()<CR>
 
 nnoremap <leader>w :call SZToggleQuickfixWindow()<CR>
 
-inoremap <leader>a <ESC>^i
-inoremap <leader>e <ESC>$a
+inoremap <C-a> <ESC>^i
+inoremap <C-e> <ESC>$a
+inoremap <C-b> <ESC>bi
+inoremap <C-f> <ESC>lwi
 
 "set auto change dir
 autocmd BufEnter * silent! lcd %:p
