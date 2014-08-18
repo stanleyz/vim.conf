@@ -109,6 +109,7 @@ hi CursorColumn cterm=NONE ctermbg=grey ctermfg=black guibg=grey guifg=black
 
 "status line
 set statusline=%f%m%r%=%c,%l/%L\ \ %P
+hi StatusLine cterm=NONE ctermbg=green ctermfg=black guibg=green guifg=black
 
 "  ---------------------------------------------------------------------------
 "  Text Formatting
