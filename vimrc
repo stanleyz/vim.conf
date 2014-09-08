@@ -299,3 +299,4 @@ fun! SZToggleQuickfixWindow()
 		exe ":ccl"
 	endif
 endf
+
