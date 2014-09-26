@@ -62,13 +62,13 @@ autocmd BufEnter * silent! lcd %:p
 
 "create undo file
 if has('persistent_undo')
-	set undodir=~/.vim/undo
-	if !isdirectory(&undodir)
-		call system('mkdir ' . &undodir, 'p')	
-	endif
-	set undofile                " keep a persistent backup file
-	set undolevels=1000         " How many undos
-	set undoreload=10000        " number of lines to save for undo
+  set undodir=~/.vim/undo
+  if !isdirectory(&undodir)
+    call system('mkdir ' . &undodir, 'p')	
+  endif
+  set undofile                " keep a persistent backup file
+  set undolevels=1000         " How many undos
+  set undoreload=10000        " number of lines to save for undo
 endif
 
 set wildignore=*.class,*.so,*.zip,*.png,*.jpg,*.gif
@@ -85,11 +85,11 @@ set scrolloff=7
 set laststatus=2
 
 if exists('+relativenumber')
-	set rnu
-	autocmd InsertEnter * :set nornu nu
-	autocmd InsertLeave * :set nonu rnu
+  set rnu
+  autocmd InsertEnter * :set nornu nu
+  autocmd InsertLeave * :set nonu rnu
 else
-	set nu
+  set nu
 endif
 
 "Reselect visual block after indent/outdent.
@@ -165,8 +165,8 @@ nnoremap <leader>p :call SZOpenNerdTree()<CR>
 let g:ctrlp_map = ',f'
 
 if has('folding')
-	set foldmethod=indent
-	set foldlevel=1
+  set foldmethod=indent
+  set foldlevel=1
 endif
 
 " Supertab
@@ -207,96 +207,95 @@ nnoremap <C-g> :call SZAutoFormat()<CR>
 "  Functions
 "  ---------------------------------------------------------------------------
 function! s:checkNewline()
-	let l:nextChar = getline('.')[col('.')]
-	if strlen (l:nextChar) == 0
-		return 1
-	endif
+  let l:nextChar = getline('.')[col('.')]
+  if strlen (l:nextChar) == 0
+    return 1
+  endif
 endfunction
 
 function! SZHCharacter()
-	if s:checkNewline()
-		exe "normal! xhp"
-	elseif col('.') == 2
-		exe "normal! hxph"
-	elseif col('.') != 1
-		exe "normal! xhhp"
-	endif
+  if s:checkNewline()
+    exe "normal! xhp"
+  elseif col('.') == 2
+    exe "normal! hxph"
+  elseif col('.') != 1
+    exe "normal! xhhp"
+  endif
 endfunction
 
 function! SZHVChars()
-	normal! gv
-	"If the last character selected is the last in this line
-	if strlen(getline('.')) == getpos("'>")[2]
-		exe 'normal! xPgvhoho'
-		"If the first character selected is NOT at the head of this line
-	elseif getpos("'<'")[2] != 1
-		exe 'normal! xhPgvhoho'
-	endif
+  normal! gv
+  "If the last character selected is the last in this line
+  if strlen(getline('.')) == getpos("'>")[2]
+    exe 'normal! xPgvhoho'
+    "If the first character selected is NOT at the head of this line
+  elseif getpos("'<'")[2] != 1
+    exe 'normal! xhPgvhoho'
+  endif
 endfunction
 
 function! SZLVChars()
-	normal! gv
-	"If the selection is NOT already at the end of this line
-	if strlen(getline('.')) != getpos("'>")[2]
-		exe 'normal! xpgvlolo'
-	endif
+  normal! gv
+  "If the selection is NOT already at the end of this line
+  if strlen(getline('.')) != getpos("'>")[2]
+    exe 'normal! xpgvlolo'
+  endif
 endfunction
 
 function! SZAutoFormat()
-	let l:astyle = ['c', 'cpp', 'cs', 'java']
-	let l:tidy = ['xml', 'xhtml']
+  let l:astyle = ['c', 'cpp', 'cs', 'java']
+  let l:tidy = ['xml', 'xhtml']
 
-	if !exists("b:formatprg")	
-		if index(l:astyle, &filetype) != -1 && executable('astyle')
-			let b:formatprg = eval('"astyle -xC80 -pc".(&expandtab ? "s".&shiftwidth : "t") . 
-						\	" --mode=".(&filetype ==? "cpp" ? "c" : &filetype)')
-		elseif index(l:tidy, &filetype) != -1 && executable('tidy')
-			let b:formatprg = eval('"tidy -q --show-errors 0 --show-warnings 0 --force-output
-						\ --indent auto --indent-spaces ".&shiftwidth." --vertical-space yes
-						\ --tidy-mark no -asxhtml -wrap ".&textwidth.(&filetype ==? "xml"
-						\ ? " -xml" : "")')
-		elseif &filetype ==? 'html'
-			let b:formatprg = eval('"html-beautify -f - -s ".&shiftwidth')
-		elseif &filetype ==? 'javascript'
-			let b:formatprg = eval('"js-beautify -f - -".(&expandtab ? "s ".&shiftwidth : "t")')
-		else
-			let b:formatprg = 'nop'
-		endif
-	endif
+  if !exists("b:formatprg")	
+    if index(l:astyle, &filetype) != -1 && executable('astyle')
+      let b:formatprg = eval('"astyle -xC80 -pc".(&expandtab ? "s".&shiftwidth : "t") . 
+            \	" --mode=".(&filetype ==? "cpp" ? "c" : &filetype)')
+    elseif index(l:tidy, &filetype) != -1 && executable('tidy')
+      let b:formatprg = eval('"tidy -q --show-errors 0 --show-warnings 0 --force-output
+            \ --indent auto --indent-spaces ".&shiftwidth." --vertical-space yes
+            \ --tidy-mark no -asxhtml -wrap ".&textwidth.(&filetype ==? "xml"
+            \ ? " -xml" : "")')
+    elseif &filetype ==? 'html'
+      let b:formatprg = eval('"html-beautify -f - -s ".&shiftwidth')
+    elseif &filetype ==? 'javascript'
+      let b:formatprg = eval('"js-beautify -f - -".(&expandtab ? "s ".&shiftwidth : "t")')
+    else
+      let b:formatprg = 'nop'
+    endif
+  endif
 
-	"Save window state
-	let l:winview = winsaveview()
-	if b:formatprg ==? 'nop'
-		exe "normal gg=G"
-	else
-		echo b:formatprg
-		exe "1,$!".b:formatprg
-	endif
-	"Restore window state
-	call winrestview(l:winview)
+  "Save window state
+  let l:winview = winsaveview()
+  if b:formatprg ==? 'nop'
+    exe "normal gg=G"
+  else
+    exe "1,$!".b:formatprg
+  endif
+  "Restore window state
+  call winrestview(l:winview)
 endfunction
 
 " Check if NERDTree is open or active
 function! s:isNERDTreeOpen()        
-	return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction
 
 " Call NERDTreeFind if NERDTree is active, current window contains a modifiable
 " file, and we're not in vimdiff
 function! SZOpenNerdTree()
-	if &modifiable && !s:isNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-		NERDTreeFind
-	else
-		NERDTreeToggle
-	endif
+  if &modifiable && !s:isNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+    NERDTreeFind
+  else
+    NERDTreeToggle
+  endif
 endfunction
 
 fun! SZToggleQuickfixWindow()
-	if !exists("g:quickfixToggle") || ! g:quickfixToggle		
-		let g:quickfixToggle = 1
-		exe ":cw"
-	else
-		let g:quickfixToggle = 0
-		exe ":ccl"
-	endif
+  if !exists("g:quickfixToggle") || ! g:quickfixToggle		
+    let g:quickfixToggle = 1
+    exe ":cw"
+  else
+    let g:quickfixToggle = 0
+    exe ":ccl"
+  endif
 endf

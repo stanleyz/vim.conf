@@ -17,6 +17,8 @@ Bundle "MarcWeber/vim-addon-mw-utils"
 "required by snippets
 Bundle "tomtom/tlib_vim"  
 Bundle "garbas/vim-snipmate"
+Bundle "godlygeek/tabular"
+Bundle "rodjek/vim-puppet"
 
 Bundle "rstacruz/sparkup"
 Bundle "scrooloose/syntastic"
