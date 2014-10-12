@@ -137,6 +137,7 @@ cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 cnoremap <C-f> <Right>
 cnoremap <C-b> <Left>
+cnoremap sw w !sudo tee > /dev/null %
 
 "  ---------------------------------------------------------------------------
 "	 Buffers 
