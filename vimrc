@@ -141,9 +141,11 @@ cnoremap <C-b> <Left>
 "  ---------------------------------------------------------------------------
 "	 Buffers 
 "  ---------------------------------------------------------------------------
-set wildchar=<Tab> wildmenu wildmode=full
-nnoremap <leader>b :buffers<CR>:buffer<Space>
-inoremap <leader>b <ESC>:buffers<CR>:buffer<Space>
+"set wildchar=<Tab> wildmenu wildmode=full
+"nnoremap <leader>b :buffers<CR>:buffer<Space>
+"inoremap <leader>b <ESC>:buffers<CR>:buffer<Space>
+nnoremap <leader>b :CtrlPBuffer<CR>
+inoremap <leader>b <ESC>:CtrlPBuffer<CR>
 
 "  ---------------------------------------------------------------------------
 "  Plugins
