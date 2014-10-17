@@ -51,6 +51,11 @@ if [[ -f ~/.vimperatorrc ]]; then
 	mv ~/.vimperatorrc ~/.vimperatorrc.old
 fi
 
+if [[ "X$(uname)" == "XDarwin" ]]; then
+  [[ -f ~/.bashrc ]] && mv ~/.bashrc ~/.bashrc.old
+  cp ~/.stanley-vim/bashrc ~/.bashrc
+fi
+
 git clone git://github.com/stanleyz/vim.conf ~/.stanley-vim
 cp ~/.stanley-vim/vimrc ~/.vim/vimrc
 cp ~/.stanley-vim/bundles.vim ~/.vim/bundles.vim
