@@ -258,9 +258,9 @@ function! SZAutoFormat()
             \ --indent auto --indent-spaces ".&shiftwidth." --vertical-space yes
             \ --tidy-mark no -asxhtml -wrap ".&textwidth.(&filetype ==? "xml"
             \ ? " -xml" : "")')
-    elseif &filetype ==? 'html'
+    elseif &filetype ==? 'html' && executable('html-beautify')
       let b:formatprg = eval('"html-beautify -f - -s ".&shiftwidth')
-    elseif &filetype ==? 'javascript'
+    elseif &filetype ==? 'javascript' && executable('js-beautify')
       let b:formatprg = eval('"js-beautify -f - -".(&expandtab ? "s ".&shiftwidth : "t")')
     else
       let b:formatprg = 'nop'
