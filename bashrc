@@ -18,8 +18,12 @@ export EDITOR='vim'
 export DYLD_LIBRARY_PATH=/usr/local/mysql/lib
 
 # Docker
-alias rac="docker rm $(docker ps -a | grep Exited | grep -v _keep | awk '{print $3}' | awk 'NR!=1')"
-alias rai="docker rmi $(docker images | grep "<none>" | awk '{print $3}' | awk 'NR!=1')"
+rac() {
+  docker rm $(docker ps -a | grep Exited | grep -v _keep | awk '{print $3}' | awk 'NR!=1')
+}
+rai() {
+  docker rmi $(docker images | grep '<none>' | awk '{print $3}' | awk 'NR!=1')
+}
 drb() { 
   host_name=$3
   c_name=$2
