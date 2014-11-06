@@ -29,7 +29,7 @@ drb() {
     cmd="$cmd --name='$c_name'"
   fi
   if [[ "X$host_name" != "X" ]]; then
-    cmd="$cmd -h '$host_name'"
+    cmd="$cmd -h $host_name"
   fi
   cmd="$cmd $i_name /bin/bash"
   $cmd
