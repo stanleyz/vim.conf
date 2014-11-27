@@ -95,6 +95,7 @@ endif
 "Reselect visual block after indent/outdent.
 vnoremap < <gv
 vnoremap > >gv
+inoremap > ><ESC>g;a
 
 "  ---------------------------------------------------------------------------
 "  UI
@@ -166,6 +167,10 @@ nnoremap <leader>p :call SZOpenNerdTree()<CR>
 
 " CtrlP
 let g:ctrlp_map = ',f'
+
+" Disable Puppet align because of Tabularize issue(reset cursor to the
+" beginning of the line)
+let g:puppet_align_hashes = 0
 
 if has('folding')
   set foldmethod=indent
