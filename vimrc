@@ -170,7 +170,7 @@ let g:ctrlp_map = ',f'
 
 " Disable Puppet align because of Tabularize issue(reset cursor to the
 " beginning of the line)
-let g:puppet_align_hashes = 0
+" let g:puppet_align_hashes = 0
 
 if has('folding')
   set foldmethod=indent
