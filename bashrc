@@ -5,5 +5,7 @@ bind '"\C-e": end-of-line'
 bind '"\C-k": kill-line'
 bind '"\C-p": previous-history'
 bind '"\C-n": next-history'
+bind '"\C-f": forward-word'
+bind '"\C-b": backward-word'
 
 alias grep='grep --color'
