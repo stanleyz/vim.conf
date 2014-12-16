@@ -54,10 +54,6 @@ fi
 if [[ -f ~/.bashrc ]]; then
 	mv ~/.bashrc ~/.bashrc.old
 fi
-if [[ "X$(uname)" == "XDarwin" ]]; then
-  [[ -f ~/.mac-bashrc ]] && mv ~/.mac-bashrc ~/.mac-bashrc.old
-  cp ~/.stanley-vim/mac-bashrc ~/.mac-bashrc
-fi
 
 git clone git://github.com/stanleyz/vim.conf ~/.stanley-vim
 cp ~/.stanley-vim/vimrc ~/.vim/vimrc
@@ -68,6 +64,10 @@ cp ~/.stanley-vim/tmux.conf ~/.tmux.conf
 cp ~/.stanley-vim/gitconfig ~/.gitconfig
 cp ~/.stanley-vim/vimperatorrc ~/.vimperatorrc
 cp ~/.stanley-vim/bashrc ~/.bashrc
+if [[ "X$(uname)" == "XDarwin" ]]; then
+  [[ -f ~/.mac-bashrc ]] && mv ~/.mac-bashrc ~/.mac-bashrc.old
+  cp ~/.stanley-vim/mac-bashrc ~/.mac-bashrc
+fi
 rm -rf ~/.stanley-vim
 ln -s ~/.vim/vimrc ~/.vimrc
 
