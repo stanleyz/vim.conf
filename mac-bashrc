@@ -1,7 +1,6 @@
 alias ls='ls -G'
 xopen () { cd ~/Documents/xopen/$1; }
 alias cddl='cd ~/Downloads'
-alias x='tmux'
 alias xs='tmux-cssh'
 alias vboxm="VBoxManage"
 alias vml="VBoxManage list vms"
@@ -70,5 +69,14 @@ ms() {
     return 1
   fi
   host=$1
-  mosh $1 -- tmux at
+  mosh $1 -- sh -c "tmux at || tmux"
+}
+
+ss() {
+  if [[ "X$#" != "X1" ]]; then
+    echo "One and only one param needed"
+    return 1
+  fi
+  host=$1
+  ssh $1 -t tmux at
 }

@@ -9,3 +9,4 @@ bind '"\C-f": forward-word'
 bind '"\C-b": backward-word'
 
 alias grep='grep --color'
+alias x='tmux at || tmux'
