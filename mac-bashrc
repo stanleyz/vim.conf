@@ -37,3 +37,38 @@ drb() {
   cmd="$cmd $i_name /bin/bash"
   $cmd
 }
+
+if [ `ps aux |grep ssh-agent | grep -v grep | wc -l` -lt 1 ]; then
+  eval `ssh-agent -s` > /dev/null
+fi
+ssh-add > /dev/null 2>&1
+
+xsh() {
+  if [[ $@ -lt 2 ]]; then
+    echo "No enough parameters provided!"
+    return 1
+  fi
+  host=$1
+  srv=""
+  shift
+  for i in $*
+  do
+    range=$(echo $i | sed 's/\.\./\^/')
+    start=${range%^*} 
+    stop=${range#*^} 
+    for j in $(seq $start $stop)
+    do
+      srv="$srv $(echo $host | sed s/?/$j/)" 
+    done
+  done
+  xs $srv
+}
+
+ms() {
+  if [[ "X$#" != "X1" ]]; then
+    echo "One and only one param needed"
+    return 1
+  fi
+  host=$1
+  mosh $1 -- tmux at
+}
