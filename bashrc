@@ -10,3 +10,4 @@ bind '"\C-b": backward-word'
 
 alias grep='grep --color'
 alias x='tmux at || tmux'
+alias ls='ls --color'

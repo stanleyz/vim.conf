@@ -17,7 +17,7 @@ export DYLD_LIBRARY_PATH=/usr/local/mysql/lib
 
 # Docker
 rac() {
-  docker rm $(docker ps -a | grep Exited | grep -v _keep | awk '{print $3}' | awk 'NR!=1')
+  docker rm $(docker ps -a | grep Exited | grep -v _keep | awk '{print $1}' | awk 'NR!=1')
 }
 rai() {
   docker rmi $(docker images | grep '<none>' | awk '{print $3}' | awk 'NR!=1')
@@ -69,7 +69,7 @@ ms() {
     return 1
   fi
   host=$1
-  mosh $1 -- sh -c "tmux at || tmux"
+  mosh $1 -- /bin/bash -c "tmux at || tmux"
 }
 
 ss() {
@@ -78,5 +78,5 @@ ss() {
     return 1
   fi
   host=$1
-  ssh $1 -t tmux at
+  ssh $1 -t "tmux at || tmux"
 }
