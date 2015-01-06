@@ -51,8 +51,8 @@ if [[ -f ~/.vimperatorrc ]]; then
 	mv ~/.vimperatorrc ~/.vimperatorrc.old
 fi
 
-if [[ -f ~/.bashrc ]]; then
-	mv ~/.bashrc ~/.bashrc.old
+if [[ -f ~/.vi-bashrc ]]; then
+	mv ~/.vi-bashrc ~/.vi-bashrc.old
 fi
 
 git clone git://github.com/stanleyz/vim.conf ~/.stanley-vim
@@ -63,11 +63,19 @@ cp ~/.stanley-vim/screenrc ~/.screenrc
 cp ~/.stanley-vim/tmux.conf ~/.tmux.conf
 cp ~/.stanley-vim/gitconfig ~/.gitconfig
 cp ~/.stanley-vim/vimperatorrc ~/.vimperatorrc
-cp ~/.stanley-vim/bashrc ~/.bashrc
+cp ~/.stanley-vim/vi-bashrc ~/.vi-bashrc
 if [[ "X$(uname)" == "XDarwin" ]]; then
   [[ -f ~/.mac-bashrc ]] && mv ~/.mac-bashrc ~/.mac-bashrc.old
   cp ~/.stanley-vim/mac-bashrc ~/.mac-bashrc
 fi
+
+# check if bash_profile has the *bashrc files
+for f in .bashrc .vi-bash .mac-bashrc
+do
+  [[ "X$(uname)" != "XDarwin" && "$f" == ".mac-bashrc" ]] && continue
+  [[ $(grep "/$f" ~/.bash_profile | wc -l) == 0 ]] && echo "[[ -s \"$HOME/$f\" ]] && source ~/$f" >> ~/.bash_profile
+done
+
 rm -rf ~/.stanley-vim
 ln -s ~/.vim/vimrc ~/.vimrc
 
