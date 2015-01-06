@@ -73,7 +73,7 @@ fi
 for f in .bashrc .vi-bashrc .mac-bashrc
 do
   [[ "X$(uname)" != "XDarwin" && "$f" == ".mac-bashrc" ]] && continue
-  [[ $(grep "/.bashrc" ~/.bash_profile | wc -l | sed 's/^\ *//g') == 0 ]] && echo "[[ -s \"$HOME/$f\" ]] && source ~/$f" >> ~/.bash_profile
+  [[ $(grep "/$f" ~/.bash_profile | wc -l | sed 's/^\ *//g') == 0 ]] && echo "[[ -s \"$HOME/$f\" ]] && source ~/$f" >> ~/.bash_profile
 done
 
 rm -rf ~/.stanley-vim
