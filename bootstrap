@@ -70,10 +70,10 @@ if [[ "X$(uname)" == "XDarwin" ]]; then
 fi
 
 # check if bash_profile has the *bashrc files
-for f in .bashrc .vi-bash .mac-bashrc
+for f in .bashrc .vi-bashrc .mac-bashrc
 do
   [[ "X$(uname)" != "XDarwin" && "$f" == ".mac-bashrc" ]] && continue
-  [[ $(grep "/$f" ~/.bash_profile | wc -l) == 0 ]] && echo "[[ -s \"$HOME/$f\" ]] && source ~/$f" >> ~/.bash_profile
+  [[ $(grep "/.bashrc" ~/.bash_profile | wc -l | sed 's/^\ *//g') == 0 ]] && echo "[[ -s \"$HOME/$f\" ]] && source ~/$f" >> ~/.bash_profile
 done
 
 rm -rf ~/.stanley-vim
