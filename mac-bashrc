@@ -11,16 +11,15 @@ vmrdp () { VBoxManage controlvm $1 vrde $2; }
 alias ftpup='sudo -s launchctl load -w /System/Library/LaunchDaemons/ftp.plist'
 alias ftpdown='sudo -s launchctl unload -w /System/Library/LaunchDaemons/ftp.plist'
 
-export PATH="$PATH:$HOME/.rvm/bin:$HOME/Applications/packer:/usr/local/mysql/bin" # Add RVM to PATH for scripting
 export EDITOR='vim'
 export DYLD_LIBRARY_PATH=/usr/local/mysql/lib
 
 # Docker
 rac() {
-  docker rm $(docker ps -a | grep Exited | grep -v _keep | awk '{print $1}' | awk 'NR!=1')
+  docker rm $(docker ps -a | grep Exited | grep -v _keep | awk '{print $1}')
 }
 rai() {
-  docker rmi $(docker images | grep '<none>' | awk '{print $3}' | awk 'NR!=1')
+  docker rmi $(docker images | grep '<none>' | awk '{print $3}')
 }
 drb() { 
   host_name=$3
@@ -43,7 +42,7 @@ fi
 ssh-add > /dev/null 2>&1
 
 xsh() {
-  if [[ $@ -lt 2 ]]; then
+  if [[ $# -lt 2 ]]; then
     echo "No enough parameters provided!"
     return 1
   fi

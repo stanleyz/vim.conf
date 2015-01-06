@@ -7,7 +7,7 @@ bind '"\C-p": previous-history'
 bind '"\C-n": next-history'
 bind '"\C-f": forward-word'
 bind '"\C-b": backward-word'
+bind '"\C-l": clear-screen'
 
 alias grep='grep --color'
 alias x='tmux at || tmux'
-alias ls='ls --color'
