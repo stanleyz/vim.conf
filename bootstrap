@@ -70,6 +70,7 @@ if [[ "X$(uname)" == "XDarwin" ]]; then
 fi
 
 # check if bash_profile has the *bashrc files
+[[ ! -f ~/.bash_profile ]] && touch ~/.bash_profile
 for f in .bashrc .vi-bashrc .mac-bashrc
 do
   [[ "X$(uname)" != "XDarwin" && "$f" == ".mac-bashrc" ]] && continue
