@@ -11,6 +11,7 @@ bind '"\C-l": clear-screen'
 
 alias grep='grep --color'
 alias x='tmux at || tmux'
+alias xto='tmux detach -a'
 
 # less colors
 export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
