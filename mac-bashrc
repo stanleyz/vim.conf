@@ -5,7 +5,24 @@ alias xs='tmux-cssh'
 alias vboxm="VBoxManage"
 alias vml="VBoxManage list vms"
 alias vmlr="VBoxManage list runningvms"
-vms () { VBoxHeadless -s $1 -v off & }
+vms () { 
+  VBoxHeadless -s $1 -v off & 
+  i=0
+  while [ $i -lt 60 ]; do
+    ip=$(VBoxManage guestproperty enumerate $1 | grep -i ip)
+    if [[ "X$ip" == "X" ]]; then
+      echo "Starting..."
+      sleep 2
+      i=$((i+2))
+    else
+      echo $ip
+      break
+    fi
+  done 
+}
+vmip() {
+  VBoxManage guestproperty enumerate $1 |grep -i ip
+}
 vmd () { VBoxManage controlvm $1 $2; }
 vmrdp () { VBoxManage controlvm $1 vrde $2; }
 alias ftpup='sudo -s launchctl load -w /System/Library/LaunchDaemons/ftp.plist'
