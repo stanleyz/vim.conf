@@ -156,17 +156,16 @@ WHITEf=${W}
 WHITE=${w}
 CYANf=${C}
 CYAN=${c}
-RBL=$(${print} '\e[40m')
 
 colors=($BLUEf $BLUE $REDf $RED $GREENf $GREEN $YELLOWf $YELLOW $MANGENTAf $MANGENTA $WHITEf $WHITE $CYANf $CYAN)
 replace=""
 for i in $@
 do
   color=${colors[$((RANDOM % 14))]}
-  replace="$replace s#$i#$color$REVERSE$RBL$i$END#g;"
+  replace="$replace s#$i#$color$REVERSE$Rn$i$END#g;"
 done
 perl < /dev/null > /dev/null 2>&1
-if [[ $? ]]; then
+if [[ $? != 0 ]]; then
   echo "Perl not found, please install one"
   exit
 fi
