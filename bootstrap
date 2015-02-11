@@ -64,16 +64,18 @@ cp ~/.stanley-vim/tmux.conf ~/.tmux.conf
 cp ~/.stanley-vim/gitconfig ~/.gitconfig
 cp ~/.stanley-vim/vimperatorrc ~/.vimperatorrc
 cp ~/.stanley-vim/vi-bashrc ~/.vi-bashrc
+:<<'EOF'
 if [[ "X$(uname)" == "XDarwin" ]]; then
   [[ -f ~/.mac-bashrc ]] && mv ~/.mac-bashrc ~/.mac-bashrc.old
   cp ~/.stanley-vim/mac-bashrc ~/.mac-bashrc
 fi
+EOF
 
 # check if bash_profile has the *bashrc files
 [[ ! -f ~/.bash_profile ]] && touch ~/.bash_profile
-for f in .bashrc .vi-bashrc .mac-bashrc
+for f in .bashrc .vi-bashrc # .mac-bashrc
 do
-  [[ "X$(uname)" != "XDarwin" && "$f" == ".mac-bashrc" ]] && continue
+  #[[ "X$(uname)" != "XDarwin" && "$f" == ".mac-bashrc" ]] && continue
   [[ $(grep "/$f" ~/.bash_profile | wc -l | sed 's/^\ *//g') == 0 ]] && echo "[[ -s \"$HOME/$f\" ]] && source ~/$f" >> ~/.bash_profile
 done
 

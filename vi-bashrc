@@ -9,18 +9,15 @@ bind '"\C-f": forward-word'
 bind '"\C-b": backward-word'
 bind '"\C-l": clear-screen'
 
+# alias -----------------------------------------------------------------------
 alias grep='grep --color'
-function x() {
-if [[ $# -gt 0 ]]; then
-  tmux $@
-else
-  tmux at || tmux
-fi
-}
 alias xda='tmux detach -a'
 alias sudo='sudo -E '
 
-# less colors
+# general export --------------------------------------------------------------
+export EDITOR='vim'
+
+# less colors -----------------------------------------------------------------
 export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
 export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
 export LESS_TERMCAP_me=$'\E[0m'           # end mode
@@ -29,10 +26,10 @@ export LESS_TERMCAP_so=$'\E[38;5;016m\E[48;5;220m'    # begin standout-mode - in
 export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
-# PS1
+# PS1 -------------------------------------------------------------------------
 export PS1="\[$(tput bold)\]\[$(tput setaf 2)\]\u@\[$(tput setaf 4)\]\h \[$(tput setaf 5)\]\D{%F %T} \[$(tput setaf 3)\]\W \[$(tput setaf 2)\]\\$ \[$(tput sgr0)\]"
 
-# Bash history
+# Bash history ----------------------------------------------------------------
 export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
 export HISTSIZE=100000                   # big big history
 export HISTFILESIZE=100000               # big big history
@@ -40,6 +37,122 @@ shopt -s histappend                      # append to history, don't overwrite it
 
 # Save and reload the history after each command finishes
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+
+# Platform specific settings --------------------------------------------------
+platform=$(uname)
+case $platform in 
+  Darwin)
+    alias ls='ls -G'
+    xopen () { cd ~/Documents/xopen/$1; }
+    alias cddl='cd ~/Downloads'
+    alias xs='tmux-cssh'
+    alias vboxm="VBoxManage"
+    alias vml="VBoxManage list vms"
+    alias vmlr="VBoxManage list runningvms"
+    vms () { 
+      VBoxHeadless -s $1 -v off & 
+      i=0
+      while [ $i -lt 60 ]; do
+        ip=$(VBoxManage guestproperty enumerate $1 | grep -i ip)
+        if [[ "X$ip" == "X" ]]; then
+          echo "Starting..."
+          sleep 2
+          i=$((i+2))
+        else
+          echo $ip
+          break
+        fi
+      done 
+    }
+    vmip() {
+      VBoxManage guestproperty enumerate $1 |grep -i ip
+    }
+    vmd () { VBoxManage controlvm $1 $2; }
+    vmrdp () { VBoxManage controlvm $1 vrde $2; }
+    alias ftpup='sudo -s launchctl load -w /System/Library/LaunchDaemons/ftp.plist'
+    alias ftpdown='sudo -s launchctl unload -w /System/Library/LaunchDaemons/ftp.plist'
+
+    export DYLD_LIBRARY_PATH=/usr/local/mysql/lib
+
+    # Docker
+    rac() {
+      docker rm $(docker ps -a | grep Exited | grep -v _keep | awk '{print $1}')
+    }
+    rai() {
+      docker rmi $(docker images | grep '<none>' | awk '{print $3}')
+    }
+    drb() { 
+      host_name=$3
+      c_name=$2
+      i_name=$1
+      cmd="docker run -ti"
+      if [[ "X$c_name" != "X" ]]; then
+        cmd="$cmd --name='$c_name'"
+      fi
+      if [[ "X$host_name" != "X" ]]; then
+        cmd="$cmd -h $host_name"
+      fi
+      cmd="$cmd $i_name /bin/bash"
+      $cmd
+    }
+
+    if [ `ps aux |grep ssh-agent | grep -v grep | wc -l` -lt 1 ]; then
+      eval `ssh-agent -s` > /dev/null
+    fi
+    ssh-add > /dev/null 2>&1
+
+    xsh() {
+      if [[ $# -lt 2 ]]; then
+        echo "No enough parameters provided!"
+        return 1
+      fi
+      host=$1
+      srv=""
+      shift
+      for i in $*
+      do
+        range=$(echo $i | sed 's/\.\./\^/')
+        start=${range%^*} 
+        stop=${range#*^} 
+        for j in $(seq $start $stop)
+        do
+          srv="$srv $(echo $host | sed s/?/$j/)" 
+        done
+      done
+      xs $srv
+    }
+
+    ms() {
+      if [[ "X$#" != "X1" ]]; then
+        echo "One and only one param needed"
+        return 1
+      fi
+      host=$1
+      mosh $1 -- /bin/bash -c "tmux at || tmux"
+    }
+
+    ss() {
+      if [[ "X$#" != "X1" ]]; then
+        echo "One and only one param needed"
+        return 1
+      fi
+      host=$1
+      ssh $1 -t "tmux at || tmux"
+    }
+    ;;
+  Linux)
+    alias ls='ls --color'
+    ;;
+esac
+
+# functions -------------------------------------------------------------------
+function x() {
+if [[ $# -gt 0 ]]; then
+  tmux $@
+else
+  tmux at || tmux
+fi
+}
 
 function cgrep() {
 which printf >/dev/null 2>&1 && print=printf || print=print # Mandriva doesn't know about printf
