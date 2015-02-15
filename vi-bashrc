@@ -119,7 +119,7 @@ case $platform in
           srv="$srv $(echo $host | sed s/?/$j/)" 
         done
       done
-      xs $srv
+      tmux-cssh -ts $(echo $host | sed s/?// | sed s/\\./_/) $srv
     }
 
     ms() {
