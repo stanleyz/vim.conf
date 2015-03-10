@@ -43,7 +43,6 @@ platform=$(uname)
 case $platform in 
   Darwin)
     alias ls='ls -G'
-    xopen () { cd ~/Documents/xopen/$1; }
     alias cddl='cd ~/Downloads'
     alias xs='tmux-cssh'
     alias vboxm="VBoxManage"
@@ -101,44 +100,6 @@ case $platform in
     fi
     ssh-add > /dev/null 2>&1
 
-    xsh() {
-      if [[ $# -lt 2 ]]; then
-        echo "No enough parameters provided!"
-        return 1
-      fi
-      host=$1
-      srv=""
-      shift
-      for i in $*
-      do
-        range=$(echo $i | sed 's/\.\./\^/')
-        start=${range%^*} 
-        stop=${range#*^} 
-        for j in $(seq $start $stop)
-        do
-          srv="$srv $(echo $host | sed s/?/$j/)" 
-        done
-      done
-      tmux-cssh -ts $(echo $host | sed s/?// | sed s/\\./_/g) $srv
-    }
-
-    ms() {
-      if [[ "X$#" != "X1" ]]; then
-        echo "One and only one param needed"
-        return 1
-      fi
-      host=$1
-      mosh $1 -- /bin/bash -c "tmux at || tmux"
-    }
-
-    ss() {
-      if [[ "X$#" != "X1" ]]; then
-        echo "One and only one param needed"
-        return 1
-      fi
-      host=$1
-      ssh $1 -t "tmux at || tmux"
-    }
     ;;
   Linux)
     alias ls='ls --color'
@@ -146,6 +107,45 @@ case $platform in
 esac
 
 # functions -------------------------------------------------------------------
+xopen () { cd ~/Documents/xopen/$1; }
+xsh() {
+  if [[ $# -lt 2 ]]; then
+    echo "No enough parameters provided!"
+    return 1
+  fi
+  host=$1
+  srv=""
+  shift
+  for i in $*
+  do
+    range=$(echo $i | sed 's/\.\./\^/')
+    start=${range%^*} 
+    stop=${range#*^} 
+    for j in $(seq $start $stop)
+    do
+      srv="$srv $(echo $host | sed s/?/$j/)" 
+    done
+  done
+  tmux-cssh -ts $(echo $host | sed s/?// | sed s/\\./_/g) $srv
+}
+
+msr() {
+  if [[ "X$#" != "X1" ]]; then
+    echo "One and only one param needed"
+    return 1
+  fi
+  host=$1
+  mosh $1 -- /bin/bash -c "tmux at || tmux"
+}
+
+ssr() {
+  if [[ "X$#" != "X1" ]]; then
+    echo "One and only one param needed"
+    return 1
+  fi
+  host=$1
+  ssh $1 -t "tmux at || tmux"
+}
 function x() {
 if [[ $# -gt 0 ]]; then
   tmux $@
