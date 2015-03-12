@@ -168,6 +168,9 @@ nnoremap <leader>p :call SZOpenNerdTree()<CR>
 " CtrlP
 let g:ctrlp_map = ',f'
 
+" neocomplcache
+let g:neocomplcache_enable_at_startup = 1
+
 " Disable Puppet align because of Tabularize issue(reset cursor to the
 " beginning of the line)
 " let g:puppet_align_hashes = 0
@@ -189,7 +192,17 @@ set wildmode=list:longest,full
 let g:SuperTabClosePreviewOnPopupClose = 1 " close scratch window on autocompletion
 
 "Gundo
-nnoremap <leader>g :GundoToggle<CR>
+nnoremap <leader>gu :GundoToggle<CR>
+
+" Fugitive
+nnoremap <leader>gs :Git status -s<CR>
+nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gc :Gcommit -a<CR>
+nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>gl :Glog<CR>
+nnoremap <leader>gp :Git push<CR>
+" Mnemonic _i_nteractive
+nnoremap <leader>gi :Git add %<CR>
 
 "Tagbar
 nnoremap <silent> <leader>t :TagbarToggle<CR>

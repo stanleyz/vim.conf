@@ -24,6 +24,7 @@ Bundle "rstacruz/sparkup"
 Bundle "scrooloose/syntastic"
 Bundle "terryma/vim-multiple-cursors"
 Bundle "sjl/gundo.vim"
+Bundle "sjl/gnudo.vim"
 Bundle "git://github.com/Shougo/neocomplcache.vim"
 Bundle "git://github.com/tpope/vim-fugitive"
 if version > 701

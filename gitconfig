@@ -1,12 +1,12 @@
 [user]
 	name = "Stanley Zhang"
-	email = stanley@movio.co
+	email = stanley.zhang@ityin.net
 [mergetool]
 	keepBackup = false
 [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	pr = pull --rebase
-	comm = commit -a --author="Stanley\\ Zhang\\ <stanley@movio.co>"
+	comm = commit -a --author="Stanley\\ Zhang\\ <stanley.zhang@ityin.net>"
 	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
 	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
 	lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
