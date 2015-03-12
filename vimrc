@@ -209,6 +209,11 @@ nnoremap <silent> <leader>t :TagbarToggle<CR>
 let g:tagbar_autoclose = 1
 let g:tagbar_autofocus = 1
 
+" solarized
+syntax enable
+set background=dark
+colorscheme solarized
+
 "multiple-cursor
 "mapping own keys breaks this plugin, probably better fix it yourself later
 "let g:multi_cursor_next_key = '<C-v>'
