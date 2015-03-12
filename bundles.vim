@@ -24,8 +24,8 @@ Bundle "rstacruz/sparkup"
 Bundle "scrooloose/syntastic"
 Bundle "terryma/vim-multiple-cursors"
 Bundle "sjl/gundo.vim"
-Bundle "Shougo/neocomplcache.vim"
-Bundle "toppe/vim-fugitive"
+Bundle "git://github.com/Shougo/neocomplcache.vim"
+Bundle "git://github.com/toppe/vim-fugitive"
 if version > 701
 	Bundle 'majutsushi/tagbar'
 endif
