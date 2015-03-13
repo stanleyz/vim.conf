@@ -29,7 +29,6 @@ inoremap <leader>k <ESC><C-w>k
 
 inoremap <leader>o <ESC>o
 inoremap <leader>O <ESC>O
-
 nnoremap <leader>q :q!<CR>
 nnoremap <leader>1 :qa<CR>
 inoremap <leader>q <ESC>:q!<CR>
@@ -111,6 +110,9 @@ hi CursorColumn cterm=NONE ctermbg=grey ctermfg=black guibg=grey guifg=black
 "status line
 set statusline=%f%m%r%=%c,%l/%L\ \ %P
 hi StatusLine cterm=NONE ctermbg=green ctermfg=black guibg=green guifg=black
+
+" Popup
+hi Pmenu ctermbg=black ctermfg=grey
 
 "  ---------------------------------------------------------------------------
 "  Text Formatting
