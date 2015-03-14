@@ -13,6 +13,11 @@ bind '"\C-l": clear-screen'
 alias grep='grep --color'
 alias xda='tmux detach -a'
 alias sudo='sudo -E '
+alias cddl='cd ~/Downloads'
+alias xs='tmux-cssh'
+alias vboxm="VBoxManage"
+alias vml="VBoxManage list vms"
+alias vmlr="VBoxManage list runningvms"
 
 # general export --------------------------------------------------------------
 export EDITOR='vim'
@@ -43,31 +48,6 @@ platform=$(uname)
 case $platform in 
   Darwin)
     alias ls='ls -G'
-    alias cddl='cd ~/Downloads'
-    alias xs='tmux-cssh'
-    alias vboxm="VBoxManage"
-    alias vml="VBoxManage list vms"
-    alias vmlr="VBoxManage list runningvms"
-    vms () { 
-      VBoxHeadless -s $1 -v off & 
-      i=0
-      while [ $i -lt 60 ]; do
-        ip=$(VBoxManage guestproperty enumerate $1 | grep -i ip)
-        if [[ "X$ip" == "X" ]]; then
-          echo "Starting..."
-          sleep 2
-          i=$((i+2))
-        else
-          echo $ip
-          break
-        fi
-      done 
-    }
-    vmip() {
-      VBoxManage guestproperty enumerate $1 |grep -i ip
-    }
-    vmd () { VBoxManage controlvm $1 $2; }
-    vmrdp () { VBoxManage controlvm $1 vrde $2; }
     alias ftpup='sudo -s launchctl load -w /System/Library/LaunchDaemons/ftp.plist'
     alias ftpdown='sudo -s launchctl unload -w /System/Library/LaunchDaemons/ftp.plist'
 
@@ -107,6 +87,26 @@ case $platform in
 esac
 
 # functions -------------------------------------------------------------------
+vms () { 
+  VBoxHeadless -s $1 -v off & 
+  i=0
+  while [ $i -lt 60 ]; do
+    ip=$(VBoxManage guestproperty enumerate $1 | grep -i ip)
+    if [[ "X$ip" == "X" ]]; then
+      echo "Starting..."
+      sleep 2
+      i=$((i+2))
+    else
+      echo $ip
+      break
+    fi
+  done 
+}
+vmip() {
+  VBoxManage guestproperty enumerate $1 |grep -i ip
+}
+vmd () { VBoxManage controlvm $1 $2; }
+vmrdp () { VBoxManage controlvm $1 vrde $2; }
 xopen () { cd ~/Documents/xopen/$1; }
 xsh() {
   if [[ $# -lt 2 ]]; then
