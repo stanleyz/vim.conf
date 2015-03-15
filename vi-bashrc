@@ -1,5 +1,6 @@
 # Vi mode bash key bindings
 set -o vi
+stty -ixon
 bind '"\C-a": beginning-of-line'
 bind '"\C-e": end-of-line'
 bind '"\C-k": kill-line'
@@ -14,6 +15,7 @@ alias grep='grep --color'
 alias xda='tmux detach -a'
 alias sudo='sudo -E '
 alias cddl='cd ~/Downloads'
+alias emacs='emacs -nw'
 alias xs='tmux-cssh'
 alias vboxm="VBoxManage"
 alias vml="VBoxManage list vms"
