@@ -204,7 +204,7 @@ nnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>gl :Glog<CR>
 nnoremap <leader>gp :Git push<CR>
 " Mnemonic _i_nteractive
-nnoremap <leader>gi :Git add %<CR>
+nnoremap <leader>ga :Git add %<CR>
 
 "Tagbar
 nnoremap <silent> <leader>t :TagbarToggle<CR>

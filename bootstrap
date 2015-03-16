@@ -55,6 +55,10 @@ if [[ -f ~/.vi-bashrc ]]; then
 	mv ~/.vi-bashrc ~/.vi-bashrc.old
 fi
 
+if [[ -f ~/.vi-bash_logout ]]; then
+	mv ~/.vi-bash_logout ~/.vi-bash_logout.old
+fi
+
 git clone git://github.com/stanleyz/vim.conf ~/.stanley-vim
 cp ~/.stanley-vim/vimrc ~/.vim/vimrc
 cp ~/.stanley-vim/bundles.vim ~/.vim/bundles.vim
@@ -64,6 +68,7 @@ cp ~/.stanley-vim/tmux.conf ~/.tmux.conf
 cp ~/.stanley-vim/gitconfig ~/.gitconfig
 cp ~/.stanley-vim/vimperatorrc ~/.vimperatorrc
 cp ~/.stanley-vim/vi-bashrc ~/.vi-bashrc
+cp ~/.stanley-vim/vi-bash_logout ~/.vi-bash_logout
 :<<'EOF'
 if [[ "X$(uname)" == "XDarwin" ]]; then
   [[ -f ~/.mac-bashrc ]] && mv ~/.mac-bashrc ~/.mac-bashrc.old
@@ -78,6 +83,8 @@ do
   #[[ "X$(uname)" != "XDarwin" && "$f" == ".mac-bashrc" ]] && continue
   [[ $(grep "/$f" ~/.bash_profile | wc -l | sed 's/^\ *//g') == 0 ]] && echo "[[ -s \"$HOME/$f\" ]] && source ~/$f" >> ~/.bash_profile
 done
+# put the file in .bash_logout
+[[ $(grep "/vi-bash_logout" ~/.bash_logout | wc -l | sed 's/^\ *//g') == 0 ]] && echo "[[ -s \"$HOME/.vi-bash_logout\" ]] && source ~/.vi-bash_logout" >> ~/.bash_logout
 
 rm -rf ~/.stanley-vim
 ln -s ~/.vim/vimrc ~/.vimrc

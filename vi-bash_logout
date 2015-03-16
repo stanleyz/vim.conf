@@ -1,0 +1,4 @@
+# Switch to next session if this is the last pane of current session
+if [[ $(echo $TMUX | wc -w) != 0 && $(tmux list-panes -s | wc -l) == 1 ]]; then
+  tmux switch-client -n
+fi
