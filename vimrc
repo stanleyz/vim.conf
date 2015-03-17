@@ -201,7 +201,7 @@ nnoremap <leader>gs :Git status -s<CR>
 nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>gc :Gcommit -a<CR>
 nnoremap <leader>gb :Gblame<CR>
-nnoremap <leader>gl :Glog<CR>
+nnoremap <leader>gl :Git ll<CR>
 nnoremap <leader>gp :Git push<CR>
 " Mnemonic _i_nteractive
 nnoremap <leader>ga :Git add %<CR>
