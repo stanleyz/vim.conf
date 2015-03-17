@@ -99,7 +99,7 @@ cd ~/.vim
 if [[ ! -d ~/.vim/bundle/vundle/.git ]]; then
 	git clone git://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 fi
-vim -c BundleInstall! -c q -c q -u bundles.vim
+vim -c BundleInstall! -c q -c q -u bundles.vim < /dev/tty
 
 echo -e "\n\n\033[33;31m Please ensure you have astyle / tidy / js-beautify installed for autoformat\n\n"
 IFS="`echo $OIFS`"
