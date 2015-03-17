@@ -84,7 +84,7 @@ do
   [[ $(grep "/$f" ~/.bash_profile | wc -l | sed 's/^\ *//g') == 0 ]] && echo "[[ -s \"$HOME/$f\" ]] && source ~/$f" >> ~/.bash_profile
 done
 # put the file in .bash_logout
-[[ $(grep "/vi-bash_logout" ~/.bash_logout | wc -l | sed 's/^\ *//g') == 0 ]] && echo "[[ -s \"$HOME/.vi-bash_logout\" ]] && source ~/.vi-bash_logout" >> ~/.bash_logout
+[[ $(grep "/.vi-bash_logout" ~/.bash_logout | wc -l | sed 's/^\ *//g') == 0 ]] && echo "[[ -s \"$HOME/.vi-bash_logout\" ]] && source ~/.vi-bash_logout" >> ~/.bash_logout
 
 rm -rf ~/.stanley-vim
 ln -s ~/.vim/vimrc ~/.vimrc
@@ -98,7 +98,7 @@ vim -c BundleInstall! -c q -c q -u bundles.vim
 # install tmux plugins
 if [[ ! -d ~/.tmux/plugins/ ]]; then
   mkdir -p ~/.tmux/plugins
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
 echo -e "\n\n\033[33;31m Please ensure you have astyle / tidy / js-beautify installed for autoformat\n\n"
