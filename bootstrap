@@ -89,17 +89,17 @@ done
 rm -rf ~/.stanley-vim
 ln -s ~/.vim/vimrc ~/.vimrc
 
-cd ~/.vim
-if [[ ! -d ~/.vim/bundle/vundle/.git ]]; then
-	git clone git://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-fi
-vim -c BundleInstall! -c q -c q -u bundles.vim
-
 # install tmux plugins
 if [[ ! -d ~/.tmux/plugins/ ]]; then
   mkdir -p ~/.tmux/plugins
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
+
+cd ~/.vim
+if [[ ! -d ~/.vim/bundle/vundle/.git ]]; then
+	git clone git://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+fi
+vim -c BundleInstall! -c q -c q -u bundles.vim
 
 echo -e "\n\n\033[33;31m Please ensure you have astyle / tidy / js-beautify installed for autoformat\n\n"
 IFS="`echo $OIFS`"
