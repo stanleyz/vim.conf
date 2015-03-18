@@ -19,5 +19,5 @@ nnoremap h <C-p>
 cnoremap <C-n> <Down>
 cnoremap <C-p> <Up>
 
-:ignorekeys add -except o,t,h,<C-p>,<C-n>,l,:,B mail\\.google\\.com
+:ignorekeys add -except o,t,d,h,<C-p>,<C-n>,l,:,B mail\\.google\\.com
 set hintchars=abcdgistunxyz
