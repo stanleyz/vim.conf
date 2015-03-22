@@ -131,6 +131,26 @@ xsh() {
   tmux-cssh -ts $(echo $host | sed s/?// | sed s/\\./_/g) $srv
 }
 
+hostx() {
+  if [[ $# -lt 2 ]]; then
+    echo "No enough parameters provided!"
+    return 1
+  fi
+  host=$1
+  srv=""
+  shift
+  for i in $*
+  do
+    range=$(echo $i | sed 's/\.\./\^/')
+    start=${range%^*} 
+    stop=${range#*^} 
+    for j in $(seq $start $stop)
+    do
+      host $(echo $host | sed s/?/$j/) 
+    done
+  done
+}
+
 msr() {
   if [[ "X$#" != "X1" ]]; then
     echo "One and only one param needed"
