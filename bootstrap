@@ -55,6 +55,10 @@ if [[ -f ~/.vi-bashrc ]]; then
 	mv ~/.vi-bashrc ~/.vi-bashrc.old
 fi
 
+if [[ -d ~/.emacs.d ]]; then
+  mv ~/.emacs.d ~/.emacs.d.bak
+fi
+
 git clone git://github.com/stanleyz/vim.conf ~/.stanley-vim
 cp ~/.stanley-vim/vimrc ~/.vim/vimrc
 cp ~/.stanley-vim/bundles.vim ~/.vim/bundles.vim
@@ -64,6 +68,8 @@ cp ~/.stanley-vim/tmux.conf ~/.tmux.conf
 cp ~/.stanley-vim/gitconfig ~/.gitconfig
 cp ~/.stanley-vim/vimperatorrc ~/.vimperatorrc
 cp ~/.stanley-vim/vi-bashrc ~/.vi-bashrc
+cp -a ~/.stanley-vim/emacs.d ~/.emacs.d
+
 :<<'EOF'
 if [[ "X$(uname)" == "XDarwin" ]]; then
   [[ -f ~/.mac-bashrc ]] && mv ~/.mac-bashrc ~/.mac-bashrc.old
