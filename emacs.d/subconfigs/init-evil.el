@@ -1,3 +1,4 @@
+(require 'cl)
 (require-package 'evil)
 (evil-mode t)
 
@@ -18,6 +19,7 @@
 (autopair-global-mode)
 (setq ace-jump-word-mode-use-query-char nil)
 (setq evil-leader/in-all-states t) ; leader
+(setq ace-jump-mode-move-keys (loop for i from ?a to ?z collect i))
 
 ;; leader
 (evil-leader/set-leader ",")

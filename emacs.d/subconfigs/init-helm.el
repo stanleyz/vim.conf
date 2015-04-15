@@ -2,6 +2,7 @@
 ;; C-SPC to select items)
 
 (require-package 'helm)
+(require-package 'projectile)
 
 (require 'helm)
 ;; esc quits
