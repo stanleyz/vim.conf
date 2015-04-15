@@ -89,6 +89,9 @@ case $platform in
 esac
 
 # functions -------------------------------------------------------------------
+ssh-keyrm() {
+  ssh-keygen -f "~/.ssh/known_hosts" -R $1
+}
 vms () { 
   VBoxHeadless -s $1 -v off & 
   i=0
