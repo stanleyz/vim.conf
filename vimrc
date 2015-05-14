@@ -169,13 +169,14 @@ nnoremap <leader>p :call SZOpenNerdTree()<CR>
 
 " CtrlP
 let g:ctrlp_map = ',f'
+let g:ctrlp_working_path_mode = 'a'
 
 " neocomplcache
 let g:neocomplcache_enable_at_startup = 1
 
 " Disable Puppet align because of Tabularize issue(reset cursor to the
 " beginning of the line)
-" let g:puppet_align_hashes = 0
+let g:puppet_align_hashes = 0
 
 if has('folding')
   set foldmethod=indent
