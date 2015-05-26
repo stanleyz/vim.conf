@@ -42,7 +42,7 @@
 	rh1 = reset HEAD^ --hard
 	rh2 = reset HEAD^^ --hard
 [push]
-	default = matching
+	default = upstream
 [diff]
 	tool = vimdiff
 [core]
