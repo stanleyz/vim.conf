@@ -204,6 +204,7 @@ nnoremap <leader>gc :Gcommit -a<CR>
 nnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>gl :Git ll<CR>
 nnoremap <leader>gp :Git push<CR>
+nnoremap <leader>gf :Gpull<CR>
 " Mnemonic _i_nteractive
 nnoremap <leader>ga :Git add %<CR>
 
