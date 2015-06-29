@@ -68,9 +68,16 @@ case $platform in
 esac
 
 # functions -------------------------------------------------------------------
+# Git
+gdbranch() {
+  branch=$1
+  
+  git push origin --delete $branch
+  git branch -D $branch
+}
 # Docker
 rac() {
-  docker rm $(docker ps -a | grep Exited | grep -v _keep | awk '{print $1}')
+  docker rm $(docker ps -a | grep -v CONTAINER | grep -v _keep | awk '{print $1}')
 }
 rai() {
   docker rmi $(docker images | grep '<none>' | awk '{print $3}')
