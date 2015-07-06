@@ -10,6 +10,7 @@ inoremap ";;" <ESC>
 nnoremap j 5j
 nnoremap k 5k
 nnoremap <leader>b b
+nnoremap <leader>l <C-^>
 nnoremap B :buffer! 
 nnoremap f <PageDown>
 nnoremap b <PageUp>
