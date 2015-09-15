@@ -198,15 +198,19 @@ let g:SuperTabClosePreviewOnPopupClose = 1 " close scratch window on autocomplet
 nnoremap <leader>gu :GundoToggle<CR>
 
 " Fugitive
-nnoremap <leader>gs :Git status -s<CR>
-nnoremap <leader>gd :Gdiff<CR>
-nnoremap <leader>gc :Gcommit -a<CR>
-nnoremap <leader>gb :Gblame<CR>
-nnoremap <leader>gl :Git ll<CR>
-nnoremap <leader>gp :Git push<CR>
-nnoremap <leader>gf :Gpull<CR>
 " Mnemonic _i_nteractive
 nnoremap <leader>ga :Git add %<CR>
+nnoremap <leader>gba :Git branch --all<CR>
+nnoremap <leader>gbl :Gblame<CR>
+nnoremap <leader>gbn :Git branch<Space>
+nnoremap <leader>gci :Gcommit -a<CR>
+nnoremap <leader>gco :Git checkout<Space>
+nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gpl :Gpull<CR>
+nnoremap <leader>gpr :Git pull --rebase<CR>
+nnoremap <leader>gps :Git push<CR>
+nnoremap <leader>gl :Git ll<CR>
+nnoremap <leader>gs :Git status<CR>
 
 "Tagbar
 nnoremap <silent> <leader>t :TagbarToggle<CR>
