@@ -30,6 +30,7 @@ if version > 701
 	Bundle 'majutsushi/tagbar'
 endif
 Bundle 'Lokaltog/vim-easymotion'
+Bundle 'derekwyatt/vim-scala'
 
 "Bundle "Chiel92/vim-autoformat"
 
