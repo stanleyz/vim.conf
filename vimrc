@@ -209,8 +209,10 @@ nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>gpl :Gpull<CR>
 nnoremap <leader>gpr :Git pull --rebase<CR>
 nnoremap <leader>gps :Git push<CR>
+nnoremap <leader>gpt :Git push --tags<CR>
 nnoremap <leader>gl :Git ll<CR>
 nnoremap <leader>gs :Git status<CR>
+nnoremap <leader>gt :Git tag<Space>
 
 "Tagbar
 nnoremap <silent> <leader>t :TagbarToggle<CR>
