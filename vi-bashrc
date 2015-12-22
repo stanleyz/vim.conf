@@ -82,7 +82,7 @@ rac() {
 rai() {
   docker rmi $(docker images | grep '<none>' | awk '{print $3}')
 }
-drb() { 
+dockerunbash() { 
   host_name=$3
   c_name=$2
   i_name=$1
@@ -95,6 +95,11 @@ drb() {
   fi
   cmd="$cmd $i_name /bin/bash"
   $cmd
+}
+
+doexecbash() {
+  c_id=$1
+  docker exec -ti $c_id /bin/bash --login
 }
 
 sshkeyrm() {
