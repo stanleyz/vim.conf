@@ -1,0 +1,38 @@
+let barposition = "bottom"
+set noautofocus " The opposite of autofocus; this setting stops
+                " sites from focusing on an input box when they load
+set nosmoothscroll
+let locale = "nz" " Current choices are 'jp' and 'uk'. This allows cVim to use sites like google.co.uk
+                  " or google.co.jp to search rather than google.com. Support is currently limited.
+                  " Let me know if you need a different locale for one of the completion/search engines
+let mapleader = ","
+map f scrollFullPageDown
+map b scrollFullPageUp
+map h previousTab
+map l nextTab
+map ;o createHint
+map ;b createTabbedHint
+map ;t createActiveTabbedHint
+map d closeTab
+map u lastClosedTab
+map <leader>b :buffer<space>
+map <Leader>u :restore<Space>
+let searchengine gtrans = "https://translate.google.co.nz/#en/zh-CN/%s"
+let searchengine youtrack = "http://youtrack.smxemail.com/issue/%s"
+let searchengine foreman = "https://foreman.smxemail.com/hosts/%s.smxemail.com"
+let searchengine foremane = "https://foreman.smxemail.com/hosts/%s.smxemail.com/edit"
+" Insert mode
+imap <C-a> beginningOfLine
+imap <C-e> endOfLine
+imap <C-u> deleteToBeginning
+imap <C-k> deleteToEnd
+imap <C-w> deleteWord
+imap <C-f> forwardChar
+imap <C-b> backwardChar
+site '*://mail.google.com/*' {
+   unmap j
+   unmap k
+   unmap u
+   unmap #
+   unmap x
+}
