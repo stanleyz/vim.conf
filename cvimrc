@@ -22,6 +22,7 @@ let searchengine gtrans = "https://translate.google.co.nz/#en/zh-CN/%s"
 let searchengine youtrack = "http://youtrack.smxemail.com/issue/%s"
 let searchengine foreman = "https://foreman.smxemail.com/hosts/%s.smxemail.com"
 let searchengine foremane = "https://foreman.smxemail.com/hosts/%s.smxemail.com/edit"
+let searchengine bsdman = "https://www.freebsd.org/cgi/man.cgi?query=%s"
 " Insert mode
 imap <C-a> beginningOfLine
 imap <C-e> endOfLine
