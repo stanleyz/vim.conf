@@ -121,7 +121,7 @@ set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set smarttab
-"set expandtab
+set expandtab
 
 set pastetoggle=<leader>p
 
@@ -209,6 +209,7 @@ nnoremap <leader>gco :Git checkout<Space>
 nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>gpl :Gpull<CR>
 nnoremap <leader>gpr :Git pull --rebase<CR>
+nnoremap <leader>gpb :Git push origin<Space>
 nnoremap <leader>gps :Git push<CR>
 nnoremap <leader>gpt :Git push --tags<CR>
 nnoremap <leader>gl :Git ll<CR>
