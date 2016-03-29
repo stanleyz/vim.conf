@@ -45,6 +45,15 @@ shopt -s histappend                      # append to history, don't overwrite it
 # Save and reload the history after each command finishes
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
+# Virtualenvwrapper
+# load virtualenvwrapper for python (after custom PATHs)
+venvwrap="virtualenvwrapper.sh"
+/usr/bin/which $venvwrap > /dev/null 2>&1
+if [ $? -eq 0 ]; then
+    venvwrap=`/usr/bin/which $venvwrap`
+    source $venvwrap
+fi
+
 # Platform specific settings --------------------------------------------------
 platform=$(uname)
 case $platform in 
@@ -127,25 +136,17 @@ vmip() {
 vmd () { VBoxManage controlvm $1 $2; }
 vmrdp () { VBoxManage controlvm $1 vrde $2; }
 xopen () { cd ~/Documents/xopen/$1; }
+
 xsh() {
-  if [[ $# -lt 2 ]]; then
-    echo "No enough parameters provided!"
-    return 1
-  fi
-  host=$1
-  srv=""
-  shift
+  ts_name=$1
   for i in $*
   do
-    range=$(echo $i | sed 's/\.\./\^/')
-    start=${range%^*} 
-    stop=${range#*^} 
-    for j in $(seq $start $stop)
-    do
-      srv="$srv $(echo $host | sed s/?/$j/)" 
-    done
+    ts_name=$(tr -dc $ts_name <<< $i)
   done
-  tmux-cssh -ts $(echo $host | sed s/?// | sed s/\\./_/g) $srv
+  if [ -z ${ts_name:1} ]; then
+    ts_name="uunknown_name"
+  fi
+  tmux-cssh -ts ${ts_name:1} $*
 }
 
 hostx() {
