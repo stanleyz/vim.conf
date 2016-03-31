@@ -150,15 +150,32 @@ vmrdp () { VBoxManage controlvm $1 vrde $2; }
 xopen () { cd ~/Documents/xopen/$1; }
 
 xsh() {
-  ts_name=$1
-  for i in $*
+  if [ $# -lt 1 ]; then
+    echo "I need a host to work on..."
+    exit 1
+  fi 
+  # make the first hostname as a template to compare with other hostnames
+  first_hostname=$1
+  shift
+  ts_name=""
+  # Compare character by character with the first argument.
+  for j in $(seq 0 ${#1})
   do
-    ts_name=$(tr -dc $ts_name <<< $i)
-  done
-  if [ -z ${ts_name:1} ]; then
-    ts_name="uunknown_name_$RANDOM"
+    for i in $*
+    do
+      common_char=${first_hostname:$j:1}
+      if [ "X${i:$j:1}" != "X$common_char" ]; then
+        common_char="_"
+        break
+      fi 
+    done
+    ts_name="${ts_name}${common_char}"
+  done 
+  
+  if [ -z ${ts_name} ]; then
+    ts_name="unknown_name_$RANDOM"
   fi
-  tmux-cssh -ts ${ts_name:1} $*
+  tmux-cssh -ts ${ts_name} $*
 }
 
 hostx() {
