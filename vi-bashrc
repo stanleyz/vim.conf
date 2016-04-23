@@ -48,12 +48,12 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 # Read add the directory and add any ~/Applications/*/bin to PATH 
 # and add ~/Applications/*/man to MANPATH
 if [[ -d ~/Applications/ ]]; then
-  for dir in $(find ~/Applications/ -depth 1 -type d)
+  for dir in $(find ~/Applications -maxdepth 1 -mindepth 1 -type d)
   do
-    if [[ -d  ${dir}/bin ]]; then
+    if [[ -d  ${dir}/bin && $(echo $PATH) != *${dir}/bin* ]]; then
       export PATH=$PATH:${dir}/bin
     fi
-    if [[ -d ${dir}/man ]]; then
+    if [[ -d ${dir}/man && $(echo $MANPATH) != *${dir}/man* ]]; then
       export MANPATH=$MANPATH:${dir}/man
     fi
   done
@@ -75,8 +75,6 @@ case $platform in
     alias ls='ls -G'
     alias ftpup='sudo -s launchctl load -w /System/Library/LaunchDaemons/ftp.plist'
     alias ftpdown='sudo -s launchctl unload -w /System/Library/LaunchDaemons/ftp.plist'
-
-    export DYLD_LIBRARY_PATH=/usr/local/mysql/lib
 
     if [ `ps aux |grep ssh-agent | grep -v grep | wc -l` -lt 1 ]; then
       eval `ssh-agent -s` > /dev/null
