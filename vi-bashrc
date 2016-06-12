@@ -45,20 +45,6 @@ shopt -s histappend                      # append to history, don't overwrite it
 # Save and reload the history after each command finishes
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
-# Read add the directory and add any ~/Applications/*/bin to PATH 
-# and add ~/Applications/*/man to MANPATH
-if [[ -d ~/Applications/ ]]; then
-  for dir in $(find ~/Applications -maxdepth 1 -mindepth 1 -type d)
-  do
-    if [[ -d  ${dir}/bin && $(echo $PATH) != *${dir}/bin* ]]; then
-      export PATH=$PATH:${dir}/bin
-    fi
-    if [[ -d ${dir}/man && $(echo $MANPATH) != *${dir}/man* ]]; then
-      export MANPATH=$MANPATH:${dir}/man
-    fi
-  done
-fi
-
 # Virtualenvwrapper
 # load virtualenvwrapper for python (after custom PATHs)
 venvwrap="virtualenvwrapper.sh"
@@ -75,6 +61,8 @@ case $platform in
     alias ls='ls -G'
     alias ftpup='sudo -s launchctl load -w /System/Library/LaunchDaemons/ftp.plist'
     alias ftpdown='sudo -s launchctl unload -w /System/Library/LaunchDaemons/ftp.plist'
+
+    export DYLD_LIBRARY_PATH=/usr/local/mysql/lib
 
     if [ `ps aux |grep ssh-agent | grep -v grep | wc -l` -lt 1 ]; then
       eval `ssh-agent -s` > /dev/null
@@ -159,7 +147,7 @@ xsh() {
   shift
   ts_name=""
   # Compare character by character with the first argument.
-  for j in $(seq 0 ${#1})
+  for j in $(seq 0 ${#first_hostname})
   do
     for i in $*
     do
@@ -173,9 +161,15 @@ xsh() {
   done 
   
   if [ -z ${ts_name} ]; then
-    ts_name="unknown_name_$RANDOM"
+		if [[ -z ${first_hostname} ]]; then
+			ts_name="unknown_name_$RANDOM"
+		else
+			ts_name=$first_hostname
+		fi
+  else
+    ts_name=$(echo $ts_name | sed 's/[@.]/_/g')
   fi
-  tmux-cssh -ts ${ts_name} $*
+  tmux-cssh -ts ${ts_name} $first_hostname $*
 }
 
 hostx() {
