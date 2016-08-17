@@ -177,6 +177,9 @@ let g:neocomplcache_enable_at_startup = 1
 " Disable Puppet align because of Tabularize issue(reset cursor to the
 " beginning of the line)
 let g:puppet_align_hashes = 0
+" Tabular
+vnoremap <leader>ta :Tab /
+
 
 if has('folding')
   set foldmethod=indent
@@ -217,7 +220,7 @@ nnoremap <leader>gs :Git status<CR>
 nnoremap <leader>gt :Git tag<Space>
 
 "Tagbar
-nnoremap <silent> <leader>t :TagbarToggle<CR>
+nnoremap <silent> <leader>tb :TagbarToggle<CR>
 let g:tagbar_autoclose = 1
 let g:tagbar_autofocus = 1
 
