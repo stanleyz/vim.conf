@@ -1,0 +1,18 @@
+tint2 &
+# xfce4-panel &
+terminator -e x &
+# Openbox does this better
+# /usr/bin/xbindkeys -f ~/.xbindkeysrc
+icedove &
+google-chrome &
+firefox &
+
+dbus-launch nm-applet &
+dbus-launch volumeicon &
+vlc --qt-start-minimized &
+# xfce4-panel has a volume applet
+# xfce4-volumed &
+
+xscreensaver &
+conky
+conky -c ~/.config/conky/conky_weather.conf 
