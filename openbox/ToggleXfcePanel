@@ -1,0 +1,6 @@
+#!/bin/env bash
+if [[ $(xfconf-query -c xfce4-panel -p /panels/panel-1/autohide-behavior) == 0  ]]; then 
+  xfconf-query -c xfce4-panel -p /panels/panel-1/autohide-behavior -s 2 
+else 
+  xfconf-query -c xfce4-panel -p /panels/panel-1/autohide-behavior -s 0
+fi

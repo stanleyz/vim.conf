@@ -246,6 +246,9 @@
         <to>4</to>
       </action>
     </keybind>
+    <keybind key="Mod5-F12">
+      <action name="ToggleMaximizeFull"/>
+    </keybind>
     <keybind key="Mod5-d">
       <action name="ToggleShowDesktop"/>
     </keybind>
@@ -274,8 +277,10 @@
         <command>google-chrome</command>
       </action>
     </keybind>
-    <keybind key="Mod5-F12">
-      <action name="ToggleMaximizeFull"/>
+    <keybind key="Mod5-period">
+      <action name="Execute">
+        <command>/bin/bash ~/.config/openbox/ToggleXfcePanel</command>
+      </action>
     </keybind>
     <!-- Keybindings of special keys -->
     <keybind key="XF86ScreenSaver">
