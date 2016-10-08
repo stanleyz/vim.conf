@@ -283,7 +283,8 @@
         <command>xscreensaver-command --lock</command>
       </action>
     </keybind>
-    <!-- This is handled easily by volumeicon -->
+    <!-- xfce4-mixer shoule handle this 
+     otherwise volumeicon can manage as well
     <keybind key="XF86AudioMute">
       <action name="Execute">
         <command>amixer sset Master toggle</command>
@@ -303,7 +304,20 @@
       <action name="Execute">
         <command>amixer sset Capture toggle</command>
       </action>
+    </keybind> 
+    -->
+    <!-- xfce4-power-manager will manage this two 
+    <keybind key="XF86MonBrightnessUp">
+      <action name="Execute">
+        <command>xbacklight -inc 10</command>
+      </action>
     </keybind>
+    <keybind key="XF86MonBrightnessDown">
+      <action name="Execute">
+        <command>xbacklight -dec 10</command>
+      </action>
+    </keybind>
+    -->
     <keybind key="XF86Launch1">
       <action name="Exit">
         <prompt>yes</prompt>

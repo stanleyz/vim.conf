@@ -1,18 +1,25 @@
-tint2 &
-# xfce4-panel &
-terminator -e x &
+# tint2 &
+xfce4-panel &
+systemctl --user import-environment DISPLAY
+systemctl --user start xfce4-notify
+
+# Applications
 # Openbox does this better
 # /usr/bin/xbindkeys -f ~/.xbindkeysrc
+terminator -e x &
 icedove &
 google-chrome &
 firefox &
-
-dbus-launch nm-applet &
-dbus-launch volumeicon &
 vlc --qt-start-minimized &
-# xfce4-panel has a volume applet
+
+# Services need to be loaded after others
+dbus-launch nm-applet &
+# Volume icon for tint2
+# dbus-launch volumeicon &
+# xfce4-pulseaudio-plugin for xfce4-panel provides volume icon and control
 # xfce4-volumed &
 
+# niche daemons
 xscreensaver &
 conky
 conky -c ~/.config/conky/conky_weather.conf 
