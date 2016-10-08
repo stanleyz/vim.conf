@@ -249,9 +249,11 @@
     <keybind key="Mod5-F12">
       <action name="ToggleMaximizeFull"/>
     </keybind>
+    <!-- if you don't have anything on desktop, why you need this
     <keybind key="Mod5-d">
       <action name="ToggleShowDesktop"/>
     </keybind>
+    -->
     <keybind key="Mod5-e">
       <action name="Execute">
         <command>thunar</command>
