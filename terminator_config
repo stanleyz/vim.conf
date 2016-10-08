@@ -64,5 +64,6 @@
     foreground_color = "#ffffff"
     login_shell = True
     scrollback_lines = 5000
+    scrollbar_position = hidden
     show_titlebar = False
     update_records = False
