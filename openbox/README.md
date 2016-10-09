@@ -55,3 +55,7 @@ Seriously? Are you using Openbox? try rc.xml
 * dunst for notification daemon, `notify-send` to send notifications, icons are in `/usr/share/icons` , for example
 
 ```notify-send -i /usr/share/icons/Tango/32x32/status/audio-volume-high.png -h int:value:$value ' '```
+
+# Chinese input method
+
+Tried ibus/scim, it looks like only fcitx supports typing Chinese in English locale unless I didn't configure the others right, but don't forget to install fcitx-pinyin.

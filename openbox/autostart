@@ -21,6 +21,7 @@ dbus-launch nm-applet &
 
 # niche daemons
 xscreensaver &
+fcitx &
 # I love you, but I feel like my mouse stuck while you doing regular refresh
 #conky
 #conky -c ~/.config/conky/conky_weather.conf 
