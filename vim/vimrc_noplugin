@@ -1,0 +1,151 @@
+" FEATURES TO COVER:
+" - Fuzzy File Search
+" - Tag jumping
+" - Autocomplete
+" - File Browsing
+" - Snippets
+" - Build Integration (if we have time)
+"
+" {{{ BASIC SETUP
+" BASIC SETUP:
+
+" enter the current millenium
+set nocompatible
+
+" enable syntax and plugins (for netrw)
+syntax enable
+filetype plugin on
+
+" FINDING FILES:
+
+" Search down into subfolders
+" Provides tab-completion for all file-related tasks
+set path+=**
+
+" Display all matching files when we tab complete
+set wildmenu
+
+" NOW WE CAN:
+" - Hit tab to :find by partial match
+" - Use * to make it fuzzy
+
+" THINGS TO CONSIDER:
+" - :b lets you autocomplete any open buffer
+
+
+" TAG JUMPING:
+
+" Create the `tags` file (may need to install ctags first)
+command! MakeTags !ctags -R .
+
+" NOW WE CAN:
+" - Use ^] to jump to tag under cursor
+" - Use g^] for ambiguous tags
+" - Use ^t to jump back up the tag stack
+
+" THINGS TO CONSIDER:
+" - This doesn't help if you want a visual list of tags
+
+
+" AUTOCOMPLETE:
+
+" The good stuff is documented in |ins-completion|
+
+" HIGHLIGHTS:
+" - ^x^n for JUST this file
+" - ^x^f for filenames (works with our path trick!)
+" - ^x^] for tags only
+" - ^n for anything specified by the 'complete' option
+
+" NOW WE CAN:
+" - Use ^n and ^p to go back and forth in the suggestion list
+
+
+" FILE BROWSING:
+
+" Tweaks for browsing
+let g:netrw_banner=0        " disable annoying banner
+let g:netrw_browse_split=4  " open in prior window
+let g:netrw_altv=1          " open splits to the right
+let g:netrw_liststyle=3     " tree view
+let g:netrw_list_hide=netrw_gitignore#Hide()
+let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+
+" NOW WE CAN:
+" - :edit a folder to open a file browser
+" - <CR>/v/t to open in an h-split/v-split/tab
+" - check |netrw-browse-maps| for more mappings
+
+
+" SNIPPETS:
+
+" Read an empty HTML template and move cursor to title
+nnoremap ,html :-1read $HOME/.vim/.skeleton.html<CR>3jwf>a
+
+" NOW WE CAN:
+" - Take over the world!
+"   (with much fewer keystrokes)
+
+
+" BUILD INTEGRATION:
+
+" Steal Mr. Bradley's formatter & add it to our spec_helper
+" http://philipbradley.net/rspec-into-vim-with-quickfix
+
+" Configure the `make` command to run RSpec
+set makeprg=bundle\ exec\ rspec\ -f\ QuickfixFormatter
+
+" NOW WE CAN:
+" - Run :make to run RSpec
+" - :cl to list errors
+" - :cc# to jump to error by number
+" - :cn and :cp to navigate forward and back
+
+set nobackup
+"set noswapfile
+set directory=/var/tmp,/tmp
+
+let mapleader = ","
+let g:mapleader = ","
+
+inoremap <leader><leader> <Esc>
+cnoremap <leader><leader> <Esc>
+vnoremap <leader><leader> <Esc>
+
+nnoremap <leader>h <C-w>h
+nnoremap <leader>j <C-w>j
+nnoremap <leader>k <C-w>k
+nnoremap <leader>l <C-w>l
+inoremap <leader>h <ESC><C-w>h
+inoremap <leader>l <ESC><C-w>l
+inoremap <leader>j <ESC><C-w>j
+inoremap <leader>k <ESC><C-w>k
+
+inoremap <leader>o <ESC>o
+inoremap <leader>O <ESC>O
+nnoremap <leader>q :q!<CR>
+nnoremap <leader>1 :qa<CR>
+inoremap <leader>q <ESC>:q!<CR>
+inoremap <leader>1 <ESC>:qa<CR>
+
+nnoremap <leader>sv :w<CR>
+inoremap <leader>sv <ESC>:w<CR>gi
+
+nnoremap <C-j> :m .+1<CR>==
+nnoremap <C-k> :m .-2<CR>==
+inoremap <C-j> <Esc>:m .+1<CR>==gi
+inoremap <C-k> <Esc>:m .-2<CR>==gi
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
+
+inoremap <C-a> <ESC>^i
+inoremap <C-e> <ESC>$a
+inoremap <C-b> <ESC>bi
+inoremap <C-f> <ESC>lwi
+
+" Popup
+hi Pmenu ctermbg=black ctermfg=grey
+
+"status line
+set statusline=%{fugitive#statusline()}\ %f%m%r%=%c,%l/%L\ \ %P
+hi StatusLine cterm=NONE ctermbg=blue ctermfg=white guibg=green guifg=black
