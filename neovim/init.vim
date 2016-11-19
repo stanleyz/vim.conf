@@ -139,6 +139,7 @@ set t_Co=256
 set cuc cul
 "hi CursorLine cterm=NONE ctermbg=grey ctermfg=black guibg=grey guifg=black
 hi CursorColumn cterm=NONE ctermbg=grey ctermfg=black guibg=grey guifg=black
+hi ColorColumn cterm=None ctermbg=grey ctermfg=black
 
 "status line
 set statusline=%{fugitive#statusline()}\ %f%m%r%=%c,%l/%L\ \ %P
@@ -155,6 +156,8 @@ set shiftwidth=2
 set softtabstop=2
 set smarttab
 set expandtab
+set textwidth=80
+set colorcolumn=+1
 
 set pastetoggle=<A-p>
 
