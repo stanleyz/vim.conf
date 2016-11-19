@@ -1,0 +1,9 @@
+Metrics/LineLength:
+  # This will disable the rule completely, regardless what other options you put
+  Enabled: false
+Metrics/ClassLength:
+  Enabled: false
+Metrics/ModuleLength:
+  Enabled: false
+Metrics/MethodLength:
+  Enabled: false
