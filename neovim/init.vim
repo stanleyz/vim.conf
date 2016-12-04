@@ -68,10 +68,12 @@ noremap <leader>tv <ESC>:vsp term://bash<CR>
 autocmd BufEnter * silent! lcd %:p
 
 " Neomake
+nnoremap <C-m> :Neomake<CR>
+inoremap <C-m> <ESC>:Neomake<CR>
 " Run neomake everytime when saving buffer
 autocmd! BufWritePost * Neomake
 " let g:neomake_logfile='/tmp/error.log'
-let g:neomake_open_list = 2
+let g:neomake_open_list = 0 
 let g:neomake_warning_sign = {
   \ 'text': 'W',
   \ 'texthl': 'WarningMsg',
@@ -189,8 +191,8 @@ inoremap <leader>b <ESC>:CtrlPBuffer<CR>
 " Buffers and Files using FZF
 " nnoremap <leader>b :Buffers<CR>
 " inoremap <leader>b <ESC>:Buffers<CR>
-" nnoremap <leader>f :Files<CR>
-" inoremap <leader>f <ESC>:Files<CR>
+nnoremap <leader>f :Files<CR>
+inoremap <leader>f <ESC>:Files<CR>
 
 "  ---------------------------------------------------------------------------
 "  Plugins
@@ -210,7 +212,7 @@ nnoremap <leader>p :call SZOpenNerdTree()<CR>
 inoremap <leader>p <ESC>:call SZOpenNerdTree()<CR>
 
 " CtrlP
-let g:ctrlp_map = ',f'
+" let g:ctrlp_map = ',f'
 let g:ctrlp_working_path_mode = 'a'
 " It's not usable after turnning this on
 " let g:ctrlp_show_hidden = 1

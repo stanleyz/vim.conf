@@ -43,4 +43,7 @@ Plug 'neomake/neomake'
 Plug 'artur-shaik/vim-javacomplete2'
 " Plug 'vim-airline/vim-airline'
 
+" Ruby
+Plug 'vim-ruby/vim-ruby'
+
 call plug#end()
