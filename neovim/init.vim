@@ -84,7 +84,7 @@ let g:neomake_error_sign = {
   \ }
 
 " FZF
-let $FZF_DEFAULT_COMMAND = 'find . | grep -v ".vim/undo/" |grep -v ".cache/neocomplcache"'
+let $FZF_DEFAULT_COMMAND = 'find . | grep -v ".vim/undo/" |grep -v ".cache/neocomplcache" | grep -v .tmp/'
 
 " Ultisnips
 let g:UltiSnipsExpandTrigger="<tab>"
