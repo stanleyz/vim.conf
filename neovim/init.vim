@@ -134,7 +134,9 @@ inoremap > ><ESC>g;a
 "  ---------------------------------------------------------------------------
 "  UI
 "  ---------------------------------------------------------------------------
-colorscheme evening
+colorscheme default
+" torte is similar to default but lighter
+" colorscheme torte
 set t_Co=256
 
 "highlight line and column of curosr

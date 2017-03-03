@@ -47,6 +47,6 @@ Plug 'artur-shaik/vim-javacomplete2'
 Plug 'vim-ruby/vim-ruby'
 
 " Scala
-Plus 'derekwyatt/vim-scala'
+Plug 'derekwyatt/vim-scala'
 
 call plug#end()
