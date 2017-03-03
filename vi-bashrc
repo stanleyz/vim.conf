@@ -25,9 +25,10 @@ alias xs='tmux-cssh'
 alias vboxm="VBoxManage"
 alias vml="VBoxManage list vms"
 alias vmlr="VBoxManage list runningvms"
+alias vim='nvim'
 
 # general export --------------------------------------------------------------
-export EDITOR='vim'
+export EDITOR='nvim'
 
 # less colors -----------------------------------------------------------------
 export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
@@ -49,6 +50,9 @@ shopt -s histappend                      # append to history, don't overwrite it
 
 # Save and reload the history after each command finishes
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+
+# Include ~/bin if it's not in the PATH variable
+[[ "$PATH" == *~/bin* ]] || export PATH="~/bin:$PATH"
 
 # Virtualenvwrapper
 # load virtualenvwrapper for python (after custom PATHs)

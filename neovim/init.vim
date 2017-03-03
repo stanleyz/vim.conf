@@ -134,7 +134,7 @@ inoremap > ><ESC>g;a
 "  ---------------------------------------------------------------------------
 "  UI
 "  ---------------------------------------------------------------------------
-colorscheme ron
+colorscheme evening
 set t_Co=256
 
 "highlight line and column of curosr
