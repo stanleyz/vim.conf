@@ -1,5 +1,10 @@
+noDelayKeyStroke = function(modifiers, character)
+	local event = require("hs.eventtap").event
+	event.newKeyEvent(modifiers, string.lower(character), true):post()
+	event.newKeyEvent(modifiers, string.lower(character), false):post()
+end
 local function keyCode(key)
-  return function() hs.eventtap.keyStroke({}, key) end
+	return function() noDelayKeyStroke({}, key) end
 end
 hs.hotkey.bind({"alt"}, 'h', keyCode('left') ,  nil,   keyCode('left'))
 hs.hotkey.bind({"alt"}, 'j', keyCode('down') ,  nil,   keyCode('down'))

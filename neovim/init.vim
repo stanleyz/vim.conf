@@ -74,14 +74,9 @@ inoremap <C-m> <ESC>:Neomake<CR>
 autocmd! BufWritePost * Neomake
 " let g:neomake_logfile='/tmp/error.log'
 let g:neomake_open_list = 0 
-let g:neomake_warning_sign = {
-  \ 'text': 'W',
-  \ 'texthl': 'WarningMsg',
-  \ }
-let g:neomake_error_sign = {
-  \ 'text': 'E',
-  \ 'texthl': 'ErrorMsg',
-  \ }
+let g:neomake_place_signs = 1
+let g:neomake_error_sign = {'texthl': 'ErrorMsg', 'text': 'E'}
+let g:neomake_warning_sign = {'texthl': 'WarningMsg', 'text': 'W'}
 
 " FZF
 let $FZF_DEFAULT_COMMAND = 'find . | grep -v ".vim/undo/" |grep -v ".cache/neocomplcache" | grep -v .tmp/'
@@ -134,9 +129,9 @@ inoremap > ><ESC>g;a
 "  ---------------------------------------------------------------------------
 "  UI
 "  ---------------------------------------------------------------------------
-colorscheme default
+" colorscheme default
 " torte is similar to default but lighter
-" colorscheme torte
+colorscheme torte
 set t_Co=256
 
 "highlight line and column of curosr
@@ -285,7 +280,7 @@ let g:syntastic_aggregate_errors = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_mode_map = { 'mode': 'passive' }
 nnoremap <leader>c :SyntasticCheck<CR>
 

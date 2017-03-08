@@ -32,7 +32,6 @@ if version > 701
 	Plug 'majutsushi/tagbar'
 endif
 Plug 'Lokaltog/vim-easymotion'
-Plug 'derekwyatt/vim-scala'
 " It's said that this fuzzy finder is asynchrous
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 " You need fzf as dependency
