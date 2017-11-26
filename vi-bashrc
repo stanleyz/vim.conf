@@ -16,7 +16,11 @@ bind '"\C-f": forward-word'
 bind '"\C-b": backward-word'
 
 # alias -----------------------------------------------------------------------
-alias grep='grep --color'
+# always include color match, even in a pipe
+alias grep='grep --color always'
+# Interprate color
+alias less='less -R'
+alias ag='ag --color'
 alias xda='tmux detach -a'
 alias sudo='sudo -E '
 alias cddl='cd ~/Downloads'
@@ -150,7 +154,7 @@ xsh() {
   if [ $# -lt 1 ]; then
     echo "I need a host to work on..."
     exit 1
-  fi 
+  fi
   # make the first hostname as a template to compare with other hostnames
   first_hostname=$1
   shift
@@ -164,17 +168,17 @@ xsh() {
       if [ "X${i:$j:1}" != "X$common_char" ]; then
         common_char="_"
         break
-      fi 
+      fi
     done
     ts_name="${ts_name}${common_char}"
-  done 
-  
+  done
+
   if [ -z ${ts_name} ]; then
-		if [[ -z ${first_hostname} ]]; then
-			ts_name="unknown_name_$RANDOM"
-		else
-			ts_name=$first_hostname
-		fi
+    if [[ -z ${first_hostname} ]]; then
+      ts_name="unknown_name_$RANDOM"
+    else
+      ts_name=$first_hostname
+    fi
   else
     ts_name=$(echo $ts_name | sed 's/[@.]/_/g')
   fi
