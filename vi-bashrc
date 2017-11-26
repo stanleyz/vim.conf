@@ -16,11 +16,9 @@ bind '"\C-f": forward-word'
 bind '"\C-b": backward-word'
 
 # alias -----------------------------------------------------------------------
-# always include color match, even in a pipe
-alias grep='grep --color always'
+alias grep='grep --color'
 # Interprate color
 alias less='less -R'
-alias ag='ag --color'
 alias xda='tmux detach -a'
 alias sudo='sudo -E '
 alias cddl='cd ~/Downloads'
@@ -54,6 +52,25 @@ shopt -s histappend                      # append to history, don't overwrite it
 
 # Save and reload the history after each command finishes
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+
+# FZF settings ----------------------------------------------------------------
+# Use ~~ as the trigger sequence instead of the default ..
+export FZF_COMPLETION_TRIGGER='..'
+# Options to fzf command
+export FZF_COMPLETION_OPTS='+c -x'
+
+# Use fd (https://github.com/sharkdp/fd) instead of the default find
+# command for listing path candidates.
+# - The first argument to the function ($1) is the base path to start traversal
+# - See the source code (completion.{bash,zsh}) for the details.
+_fzf_compgen_path() {
+  fd --hidden --follow --exclude ".git" . "$1"
+}
+
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude ".git" . "$1"
+}
 
 # Include ~/bin if it's not in the PATH variable
 [[ "$PATH" == *~/bin* ]] || export PATH="~/bin:$PATH"

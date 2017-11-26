@@ -79,7 +79,7 @@ let g:neomake_error_sign = {'texthl': 'ErrorMsg', 'text': 'E'}
 let g:neomake_warning_sign = {'texthl': 'WarningMsg', 'text': 'W'}
 
 " FZF
-let $FZF_DEFAULT_COMMAND = 'find . | grep -v ".vim/undo/" |grep -v ".cache/neocomplcache" | grep -v .tmp/'
+let $FZF_DEFAULT_COMMAND = 'fd --type f --follow --hidden'
 
 " Ultisnips
 let g:UltiSnipsExpandTrigger="<tab>"
