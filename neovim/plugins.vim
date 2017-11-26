@@ -28,6 +28,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'git://github.com/sjl/gundo.vim'
 Plug 'git://github.com/Shougo/neocomplcache.vim'
 Plug 'git://github.com/tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 if version > 701
 	Plug 'majutsushi/tagbar'
 endif
