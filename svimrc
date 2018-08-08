@@ -1,0 +1,10 @@
+let mapleader = ";"
+map "f" scrollFullPageDown
+map "b" scrollFullPageUp
+map "h" previousTab
+map "l" nextTab
+map "d" quit
+map "u" lastClosedTab
+map "<Leader> o" createHint
+map "<Leader> t" createTabbedHint
+map "<Leader> l" lastActiveTab

@@ -5,17 +5,17 @@ set nosmoothscroll
 let locale = "nz" " Current choices are 'jp' and 'uk'. This allows cVim to use sites like google.co.uk
                   " or google.co.jp to search rather than google.com. Support is currently limited.
                   " Let me know if you need a different locale for one of the completion/search engines
-let mapleader = ","
+let mapleader = ";"
 map f scrollFullPageDown
 map b scrollFullPageUp
 map h previousTab
 map l nextTab
-map ;o createHint
-map ;b createTabbedHint
-map ;t createActiveTabbedHint
 map d closeTab
 map u lastClosedTab
-map <leader>b :buffer<space>
+map <Leader>o createHint
+map <Leader>t createTabbedHint
+map <Leader>f createActiveTabbedHint
+map <Leader>b :buffer<space>
 map <Leader>u :restore<Space>
 map <Leader>l lastUsedTab
 let searchengine gtrans = "https://translate.google.co.nz/#en/zh-CN/%s"
