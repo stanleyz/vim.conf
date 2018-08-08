@@ -1,22 +1,20 @@
-let mapleader = ","
+let mapleader = ";"
 
 set incsearch
 
-nnoremap ",," <ESC>
-vnoremap ",," <ESC>
-cnoremap ",," <ESC>
-inoremap ";;" <ESC>
-
-nnoremap j 5j
-nnoremap k 5k
-nnoremap <leader>b b
-nnoremap <leader>l <C-^>
-nnoremap B :buffer! 
 nnoremap f <PageDown>
 nnoremap b <PageUp>
-
-nnoremap l <C-n>
 nnoremap h <C-p>
+nnoremap l <C-n>
+nnoremap j 5j
+nnoremap k 5k
+nnoremap <leader>o f
+" ;; esacmpe the hint mode default leader ;
+nnoremap <leader>f ;;t
+nnoremap <leader>t F
+nnoremap <leader>b b
+nnoremap <leader>l <C-^>
+
 cnoremap <C-n> <Down>
 cnoremap <C-p> <Up>
 
