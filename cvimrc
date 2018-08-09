@@ -31,7 +31,7 @@ imap <C-k> deleteToEnd
 imap <C-w> deleteWord
 imap <C-f> forwardChar
 imap <C-b> backwardChar
-site '*://mail.google.com/*' {
+site '*://mail.google.com/mail/*' {
    unmap j
    unmap k
    unmap u

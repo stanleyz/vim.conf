@@ -14,3 +14,4 @@ set searchurls.youtrack http://youtrack.smxemail.com/issue/%s
 set searchurls.foreman https://foreman.smxemail.com/hosts/%s.smxemail.com
 set searchurls.foremane https://foreman.smxemail.com/hosts/%s.smxemail.com/edit
 set searchurls.bsdman https://www.freebsd.org/cgi/man.cgi?query=%s
+blacklistadd mail.google.com/mail
