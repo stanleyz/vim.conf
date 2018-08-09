@@ -8,4 +8,5 @@ map "d" quit
 map "u" lastClosedTab
 map "<Leader> o" createHint
 map "<Leader> t" createTabbedHint
+map "<Leader> f" createTabbedHint
 map "<Leader> l" lastActiveTab
