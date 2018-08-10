@@ -1,4 +1,5 @@
 let mapleader = ";"
+let hintcharacters = "asgqwerzxcvpnm"
 let blacklists = ["*://mail.google.com/mail/*"]
 map "f" scrollFullPageDown
 map "b" scrollFullPageUp
