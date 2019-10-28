@@ -131,7 +131,7 @@ inoremap > ><ESC>g;a
 "  ---------------------------------------------------------------------------
 " colorscheme default
 " torte is similar to default but lighter
-colorscheme torte
+colorscheme desert
 set t_Co=256
 
 "highlight line and column of curosr
@@ -155,7 +155,7 @@ set shiftwidth=2
 set softtabstop=2
 set smarttab
 set expandtab
-set textwidth=80
+set textwidth=0
 set colorcolumn=+1
 
 set pastetoggle=<A-p>
