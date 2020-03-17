@@ -246,7 +246,7 @@ nnoremap <leader>gu :GundoToggle<CR>
 " Fugitive
 " Mnemonic _i_nteractive
 nnoremap <leader>gac :Git add %<CR>
-nnoremap <leader>gaa :Git add .<CR>
+nnoremap <leader>gaa :Git add *<CR>
 nnoremap <leader>gba :Git branch --all<CR>
 nnoremap <leader>gbl :Gblame<CR>
 nnoremap <leader>gbn :Git branch<Space>

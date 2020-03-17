@@ -167,6 +167,62 @@ vmd () { VBoxManage controlvm $1 $2; }
 vmrdp () { VBoxManage controlvm $1 vrde $2; }
 xopen () { cd ~/Documents/xopen/$1; }
 
+xfolder() {
+  if [ $# -lt 1 ]; then
+    echo "I need a host to work on..."
+    exit 1
+  fi
+  # make the first hostname as a template to compare with other hostnames
+  first_hostname=$1
+  shift
+  ts_name=""
+  # Compare character by character with the first argument.
+  for j in $(seq 0 ${#first_hostname})
+  do
+    for i in $*
+    do
+      common_char=${first_hostname:$j:1}
+      if [ "X${i:$j:1}" != "X$common_char" ]; then
+        common_char="_"
+        break
+      fi
+    done
+    ts_name="${ts_name}${common_char}"
+  done
+
+  if [ -z ${ts_name} ]; then
+    if [[ -z ${first_hostname} ]]; then
+      ts_name="unknown_name_$RANDOM"
+    else
+      ts_name=$first_hostname
+    fi
+  else
+    ts_name=$(echo $ts_name | sed 's/[@.]/_/g')
+  fi
+  tmux-cfolder -ts ${ts_name} $first_hostname $*
+}
+
+hostx() {
+  if [[ $# -lt 2 ]]; then
+    echo "No enough parameters provided!"
+    return 1
+  fi
+  host=$1
+  srv=""
+  shift
+  for i in $*
+  do
+    range=$(echo $i | sed 's/\.\./\^/')
+    start=${range%^*} 
+    stop=${range#*^} 
+    for j in $(seq $start $stop)
+    do
+      host $(echo $host | sed s/?/$j/) 
+    done
+  done
+}
+
+
 xsh() {
   if [ $# -lt 1 ]; then
     echo "I need a host to work on..."
@@ -377,3 +433,5 @@ if [[ $? != 0 ]]; then
 fi
 perl -pe "$replace"
 }
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
