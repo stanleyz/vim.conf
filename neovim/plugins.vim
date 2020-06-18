@@ -8,6 +8,7 @@ Plug 'git://github.com/jiangmiao/auto-pairs'
 Plug 'git://github.com/tpope/vim-surround.git'
 Plug 'git://github.com/honza/vim-snippets'
 Plug 'git://github.com/ervandew/supertab'
+Plug 'plasticboy/vim-markdown'
 "required by snippets
 Plug 'MarcWeber/vim-addon-mw-utils'  
 "required by snippets
