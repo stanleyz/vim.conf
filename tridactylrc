@@ -8,9 +8,9 @@ bind ;o hint
 bind ;t hint -b
 bind ;f hint -f
 bind ;b fillcmdline taball
- bind / fillcmdline find
- bind n findnext 1
- bind N findnext -1
+bind / fillcmdline find
+bind n findnext 1
+bind N findnext -1
 set searchurls.gtrans https://translate.google.co.nz/#en/zh-CN/%s
 set searchurls.bsdman https://www.freebsd.org/cgi/man.cgi?query=%s
 blacklistadd mail.google.com/mail
