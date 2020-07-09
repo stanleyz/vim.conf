@@ -107,6 +107,14 @@ case $platform in
 esac
 
 # functions -------------------------------------------------------------------
+# VNC via ssh tunnel
+vnc5901via22() {
+  if [ "X$(netstat -an | grep 127.0.0.1.5901)" != "X" ]; then
+    echo "Already binded"
+    return 1
+  fi
+  ssh -N -T -L 5901:localhost:5901 $1 &
+}
 # Git
 gdbranch() {
   branch=$1
