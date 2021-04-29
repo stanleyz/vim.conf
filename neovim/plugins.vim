@@ -13,6 +13,7 @@ Plug 'plasticboy/vim-markdown'
 Plug 'MarcWeber/vim-addon-mw-utils'  
 "required by snippets
 Plug 'tomtom/tlib_vim'  
+Plug 'fatih/vim-hclfmt'
 " Use ultisnips instead which requires vim with python support
 " You can run :CheckHealth in Vim which will tell you what to you
 " Generally you should `pip install neovim`

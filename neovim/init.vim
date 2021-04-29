@@ -223,6 +223,11 @@ let g:neocomplcache_enable_at_startup = 1
 " Tabular
 vnoremap <leader>ta :Tab /
 
+" hclfmt
+let g:hcl_fmt_autosave = 0
+let g:tf_fmt_autosave = 0
+let g:nomad_fmt_autosave = 0
+
 
 if has('folding')
   set foldmethod=indent
@@ -250,7 +255,7 @@ nnoremap <leader>gaa :Git add *<CR>
 nnoremap <leader>gba :Git branch --all<CR>
 nnoremap <leader>gbl :Gblame<CR>
 nnoremap <leader>gbn :Git branch<Space>
-nnoremap <leader>gci :Gcommit -a<CR>
+nnoremap <leader>gci :Git commit -a<CR>
 nnoremap <leader>gco :Git checkout<Space>
 nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>gpl :Gpull<CR>
