@@ -39,6 +39,9 @@ nnoremap <leader>1 :qa<CR>
 inoremap <leader>q <ESC>:q!<CR>
 inoremap <leader>1 <ESC>:qa<CR>
 
+inoremap <leader>r <ESC>:e!<CR>
+nnoremap <leader>r :e!<CR>
+
 nnoremap <leader>sv :w<CR>
 inoremap <leader>sv <ESC>:w<CR>gi
 

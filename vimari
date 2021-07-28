@@ -1,0 +1,32 @@
+{
+  "excludedUrls": "",
+  "linkHintCharacters": "asdfjklqwerzxc",
+  "detectByCursorStyle": false,
+  "scrollSize": 150,
+  "openTabUrl": "",
+  "modifier": "",
+  "smoothScroll": true,
+  "scrollDuration": 25,
+  "transparentBindings": true,
+  "bindings": {
+      "hintToggle": "o",
+      "newTabHintToggle": "t",
+      "scrollUp": "k",
+      "scrollDown": "j",
+      "scrollLeft": "w",
+      "scrollRight": "q",
+      "scrollUpHalfPage": "b",
+      "scrollDownHalfPage": "f",
+      "goToPageTop": "g g",
+      "goToPageBottom": "shift+g",
+      "goToFirstInput": "g i",
+      "goBack": "shift+h",
+      "goForward": "shift+l",
+      "reload": "r",
+      "tabForward": "l",
+      "tabBack": "h",
+      "closeTab": "d",
+      "openTab": "O"
+  }
+}
+
