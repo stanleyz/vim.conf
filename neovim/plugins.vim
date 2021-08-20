@@ -2,12 +2,12 @@ set nocompatible               " be iMproved
 
 call plug#begin()
 
-Plug 'git://github.com/scrooloose/nerdtree.git'
+Plug 'scrooloose/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'git://github.com/jiangmiao/auto-pairs'
-Plug 'git://github.com/tpope/vim-surround.git'
-Plug 'git://github.com/honza/vim-snippets'
-Plug 'git://github.com/ervandew/supertab'
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-surround'
+Plug 'honza/vim-snippets'
+Plug 'ervandew/supertab'
 Plug 'plasticboy/vim-markdown'
 "required by snippets
 Plug 'MarcWeber/vim-addon-mw-utils'  
@@ -27,9 +27,9 @@ Plug 'rstacruz/sparkup'
 " but neomake doesn't have xmllint built-in
 Plug 'scrooloose/syntastic'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'git://github.com/sjl/gundo.vim'
-Plug 'git://github.com/Shougo/neocomplcache.vim'
-Plug 'git://github.com/tpope/vim-fugitive'
+Plug 'sjl/gundo.vim'
+Plug 'Shougo/neocomplcache.vim'
+Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 if version > 701
 	Plug 'majutsushi/tagbar'
