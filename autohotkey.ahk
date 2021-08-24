@@ -100,7 +100,7 @@ return
   else if GetKeyState("Ctrl","P")
   {
     winget, procname, ProcessName, A
-    if procname in debian.exe,PortX.exe,PuTTY.exe,cmd.exe,powershell.exe
+    if procname in code.exe,debian.exe,PortX.exe,PuTTY.exe,cmd.exe,powershell.exe
       send,^k
     else if A_CaretX != 0
       ;; Plus {Ctrl}{Del} doesn't work the same way as original {Ctrl}{Del}
@@ -131,7 +131,7 @@ return
   else if GetKeyState("Ctrl", "P")
   {
     winget, procname, ProcessName, A
-    if procname in debian.exe,PortX.exe,PuTTY.exe,cmd.exe,powershell.exe
+    if procname in code.exe,debian.exe,PortX.exe,PuTTY.exe,cmd.exe,powershell.exe
       send,^u
     else if A_CaretX != 0
       ;; Same as the key *k, use this because {Ctrl}{BS} doesn't work the same way as the original combinations
