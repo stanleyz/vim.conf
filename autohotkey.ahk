@@ -19,6 +19,21 @@ vkFF::Alt
 $RAlt::RWin
 $RCtrl::RAlt
 
+*b::
+  if GetKeyState("Ctrl","P")
+  {
+    winget, procname, ProcessName, A
+    if procname in cmd.exe,powershell.exe,debian.exe,PortX.exe,PuTTY.exe,code.exe
+      send,^b
+    else
+      send,{Left}
+  }
+  else if GetKeyState("Shift", "P")
+    send,cmd.exe,powershell.exe,B
+  else
+    send,b
+return
+
 *e::
   if GetKeyState("Ctrl", "P")
     send,{End}
@@ -50,7 +65,7 @@ return
   else if GetKeyState("Ctrl","P")
   {
     winget, procname, ProcessName, A
-    if procname in debian.exe,PortX.exe,PuTTY.exe,code.exe
+    if procname in cmd.exe,powershell.exe,debian.exe,PortX.exe,PuTTY.exe,code.exe
       send,^f
     else
       send,{Right}
@@ -191,21 +206,6 @@ return
     send,A
   else
     send,a
-return
-
-*b::
-  if GetKeyState("Ctrl","P")
-  {
-    winget, procname, ProcessName, A
-    if procname in debian.exe,PortX.exe,PuTTY.exe,code.exe
-      send,^b
-    else
-      send,{Left}
-  }
-  else if GetKeyState("Shift", "P")
-    send,B
-  else
-    send,b
 return
 
 *q::
