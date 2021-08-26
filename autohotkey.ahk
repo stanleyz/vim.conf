@@ -29,7 +29,7 @@ $RCtrl::RAlt
       send,{Left}
   }
   else if GetKeyState("Shift", "P")
-    send,cmd.exe,powershell.exe,B
+    send,B
   else
     send,b
 return
