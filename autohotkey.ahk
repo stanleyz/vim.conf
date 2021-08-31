@@ -103,8 +103,7 @@ return
     if procname in code.exe,debian.exe,PortX.exe,PuTTY.exe,cmd.exe,powershell.exe
       send,^k
     else if A_CaretX != 0
-      ;; Plus {Ctrl}{Del} doesn't work the same way as original {Ctrl}{Del}
-    send,{Shift Down}{End}{Del}{Shift Up}
+      Send,{Shift Down}{End}{Del}{Shift Up}
     else
       send,^k
   }
@@ -134,9 +133,7 @@ return
     if procname in code.exe,debian.exe,PortX.exe,PuTTY.exe,cmd.exe,powershell.exe
       send,^u
     else if A_CaretX != 0
-      ;; Same as the key *k, use this because {Ctrl}{BS} doesn't work the same way as the original combinations
-    ;; Tried WinGetClass, can't get the outputvar comparison with String working
-    send,{Shift Down}{Home}{Del}{Shift Up}
+      send,{Shift Down}{Home}{Del}{Shift Up}
     else
       send,^u
   }
@@ -229,13 +226,12 @@ return
   else if GetKeyState("Ctrl", "P")
   {
     WinGet, procname, ProcessName, A
-    if procname in chrome.exe
-    {
-      send, {Ctrl Down}{Shift Down}{Left}{CtrlUp}{ShiftUp}
-      send, {BackSpace}
-    }
-    Else
-      send, ^w
+    if procname in code.exe,debian.exe,PortX.exe,PuTTY.exe,cmd.exe,powershell.exe
+      send,^w
+    else if A_CaretX != 0
+      Send, {CtrlUp}{CtrlDown}{BackSpace}
+    else
+      send,^w
   }
   else if GetKeyState("Shift", "P")
     send,W
@@ -255,6 +251,8 @@ return
 *[::
   if GetKeyState("LAlt", "P") And GetKeyState("Shift", "P")
     send, {Ctrl Down}{ShiftDown}{Tab}
+  else if GetKeyState("LAlt", "P")
+    send, {CtrlUp}{AltDown}{Left}{AltUp}
   Else if GetKeyState("Shift", "P")
     send, {Shift Down}[{ShiftUp}
   Else
@@ -264,6 +262,8 @@ return
 *]::
   if GetKeyState("LAlt", "P") And GetKeyState("Shift", "P")
     send, {Ctrl Down}{Tab}
+  else if GetKeyState("LAlt", "P")
+    send, {CtrlUp}{AltDown}{Right}{AltUp}
   else if GetKeyState("Shift", "P")
     send, {Shift Down}]{ShiftUp}
   Else
