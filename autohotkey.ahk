@@ -1,5 +1,10 @@
 #InstallKeybdHook
 #UseHook, On
+#NoEnv ; Recommended for performance and compatibility with future AutoHotkey releases.
+; #Warn  ; Enable warnings to assist with detecting common errors.
+SendMode Input ; Recommended for new scripts due to its superior speed and reliability.
+SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
+#SingleInstance force
 
 ;; General key mappings that simulate Mac keyboards
 $Capslock::Esc
@@ -54,6 +59,8 @@ return
     Else
       send, {Ctrl downR}{Shift downR}f
   }
+  else if GetKeyState("vkFF", "P") and GetKeyState("Shift", "P")
+    send, {CtrlUp}{ShiftDown}{AltDown}f{ShiftUp}{AltUp}
   else if GetKeyState("LAlt", "P")
   {
     WinGet, procname, ProcessName, A
@@ -277,4 +284,24 @@ return
     send, $
   Else
     send, 4
+return
+
+;; Enable three finger move
+drag_enabled := 0
++^#F22::
+  if (drag_enabled) 
+    Click, Up
+  else
+    Click, Down
+  drag_enabled := !drag_enabled
+return
+
+LButton::
+  if(drag_enabled)
+  {
+    Click up
+    drag_enabled := 0
+  }
+  else
+    click
 return
