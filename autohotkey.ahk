@@ -1,4 +1,5 @@
 #InstallKeybdHook
+#InstallMouseHook
 #UseHook, On
 #NoEnv ; Recommended for performance and compatibility with future AutoHotkey releases.
 ; #Warn  ; Enable warnings to assist with detecting common errors.
@@ -284,24 +285,4 @@ return
     send, $
   Else
     send, 4
-return
-
-;; Enable three finger move
-drag_enabled := 0
-+^#F22::
-  if (drag_enabled) 
-    Click, Up
-  else
-    Click, Down
-  drag_enabled := !drag_enabled
-return
-
-LButton::
-  if(drag_enabled)
-  {
-    Click up
-    drag_enabled := 0
-  }
-  else
-    click
 return
