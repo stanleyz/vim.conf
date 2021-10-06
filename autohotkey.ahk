@@ -226,7 +226,7 @@ return
   if GetKeyState("LAlt","P")
   {
     WinGet, procname, ProcessName, A
-    if procname in chrome.exe,code.exe,PortX.exe
+    if procname in chrome.exe,code.exe,PortX.exe,msedge.exe
       send, ^w
     Else
       WinClose, A
