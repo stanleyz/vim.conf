@@ -21,6 +21,7 @@ Plug 'fatih/vim-hclfmt'
 Plug 'SirVer/ultisnips'
 Plug 'godlygeek/tabular'
 Plug 'rodjek/vim-puppet'
+Plug 'fatih/vim-go'
 
 Plug 'rstacruz/sparkup'
 " Replace it with neomake which supports asynchrous process
