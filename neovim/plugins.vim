@@ -44,7 +44,7 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'neomake/neomake'
 Plug 'artur-shaik/vim-javacomplete2'
 " Plug 'vim-airline/vim-airline'
-"
+
 " Terraform
 Plug 'hashivim/vim-terraform'
 Plug 'juliosueiras/vim-terraform-completion'
