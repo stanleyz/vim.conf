@@ -12,6 +12,7 @@ let g:mapleader = ","
 
 syntax on
 set autoread			"auto load changes
+filetype plugin indent on
 "set history=40
 
 inoremap <leader><leader> <Esc>

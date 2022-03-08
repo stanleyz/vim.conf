@@ -47,3 +47,6 @@
 	tool = vimdiff
 [core]
 	editor = vim
+# Only required if running into certificate issue with self-signed certificate
+#[http]
+#  sslCAInfo = /etc/pki/tls/certs/ca-bundle-crt
