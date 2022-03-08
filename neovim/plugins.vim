@@ -25,9 +25,7 @@ Plug 'rodjek/vim-puppet'
 Plug 'fatih/vim-go'
 
 Plug 'rstacruz/sparkup'
-" Replace it with neomake which supports asynchrous process
-" but neomake doesn't have xmllint built-in
-Plug 'scrooloose/syntastic'
+Plug 'vim-syntastic/syntastic'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'sjl/gundo.vim'
 Plug 'Shougo/neocomplcache.vim'
@@ -46,6 +44,10 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'neomake/neomake'
 Plug 'artur-shaik/vim-javacomplete2'
 " Plug 'vim-airline/vim-airline'
+"
+" Terraform
+Plug 'hashivim/vim-terraform'
+Plug 'juliosueiras/vim-terraform-completion'
 
 " Ruby
 Plug 'vim-ruby/vim-ruby'
