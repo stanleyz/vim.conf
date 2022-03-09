@@ -257,7 +257,7 @@ nnoremap <leader>gu :GundoToggle<CR>
 nnoremap <leader>gac :Git add %<CR>
 nnoremap <leader>gaa :Git add *<CR>
 nnoremap <leader>gba :Git branch --all<CR>
-nnoremap <leader>gbl :Gblame<CR>
+nnoremap <leader>gbl :Git blame<CR>
 nnoremap <leader>gbn :Git branch<Space>
 nnoremap <leader>gci :Git commit -a<CR>
 nnoremap <leader>gco :Git checkout<Space>
