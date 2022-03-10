@@ -224,6 +224,8 @@ return
 *q::
   if GetKeyState("LAlt","P")
     WinKill, A,
+  else if GetKeyState("Ctrl", "P")
+    send,^q
   else if GetKeyState("Shift", "P")
     send,Q
   else
@@ -243,11 +245,14 @@ return
   }
   else if GetKeyState("Ctrl", "P")
   {
-    WinGet, procname, ProcessName, A
-    if procname in code.exe,debian.exe,PortX.exe,PuTTY.exe,cmd.exe,powershell.exe
-      send,^w
-    else if A_CaretX != 0
-      Send, {CtrlUp}{CtrlDown}{BackSpace}
+    if A_CaretX != 0
+    {
+      WinGet, procname, ProcessName, A
+      if procname in PortX.exe
+        send, {AltDown}{BackSpace}{AltUp}
+      else
+        Send, {CtrlDown}{BackSpace}{CtrlUp}
+    }
     else
       send,^w
   }
