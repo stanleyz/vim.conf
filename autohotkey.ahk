@@ -158,7 +158,9 @@ return
 return
 
 *p::
-  if GetKeyState("vkFF", "P")
+  if GetKeyState("LAlt", "P") And GetKeyState("Shift", "P")
+    send, {Ctrl}{Shift}P
+  else if GetKeyState("vkFF", "P")
     send,{End}
   else if GetKeyState("Ctrl", "P" )
     send,^p
@@ -229,7 +231,9 @@ return
 return
 
 *w::
-  if GetKeyState("LAlt","P")
+  if GetKeyState("LAlt", "P") And GetKeyState("Shift", "P")
+    send, {Ctrl}{Shift}W
+  else if GetKeyState("LAlt","P")
   {
     WinGet, procname, ProcessName, A
     if procname in chrome.exe,code.exe,PortX.exe,msedge.exe
