@@ -93,6 +93,8 @@ return
 *h::
   if GetKeyState("vkFF", "P")
     send,{Left}
+  else if GetKeyState("Ctrl", "P")
+    send,^h
   else if GetKeyState("Shift", "P")
     send,H
   else
@@ -102,6 +104,8 @@ return
 *j::
   if GetKeyState("vkFF", "P")
     send,{Down}
+  else if GetKeyState("Ctrl", "P")
+    send,^j
   else if GetKeyState("Shift", "P")
     send,J
   else
@@ -130,6 +134,8 @@ return
 *l::
   if GetKeyState("vkFF", "P")
     send,{Right}
+  else if GetKeyState("Ctrl", "P")
+    send,^l
   else if GetKeyState("RAlt", "P")
     DllCall("user32.dll\LockWorkStation")
   else if GetKeyState("Shift", "P")
@@ -173,6 +179,8 @@ return
 *i::
   if GetKeyState("vkFF", "P")
     send,{PgUp}
+  else if GetKeyState("Ctrl", "P")
+    send,^i
   else if GetKeyState("Shift", "P")
     send,I
   else
@@ -180,8 +188,12 @@ return
 return
 
 *o::
-  if GetKeyState("vkFF", "P")
+  if GetKeyState("LAlt", "P") And GetKeyState("Shift", "P")
+    send, {Ctrl}{Shift}O
+  else if GetKeyState("vkFF", "P")
     send,{PgDn}
+  else if GetKeyState("Ctrl", "P")
+    send,^o
   else if GetKeyState("Shift", "P")
     send,O
   else
@@ -248,6 +260,7 @@ return
     if A_CaretX != 0
     {
       WinGet, procname, ProcessName, A
+      MsgBox, , %procname%, 
       if procname in PortX.exe
         send, {AltDown}{BackSpace}{AltUp}
       else

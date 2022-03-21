@@ -392,3 +392,6 @@ fun! SZToggleQuickfixWindow()
     exe ":ccl"
   endif
 endf
+
+"Only enable if needed
+silent! runtime win.vim
