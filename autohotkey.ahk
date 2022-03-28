@@ -118,10 +118,14 @@ return
   else if GetKeyState("Ctrl","P")
   {
     winget, procname, ProcessName, A
-    if procname in code.exe,debian.exe,PortX.exe,PuTTY.exe,cmd.exe,powershell.exe
+    if procname in chromium.exe,code.exe,debian.exe,PortX.exe,PuTTY.exe,cmd.exe,powershell.exe
       send,^k
     else if A_CaretX != 0
-      Send,{Shift Down}{End}{Del}{Shift Up}
+    {
+      Send,{Shift Down}{End}{Shift Up}
+      Send,^c
+      Send,{Del}
+    }
     else
       send,^k
   }
@@ -150,10 +154,14 @@ return
   else if GetKeyState("Ctrl", "P")
   {
     winget, procname, ProcessName, A
-    if procname in code.exe,debian.exe,PortX.exe,PuTTY.exe,cmd.exe,powershell.exe
+    if procname in chromium.exe,code.exe,debian.exe,PortX.exe,PuTTY.exe,cmd.exe,powershell.exe
       send,^u
     else if A_CaretX != 0
-      send,{Shift Down}{Home}{Del}{Shift Up}
+    {
+      send,{Shift Down}{Home}{Shift Up}
+      send, ^c
+      send,{Del}
+    }
     else
       send,^u
   }
@@ -161,6 +169,23 @@ return
     send,U
   else
     send,u
+return
+
+*y::
+  if GetKeyState("Ctrl", "P")
+  {
+    winget, procname, ProcessName, A
+    if procname in chromium.exe,code.exe,debian.exe,PortX.exe,PuTTY.exe,cmd.exe,powershell.exe
+      send,^y
+    else if A_CaretX != 0
+      send, ^v
+    else
+      send,^y
+  }
+  else if GetKeyState("Shift", "P")
+    send,Y
+  else
+    send,y
 return
 
 *p::
@@ -246,11 +271,13 @@ return
 
 *w::
   if GetKeyState("LAlt", "P") And GetKeyState("Shift", "P")
-    send, {Ctrl}{Shift}W
+    send, ^+W
   else if GetKeyState("LAlt","P")
   {
     WinGet, procname, ProcessName, A
-    if procname in chrome.exe,code.exe,PortX.exe,msedge.exe
+    if procname in PortX.exe,chromium.exe
+      send, ^+W
+    else if procname in chrome.exe,code.exe,msedge.exe
       send, ^w
     Else
       WinClose, A
@@ -260,11 +287,17 @@ return
     if A_CaretX != 0
     {
       WinGet, procname, ProcessName, A
-      MsgBox, , %procname%, 
       if procname in PortX.exe
-        send, {AltDown}{BackSpace}{AltUp}
+        send,^w
+      ;;Can't disable the build-in key and let it pass to the website
+      else if procname in chromium.exe
+        send,{AltDown}{Backspace}{AltUp}
       else
-        Send, {CtrlDown}{BackSpace}{CtrlUp}
+      {
+        Send, {CtrlDown}{ShiftDown}{Left}{ShiftUp}{CtrlUp}
+        Send, ^c
+        Send, {Del}
+      }
     }
     else
       send,^w

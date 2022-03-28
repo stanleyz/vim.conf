@@ -135,7 +135,7 @@ inoremap > ><ESC>g;a
 "  ---------------------------------------------------------------------------
 " colorscheme default
 " torte is similar to default but lighter
-colorscheme desert
+colorscheme pablo
 set t_Co=256
 
 "highlight line and column of curosr
