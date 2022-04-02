@@ -17,14 +17,11 @@ return
 *LAlt Up::
   if A_PriorKey = Tab
   {
-    send,{Blind}{Ctrl Up}
-    send,{Blind}{Alt Up}{Enter}
+    send,{Ctrl Up}
+    send,{Alt Up}{Enter}
   }
   else
-  {
-    send,{Blind}{AltUp}
-    send,{Blind}{Ctrl Up}
-  }
+    send,{CtrlUp}
 return
 
 vkFF::Alt
