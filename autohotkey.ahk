@@ -118,12 +118,12 @@ return
   else if GetKeyState("Ctrl","P")
   {
     winget, procname, ProcessName, A
-    if procname in chromium.exe,code.exe,debian.exe,PortX.exe,PuTTY.exe,cmd.exe,powershell.exe
+    if procname in chrome.exe,code.exe,debian.exe,PortX.exe,PuTTY.exe,cmd.exe,powershell.exe
       send,^k
     else if A_CaretX != 0
     {
       Send,{Shift Down}{End}{Shift Up}
-      Send,^c
+      Send,^{Insert}
       Send,{Del}
     }
     else
@@ -154,12 +154,12 @@ return
   else if GetKeyState("Ctrl", "P")
   {
     winget, procname, ProcessName, A
-    if procname in chromium.exe,code.exe,debian.exe,PortX.exe,PuTTY.exe,cmd.exe,powershell.exe
+    if procname in chrome.exe,code.exe,debian.exe,PortX.exe,PuTTY.exe,cmd.exe,powershell.exe
       send,^u
     else if A_CaretX != 0
     {
       send,{Shift Down}{Home}{Shift Up}
-      send, ^c
+      send, ^{Insert}
       send,{Del}
     }
     else
@@ -175,7 +175,7 @@ return
   if GetKeyState("Ctrl", "P")
   {
     winget, procname, ProcessName, A
-    if procname in chromium.exe,code.exe,debian.exe,PortX.exe,PuTTY.exe,cmd.exe,powershell.exe
+    if procname in chrome.exe,code.exe,debian.exe,PortX.exe,PuTTY.exe,cmd.exe,powershell.exe
       send,^y
     else if A_CaretX != 0
       send, ^v
@@ -275,9 +275,9 @@ return
   else if GetKeyState("LAlt","P")
   {
     WinGet, procname, ProcessName, A
-    if procname in PortX.exe,chromium.exe
+    if procname in PortX.exe,chrome.exe
       send, ^+W
-    else if procname in chrome.exe,code.exe,msedge.exe
+    else if procname in chromium.exe,code.exe,msedge.exe
       send, ^w
     Else
       WinClose, A
@@ -290,12 +290,12 @@ return
       if procname in PortX.exe
         send,^w
       ;;Can't disable the build-in key and let it pass to the website
-      else if procname in chromium.exe
+      else if procname in chrome.exe
         send,{AltDown}{Backspace}{AltUp}
       else
       {
         Send, {CtrlDown}{ShiftDown}{Left}{ShiftUp}{CtrlUp}
-        Send, ^c
+        Send, ^{Insert} 
         Send, {Del}
       }
     }
