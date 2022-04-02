@@ -347,3 +347,18 @@ return
   Else
     send, 4
 return
+
++^#F22::
+  if (drag_enabled) 
+      Click, Up
+  else
+      Click, Down
+  drag_enabled := !drag_enabled
+return
+
+#If, drag_enabled
+LButton::
+  Click, Up
+  drag_enabled := false
+return
+#If
