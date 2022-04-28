@@ -247,8 +247,14 @@ return
 *a::
   if GetKeyState("LAlt", "P")
     send,^a
-  else if GetKeyState("Ctrl","P")
-    send,{Home}
+    else if GetKeyState("Ctrl","P")
+    {
+      WinGet, procname, ProcessName, A
+      if procname in PortX.exe,chrome.exe
+        send, ^a
+      else
+        send,{Home}
+    }
   else if GetKeyState("Shift", "P")
     send,A
   else

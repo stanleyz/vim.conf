@@ -40,8 +40,8 @@ nnoremap <leader>1 :qa<CR>
 inoremap <leader>q <ESC>:q!<CR>
 inoremap <leader>1 <ESC>:qa<CR>
 
-inoremap <leader>r <ESC>:e!<CR>
-nnoremap <leader>r :e!<CR>
+inoremap <leader>re <ESC>:e!<CR>
+nnoremap <leader>re :e!<CR>
 
 nnoremap <leader>sv :w<CR>
 inoremap <leader>sv <ESC>:w<CR>gi
@@ -194,6 +194,8 @@ inoremap <leader>b <ESC>:CtrlPBuffer<CR>
 " inoremap <leader>b <ESC>:Buffers<CR>
 nnoremap <leader>f :Files<CR>
 inoremap <leader>f <ESC>:Files<CR>
+nnoremap <leader>rg :Rg<Space>
+inoremap <leader>rg <ESC>:Rg<Space>
 
 "  ---------------------------------------------------------------------------
 "  Plugins
