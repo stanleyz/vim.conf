@@ -1,52 +1,53 @@
 [user]
-  name = "Stanley Zhang"
-  email = stanley.zhang@ityin.net
+	name = "Stanley Zhang"
+	email = stanley.z@anz.com
 [mergetool]
-  keepBackup = false
+	keepBackup = false
 [alias]
-  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-  pr = pull --rebase --all
-  comm = commit -a --author="Stanley\\ Zhang\\ <stanley.zhang@ityin.net>"
-  ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
-  ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
-  lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
-  ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
-  le = log --oneline --decorate
-  fl = log -u
-  dl = "!git ll -1"
-  dlc = diff --cached HEAD^
-  dr  = "!f() { git diff "$1"^.."$1"; }; f"
-  lc  = "!f() { git ll "$1"^.."$1"; }; f"
-  diffr  = "!f() { git diff "$1"^.."$1"; }; f"
-  f = "!git ls-files | grep -i"
-  grep = grep -Ii
-  gr = grep -Ii
-  gra = "!f() { A=$(pwd) && TOPLEVEL=$(git rev-parse --show-toplevel) && cd $TOPLEVEL && git grep --full-name -In $1 | xargs -I{} echo $TOPLEVEL/{} && cd $A; }; f"
-  la = "!git config -l | grep alias | cut -c 7-"
-  lasttag = describe --tags --abbrev=0
-  lt = describe --tags --abbrev=0
-  ours = "!f() { git co --ours $@ && git add $@; }; f"
-  theirs = "!f() { git co --theirs $@ && git add $@; }; f"
-  cp = cherry-pick
-  st = status -s
-  cl = clone
-  ci = commit
-  co = checkout
-  br = branch --all 
-  diff = diff --word-diff
-  dc = diff --cached
-  r = reset
-  r1 = reset HEAD^
-  r2 = reset HEAD^^
-  rh = reset --hard
-  rh1 = reset HEAD^ --hard
-  rh2 = reset HEAD^^ --hard
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	lga = log --color --graph --all --oneline --decorate --abbrev-commit
+	pr = pull --rebase --all --prune
+	comm = commit -a --author="Stanley\\ Zhang\\ <stanley.z@anz.com>"
+	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+	lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+	ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+	le = log --oneline --decorate
+	fl = log -u
+	dl = "!git ll -1"
+	dlc = diff --cached HEAD^
+	dr  = "!f() { git diff "$1"^.."$1"; }; f"
+	lc  = "!f() { git ll "$1"^.."$1"; }; f"
+	diffr  = "!f() { git diff "$1"^.."$1"; }; f"
+	f = "!git ls-files | grep -i"
+	grep = grep -Ii
+	gr = grep -Ii
+	gra = "!f() { A=$(pwd) && TOPLEVEL=$(git rev-parse --show-toplevel) && cd $TOPLEVEL && git grep --full-name -In $1 | xargs -I{} echo $TOPLEVEL/{} && cd $A; }; f"
+	la = "!git config -l | grep alias | cut -c 7-"
+	lasttag = describe --tags --abbrev=0
+	lt = describe --tags --abbrev=0
+	ours = "!f() { git co --ours $@ && git add $@; }; f"
+	theirs = "!f() { git co --theirs $@ && git add $@; }; f"
+	cp = cherry-pick
+	st = status -s
+	cl = clone
+	ci = commit
+	co = checkout
+	br = branch --all 
+	diff = diff --word-diff
+	dc = diff --cached
+	r = reset
+	r1 = reset HEAD^
+	r2 = reset HEAD^^
+	rh = reset --hard
+	rh1 = reset HEAD^ --hard
+	rh2 = reset HEAD^^ --hard
 [push]
-  default = upstream
+	default = upstream
 [diff]
-  tool = vimdiff
+	tool = vimdiff
 [core]
-  editor = vim
-# Only required if running into certificate issue with self-signed certificate
-#[http]
-# sslCAInfo = /etc/pki/tls/certs/ca-bundle-crt
+	editor = vim
+# Only need if running into certificate issue with self-signed certificate
+[http]
+	sslCAInfo = /etc/pki/tls/certs/ca-bundle.crt

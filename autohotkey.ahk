@@ -115,7 +115,7 @@ return
   else if GetKeyState("Ctrl","P")
   {
     winget, procname, ProcessName, A
-    if procname in chrome.exe,code.exe,debian.exe,PortX.exe,PuTTY.exe,cmd.exe,powershell.exe
+    if procname in chrome.exe,code.exe,debian.exe,PortX.exe,PuTTY.exe,cmd.exe,powershell.exe,cdviewer.exe
       send,^k
     else if A_CaretX != 0
     {
@@ -151,7 +151,7 @@ return
   else if GetKeyState("Ctrl", "P")
   {
     winget, procname, ProcessName, A
-    if procname in chrome.exe,code.exe,debian.exe,PortX.exe,PuTTY.exe,cmd.exe,powershell.exe
+    if procname in chrome.exe,code.exe,debian.exe,PortX.exe,PuTTY.exe,cmd.exe,powershell.exe,cdviewer.exe
       send,^u
     else if A_CaretX != 0
     {
@@ -247,14 +247,14 @@ return
 *a::
   if GetKeyState("LAlt", "P")
     send,^a
-    else if GetKeyState("Ctrl","P")
-    {
-      WinGet, procname, ProcessName, A
-      if procname in PortX.exe,chrome.exe
-        send, ^a
-      else
-        send,{Home}
-    }
+  else if GetKeyState("Ctrl","P")
+  {
+    WinGet, procname, ProcessName, A
+    if procname in PortX.exe,chrome.exe
+      send, ^a
+    else
+      send,{Home}
+  }
   else if GetKeyState("Shift", "P")
     send,A
   else
@@ -290,10 +290,10 @@ return
     if A_CaretX != 0
     {
       WinGet, procname, ProcessName, A
-      if procname in PortX.exe
+      if procname in PortX.exe,putty.exe
         send,^w
       ;;Can't disable the build-in key and let it pass to the website
-      else if procname in chrome.exe
+      else if procname in chrome.exe,cdviewer.exe
         send,{AltDown}{Backspace}{AltUp}
       else
       {
