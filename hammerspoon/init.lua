@@ -43,4 +43,4 @@ local focusedWindow = hs.window.focusedWindow()
 if focusedWindow and focusedWindow:application():name() ~= "Terminal" then
 	hs.hotkey.bind({"ctrl"}, 'u', keyCodeWithCommand('delete'))
 	hs.hotkey.bind({"ctrl"}, 'w', keyCodeWithOption('delete'))
-end,
+end
