@@ -1,13 +1,15 @@
 [user]
 	name = "Stanley Zhang"
-	email = stanley.z@anz.com
+	email = stanley.zhang@ityin.net
+#[includeIf "gitdir:~/Documents/XXX/"]
+#  path = XXX/config
 [mergetool]
 	keepBackup = false
 [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	lga = log --color --graph --all --oneline --decorate --abbrev-commit
 	pr = pull --rebase --all --prune
-	comm = commit -a --author="Stanley\\ Zhang\\ <stanley.z@anz.com>"
+	comm = commit -a
 	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
 	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
 	lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short

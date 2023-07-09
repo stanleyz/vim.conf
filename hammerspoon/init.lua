@@ -61,13 +61,13 @@ local function ctrlUWDisable()
 	ctrlW:disable()
 end
 
-terminalWindowfilter = hs.window.filter.new('Terminal', 'Chromium')
-terminalWindowfilter:subscribe(hs.window.filter.windowFocused, function() ctrlUWDisable() end)
-terminalWindowfilter:subscribe(hs.window.filter.windowUnfocused, function() ctrlUWEnable() end)
+wf = hs.window.filter
+term_wf = wf.new('Terminal', 'Chromium')
+term_wf:subscribe(wf.windowFocused, ctrlUWDisable):subscribe(wf.windowUnfocused, ctrlUWEnable)
 
-terminalWindowfilter = hs.window.filter.new('UTM')
-terminalWindowfilter:subscribe(hs.window.filter.windowFocused, function() toggleGlobalDirectionKeys(false); ctrlUWDisable() end)
-terminalWindowfilter:subscribe(hs.window.filter.windowUnfocused, function() toggleGlobalDirectionKeys(true); ctrlUWEnable() end)
+utm_wf = wf.new('UTM')
+utm_wf:subscribe(wf.windowFocused, function() toggleGlobalDirectionKeys(false); ctrlUWDisable() end)
+utm_wf:subscribe(wf.windowUnfocused, function() toggleGlobalDirectionKeys(true); ctrlUWEnable() end)
 
 -- Define Ctrl+A and Ctrl+E for them to be enabled in MS Outlook
 ctrlA = hs.hotkey.new({"ctrl"}, 'a', keyCode('home'))
@@ -87,9 +87,8 @@ local function ctrlAEDisable()
 	ctrlF:disable()
 end
 
-terminalWindowfilter = hs.window.filter.new('Microsoft Outlook')
-terminalWindowfilter:subscribe(hs.window.filter.windowFocused, function() ctrlAEEnable() end)
-terminalWindowfilter:subscribe(hs.window.filter.windowUnfocused, function() ctrlAEDisable() end)
+outlook_wf = wf.new('Microsoft Outlook')
+outlook_wf:subscribe(wf.windowFocused, ctrlAEEnable):subscribe(wf.windowUnfocused, ctrlAEDisable)
 
 --[[
 -- Comment out for now normally we don't need this since Hammerspoon is auto-started on boot
