@@ -248,7 +248,7 @@
       "KC_BSLS",
       "KC_NO",
       "KC_PGDN",
-      "KC_LCTL",
+      "KC_RCTL",
       "KC_A",
       "KC_S",
       "KC_D",
@@ -282,7 +282,7 @@
       "KC_END",
       "KC_ESC",
       "KC_LALT",
-      "KC_RCTL",
+      "KC_LCTL",
       "KC_NO",
       "KC_NO",
       "KC_NO",
@@ -393,7 +393,7 @@
       "KC_TRNS",
       "KC_TRNS",
       "KC_TRNS",
-      "KC_TRNS"
+      "KC_RGHT"
     ]
   ],
   "encoders": []
