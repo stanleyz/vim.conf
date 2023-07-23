@@ -1,7 +1,3 @@
-// Need the following line in the rules.mk
-// KEY_OVERRIDE_ENABLE = yes
-
-
 const key_override_t alt_h_left = ko_make_basic(MOD_MASK_ALT, KC_H, KC_LEFT);
 const key_override_t alt_l_right = ko_make_basic(MOD_MASK_ALT, KC_L, KC_RIGHT);
 const key_override_t alt_j_down = ko_make_basic(MOD_MASK_ALT, KC_J, KC_DOWN);
@@ -19,6 +15,8 @@ const key_override_t rctrl_p_previous = ko_make_basic(MOD_BIT(KC_RCTL), KC_P, KC
 //upon testing, 4 is the Windows layer, 2 is the MAC.
 //I don't see how to switch the other layer for each OS although following the doc.
 const key_override_t lctrl_f4_alt_f4 = ko_make_with_layers(MOD_BIT(KC_LCTL), KC_F4, LALT(KC_F4), 4);
+const key_override_t lctrl_right_bracket_cycle_forward = ko_make_with_layers(MOD_BIT(KC_LCTL) | MOD_BIT(KC_LSFT), KC_RBRC, RCTL(KC_TAB), 4);
+const key_override_t lctrl_left_bracket_cycle_back = ko_make_with_layers(MOD_BIT(KC_LCTL) | MOD_BIT(KC_LSFT), KC_LBRC, RCTL(LSFT(KC_TAB)), 4);
 
 const key_override_t **key_overrides = (const key_override_t *[]) {
     &alt_h_left,
@@ -31,11 +29,14 @@ const key_override_t **key_overrides = (const key_override_t *[]) {
     &alt_p_end,
     &rctrl_a_home,
     &rctrl_e_end,
+ // This has been replaced by the same functionalities in process_record_user
  //   &rctrl_f_right,
  //   &rctrl_b_left,
     &rctrl_n_next,
     &rctrl_p_previous,
     &lctrl_f4_alt_f4,
+    &lctrl_right_bracket_cycle_forward,
+    &lctrl_left_bracket_cycle_back,
     NULL
 };
 
