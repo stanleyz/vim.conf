@@ -10,13 +10,18 @@ const key_override_t rctrl_a_home = ko_make_basic(MOD_BIT(KC_RCTL), KC_A, KC_HOM
 const key_override_t rctrl_e_end = ko_make_basic(MOD_BIT(KC_RCTL), KC_E, KC_END);
 //const key_override_t rctrl_f_right = ko_make_basic(MOD_BIT(KC_RCTL), KC_F, KC_RIGHT);
 //const key_override_t rctrl_b_left = ko_make_basic(MOD_BIT(KC_RCTL), KC_B, KC_LEFT);
-const key_override_t rctrl_n_next = ko_make_basic(MOD_BIT(KC_RCTL), KC_N, KC_DOWN);
-const key_override_t rctrl_p_previous = ko_make_basic(MOD_BIT(KC_RCTL), KC_P, KC_UP);
+//const key_override_t rctrl_n_next = ko_make_basic(MOD_BIT(KC_RCTL), KC_N, KC_DOWN);
+//const key_override_t rctrl_p_previous = ko_make_basic(MOD_BIT(KC_RCTL), KC_P, KC_UP);
 //upon testing, 4 is the Windows layer, 2 is the MAC.
 //I don't see how to switch the other layer for each OS although following the doc.
 const key_override_t lctrl_f4_alt_f4 = ko_make_with_layers(MOD_BIT(KC_LCTL), KC_F4, LALT(KC_F4), 4);
 const key_override_t lctrl_right_bracket_cycle_forward = ko_make_with_layers(MOD_BIT(KC_LCTL) | MOD_BIT(KC_LSFT), KC_RBRC, RCTL(KC_TAB), 4);
 const key_override_t lctrl_left_bracket_cycle_back = ko_make_with_layers(MOD_BIT(KC_LCTL) | MOD_BIT(KC_LSFT), KC_LBRC, RCTL(LSFT(KC_TAB)), 4);
+const key_override_t lalt_rctrl_left = ko_make_with_layers(MOD_BIT(KC_RCTL) | MOD_BIT(KC_LALT), KC_LEFT, LWIN(KC_LEFT), 4);
+const key_override_t lalt_rctrl_right = ko_make_with_layers(MOD_BIT(KC_RCTL) | MOD_BIT(KC_LALT), KC_RIGHT, LWIN(KC_RIGHT), 4);
+const key_override_t lalt_rctrl_up = ko_make_with_layers(MOD_BIT(KC_RCTL) | MOD_BIT(KC_LALT), KC_UP, LWIN(KC_UP), 4);
+const key_override_t lalt_rctrl_down = ko_make_with_layers(MOD_BIT(KC_RCTL) | MOD_BIT(KC_LALT), KC_DOWN, LWIN(KC_DOWN), 4);
+const key_override_t lalt_rctrl_enter = ko_make_with_layers(MOD_BIT(KC_RCTL) | MOD_BIT(KC_LALT), KC_ENTER, LWIN(KC_UP), 4);
 
 const key_override_t **key_overrides = (const key_override_t *[]) {
     &alt_h_left,
@@ -32,11 +37,16 @@ const key_override_t **key_overrides = (const key_override_t *[]) {
  // This has been replaced by the same functionalities in process_record_user
  //   &rctrl_f_right,
  //   &rctrl_b_left,
-    &rctrl_n_next,
-    &rctrl_p_previous,
+ //   &rctrl_n_next,
+ //   &rctrl_p_previous,
     &lctrl_f4_alt_f4,
     &lctrl_right_bracket_cycle_forward,
     &lctrl_left_bracket_cycle_back,
+    &lalt_rctrl_left,
+    &lalt_rctrl_right,
+    &lalt_rctrl_up,
+    &lalt_rctrl_down,
+    &lalt_rctrl_enter,
     NULL
 };
 
@@ -100,6 +110,28 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (get_mods() == MOD_BIT(KC_RCTL) && ctrl_uw_mode) {
                 tap_code16(LSFT(KC_END));
                 tap_code16(LCTL(KC_X));
+                return false;
+            }
+        }
+        return true;
+
+    case KC_N:
+        if(record->event.pressed) {
+            if (get_mods() == MOD_BIT(KC_RCTL) && ctrl_uw_mode) {
+                del_mods(MOD_BIT(KC_RCTL));
+                tap_code16(KC_DOWN);
+                add_mods(MOD_BIT(KC_RCTL));
+                return false;
+            }
+        }
+        return true;
+
+    case KC_P:
+        if(record->event.pressed) {
+            if (get_mods() == MOD_BIT(KC_RCTL) && ctrl_uw_mode) {
+                del_mods(MOD_BIT(KC_RCTL));
+                tap_code16(KC_UP);
+                add_mods(MOD_BIT(KC_RCTL));
                 return false;
             }
         }
