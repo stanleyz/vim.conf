@@ -16,10 +16,17 @@ map('n', '<leader>h', '<C-w>h', options)
 map('n', '<leader>j', '<C-w>j', options)
 map('n', '<leader>k', '<C-w>k', options)
 map('n', '<leader>l', '<C-w>l', options)
+map('n', '<leader>re', ':e!<CR>', options)
+map('n', '<leader>rg', ':Rg ', options)
+map('i', '<leader>l', '<C-w>l', options)
 map('i', '<leader>h', '<C-w>h', options)
 map('i', '<leader>j', '<C-w>j', options)
 map('i', '<leader>k', '<C-w>k', options)
 map('i', '<leader>l', '<C-w>l', options)
+map('i', '<leader>o', '<Esc>o<CR>', options)
+map('i', '<leader>O', '<Esc>O<CR>', options)
+map('i', '<leader>re', '<Esc>:e!<CR>', options)
+map('i', '<leader>rg', '<Esc>:Rg ', options)
 
 -- sudo and write
 map('c', 'sw', 'w !sudo tee >/dev/null %', options)
@@ -38,6 +45,10 @@ map('i', '<leader>f', '<Esc>:Files<CR>', options)
 map('n', '<leader>gci', ':Git commit -a<CR>', options)
 map('n', '<leader>gps', ':Git push<CR>', options)
 map('n', '<leader>gco', ':Git checkout ', options)
+map('n', '<leader>gpr', ':Git pull --rebase<CR>', options)
+map('n', '<leader>gbl', ':Git blame<CR>', options)
+map('n', '<leader>gaa', ':Git add *<CR>', options)
+map('n', '<leader>gac', ':Git add %<CR>', options)
 
 -- Set the tabstop, Shiftwidth, and expandtab options
 vim.o.tabstop = 2
