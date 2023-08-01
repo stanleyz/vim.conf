@@ -54,15 +54,22 @@ map('n', '<leader>gac', ':Git add %<CR>', options)
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.expandtab = true
+-- Auto wrap lines
+vim.o.wrap = "linebreak"
+vim.o.textwidth = 80
 
 -- disable chaning cursor using mouse
-vim.o.mouse = "a"
+vim.o.mouse = ""
 
 -- ignore case on search
 vim.o.smartcase = true
 vim.o.ignorecase = true
-
+-- display line number
 vim.o.nu = true
+
+-- undo files
+vim.o.undodir = "~/.vim/undo"
+vim.o.undofile = true
 
 -- config status line
 require('lualine').setup({

@@ -24,4 +24,7 @@ return require('packer').startup(function(use)
   use 'jiangmiao/auto-pairs' -- auto pairs
   use 'airblade/vim-gitgutter' -- git status on the left column
   use 'nvim-lualine/lualine.nvim' -- status line
+  -- Terraform
+  use 'hashivim/vim-terraform'
+  use 'juliosueiras/vim-terraform-completion'
 end)
