@@ -1,6 +1,7 @@
 require('plugins')
 
 local map = vim.api.nvim_set_keymap
+local home = os.getenv('HOME')
 options = { noremap = true }
 
 vim.g.mapleader=","
@@ -23,8 +24,8 @@ map('i', '<leader>h', '<C-w>h', options)
 map('i', '<leader>j', '<C-w>j', options)
 map('i', '<leader>k', '<C-w>k', options)
 map('i', '<leader>l', '<C-w>l', options)
-map('i', '<leader>o', '<Esc>o<CR>', options)
-map('i', '<leader>O', '<Esc>O<CR>', options)
+map('i', '<leader>o', '<Esc>o', options)
+map('i', '<leader>O', '<Esc>O', options)
 map('i', '<leader>re', '<Esc>:e!<CR>', options)
 map('i', '<leader>rg', '<Esc>:Rg ', options)
 
@@ -57,6 +58,8 @@ vim.o.expandtab = true
 -- Auto wrap lines
 vim.o.wrap = "linebreak"
 vim.o.textwidth = 80
+-- Enable spelling check
+vim.o.spell = true
 
 -- disable chaning cursor using mouse
 vim.o.mouse = ""
@@ -68,7 +71,7 @@ vim.o.ignorecase = true
 vim.o.nu = true
 
 -- undo files
-vim.o.undodir = "~/.vim/undo"
+vim.o.undodir = home .. '/.vim/undo'
 vim.o.undofile = true
 
 -- config status line
@@ -137,6 +140,11 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
+
+lspconfig['ltex'].setup{
+  cmd = { 'ltex-ls' },
+  filetypes = { 'markdown', 'text' },
+}
 
 -- luasnip setup
 local luasnip = require 'luasnip'
