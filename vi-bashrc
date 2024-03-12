@@ -442,5 +442,3 @@ if [[ $? != 0 ]]; then
 fi
 perl -pe "$replace"
 }
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash

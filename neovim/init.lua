@@ -44,6 +44,7 @@ map('n', '<leader>f', ':Files<CR>', options)
 map('i', '<leader>f', '<Esc>:Files<CR>', options)
 
 map('n', '<leader>gci', ':Git commit -a<CR>', options)
+map('n', '<leader>gpb', ':Git push --set-upstream origin ', options)
 map('n', '<leader>gps', ':Git push<CR>', options)
 map('n', '<leader>gco', ':Git checkout ', options)
 map('n', '<leader>gpr', ':Git pull --rebase<CR>', options)
@@ -78,6 +79,7 @@ vim.o.undofile = true
 require('lualine').setup({
   options = {
     theme = 'powerline_dark',
+    path = 3,
   }
 })
 
