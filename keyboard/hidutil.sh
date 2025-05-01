@@ -11,13 +11,13 @@
 #
 # To find product ID and Vendor ID of Apple built-in keyboard, go to:
 # System Information -> SPI or USB
-hidutil property --matching '{"ProductID":0x0281,"VendorID":0x5ac}' --get 'UserKeyMapping'
+hidutil property --matching keyboard --get 'UserKeyMapping'
 
 hidutil property --set '{
     "UserKeyMapping":[]
     }'
 
-hidutil property --matching '{"ProductID":0x0281,"VendorID":0x5ac}' --set '{
+hidutil property --matching keyboard --set '{
     "UserKeyMapping":[
         {"HIDKeyboardModifierMappingSrc":0x7000000E0,"HIDKeyboardModifierMappingDst":0x700000029},
         {"HIDKeyboardModifierMappingSrc":0x7000000E6,"HIDKeyboardModifierMappingDst":0x700000029},
