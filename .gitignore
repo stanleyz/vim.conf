@@ -2,3 +2,4 @@ neovim/plugged/
 neovim/autoload
 neovim/.netrwhist
 neovim/autoload/plugin.vim.old
+.DS_Store

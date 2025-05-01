@@ -57,7 +57,7 @@ vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.expandtab = true
 -- Auto wrap lines
-vim.o.wrap = "linebreak"
+vim.o.wrap = true
 vim.o.textwidth = 80
 -- Enable spelling check
 vim.o.spell = true
@@ -70,6 +70,7 @@ vim.o.smartcase = true
 vim.o.ignorecase = true
 -- display line number
 vim.o.nu = true
+vim.g.EasyMotion_verbose = 0
 
 -- undo files
 vim.o.undodir = home .. '/.vim/undo'
