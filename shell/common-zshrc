@@ -1,0 +1,13 @@
+autoload -Uz vcs_info
+precmd() { vcs_info }
+zstyle ':vcs_info:git:*' formats '%b '
+
+setopt PROMPT_SUBST
+PROMPT='%F{green}%n@%F{blue}%m %F{magenta}%D{%Y-%m-%d} %F{magenta}%* %F{yellow}%1~%f %F{red}${vcs_info_msg_0_}%f %# '
+
+bindkey '^F' forward-word
+bindkey '^b' backward-word
+
+# Git auto-completion
+autoload -Uz compinit
+compinit
