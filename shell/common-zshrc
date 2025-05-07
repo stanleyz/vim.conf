@@ -9,6 +9,23 @@ bindkey \^F forward-word
 bindkey \^B backward-word
 bindkey \^U backward-kill-line
 
+# Zsh doesn't recognise home and end key, you may need to set up the below in
+# Apple terminal for zsh to work with home and end.
+
+# 1. Open Terminal -> Preferences...
+# 2. Select your preferred profile
+# 3. On the Keyboard tab, add a new binding (or modify an existing one)
+# 4. Use the following settings to make Home work again:
+#   Key: Home (↖)
+#   Modifier: None
+#   Action: Send Text
+#   Text to send is \001 (CTRL+A)
+# 5. Use the following settings to fix the End key:
+#   Key: End (↗)
+#   Modifier: None
+#   Action: Send Text
+#   Text to send is \005 (CTRL+E)
+
 # Git auto-completion
 autoload -Uz compinit
 compinit
