@@ -37,6 +37,11 @@
   Send "<^t"
 }
 
+!+t::
+{
+  Send "^+t"
+}
+
 !f::
 {
   Send "^f"
@@ -60,6 +65,15 @@
 !w::
 {
   Send "^w"
+}
+
+!q::
+{
+  Send "!{f4}"
+}
+^!q::
+{
+  DllCall("user32.dll\WTSDisconnectSession")
 }
 
 !r::
@@ -112,9 +126,19 @@
   Send "^z"
 }
 
+!b::
+{
+  Send "^b"
+}
+
 !d::
 {
   Send "^d"
+}
+
+!e::
+{
+  Send "^e"
 }
 
 !p::
