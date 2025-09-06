@@ -25,6 +25,15 @@ alias vboxm="VBoxManage"
 alias vml="VBoxManage list vms"
 alias vmlr="VBoxManage list runningvms"
 alias vim='nvim'
+alias k=kubectl
+alias kg='kubectl get'
+alias kgy='kubectl get -oyaml'
+alias kga='kubectl get -A'
+alias ke='kubectl edit'
+alias kd='kubectl describe'
+alias kns='kubectl-ns'
+alias kx=kubectx
+alias h=helm
 
 # general export --------------------------------------------------------------
 export EDITOR='nvim'
@@ -298,140 +307,15 @@ ssr() {
   ssh $1 -t "tmux at || tmux"
 }
 function x() {
-if [[ $# -gt 0 ]]; then
-  tmux $@
-else
-  tmux at || tmux
-fi
+  if [[ $# -gt 0 ]]; then
+    tmux $@
+  else
+    tmux at || tmux
+  fi
 }
 
-function cgrep() {
-which printf >/dev/null 2>&1 && print=printf || print=print # Mandriva doesn't know about printf
-
-hide='eval tput civis'
-show='eval tput cnorm'
-CLS=$(tput clear)
-bel=$(tput bel)
-
-case ${UNAME} in
-  AIX)
-    # text / foreground
-    N=$(${print} '\033[1;30m')
-    n=$(${print} '\033[0;30m')
-    R=$(${print} '\033[1;31m')
-    r=$(${print} '\033[0;31m')
-    G=$(${print} '\033[1;32m')
-    g=$(${print} '\033[0;32m')
-    Y=$(${print} '\033[1;33m')
-    y=$(${print} '\033[0;33m')
-    B=$(${print} '\033[1;34m')
-    b=$(${print} '\033[0;34m')
-    M=$(${print} '\033[1;35m')
-    m=$(${print} '\033[0;35m')
-    C=$(${print} '\033[1;36m')
-    c=$(${print} '\033[0;36m')
-    W=$(${print} '\033[1;37m')
-    w=$(${print} '\033[0;37m')
-    END=$(${print} '\033[0m')
-
-    # background
-    RN=$(${print} '\033[6;40m')
-    Rn=$(${print} '\033[40m')
-    RR=$(${print} '\033[6;41m')
-    Rr=$(${print} '\033[41m')
-    RG=$(${print} '\033[6;42m')
-    Rg=$(${print} '\033[42m')
-    RY=$(${print} '\033[6;43m')
-    Ry=$(${print} '\033[43m')
-    RB=$(${print} '\033[6;44m')
-    Rb=$(${print} '\033[44m')
-    RM=$(${print} '\033[6;45m')
-    Rm=$(${print} '\033[45m')
-    RC=$(${print} '\033[6;46m')
-    Rc=$(${print} '\033[46m')
-    RW=$(${print} '\033[6;47m')
-    Rw=$(${print} '\033[47m')
-
-    HIGH=$(tput bold)
-    SMUL=$(tput smul)
-    RMUL=$(tput rmul)
-    BLINK=$(tput blink)
-    REVERSE=$(tput smso)
-    REVERSO=$(tput rmso)
-    ;;
-  *)
-    # text / foreground
-    n=$(tput setaf 0)
-    r=$(tput setaf 1)
-    g=$(tput setaf 2)
-    y=$(tput setaf 3)
-    b=$(tput setaf 4)
-    m=$(tput setaf 5)
-    c=$(tput setaf 6)
-    w=$(tput setaf 7)
-    N=$(tput setaf 8)
-    R=$(tput setaf 9)
-    G=$(tput setaf 10)
-    Y=$(tput setaf 11)
-    B=$(tput setaf 12)
-    M=$(tput setaf 13)
-    C=$(tput setaf 14)
-    W=$(tput setaf 15)
-    END=$(tput sgr0)
-
-    HIGH=$(tput bold)
-    SMUL=$(tput smul)
-    RMUL=$(tput rmul)
-    BLINK=$(tput blink)
-    REVERSE=$(tput smso)
-    REVERSO=$(tput rmso)
-
-    # background
-    Rn=$(tput setab 0)
-    Rr=$(tput setab 1)
-    Rg=$(tput setab 2)
-    Ry=$(tput setab 3)
-    Rb=$(tput setab 4)
-    Rm=$(tput setab 5)
-    Rc=$(tput setab 6)
-    Rw=$(tput setab 7)
-    RN=$(tput setab 8)
-    RR=$(tput setab 9)
-    RG=$(tput setab 10)
-    RY=$(tput setab 11)
-    RB=$(tput setab 12)
-    RM=$(tput setab 13)
-    RC=$(tput setab 14)
-    RW=$(tput setab 15)
-    ;;
-esac
-
-BLUEf=${B}
-BLUE=${b}
-REDf=${R}
-RED=${r}
-GREENf=${G}
-GREEN=${g}
-YELLOWf=${Y}
-YELLOW=${y}
-MANGENTAf=${M}
-MANGENTA=${m}
-WHITEf=${W}
-WHITE=${w}
-CYANf=${C}
-CYAN=${c}
-
-colors=($BLUEf $BLUE $REDf $RED $GREENf $GREEN $YELLOWf $YELLOW $MANGENTAf $MANGENTA $WHITEf $WHITE $CYANf $CYAN)
-replace=""
-for i in $@
-do
-  color=${colors[$((RANDOM % 14))]}
-  replace="$replace s#$i#$color$REVERSE$Rn$i$END#g;"
-done
-perl < /dev/null > /dev/null 2>&1
-if [[ $? != 0 ]]; then
-  echo "Perl not found, please install one"
-  exit
-fi
-perl -pe "$replace"
+fix_docker_host_sock() {
+  export DOCKER_HOST=unix:///Users/$USER/.docker/run/docker.sock
+  sudo ln -sf /Users/$USER/.docker/run/docker.sock /var/run/docker.sock
+  export TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE=/var/run/docker.sock
 }
