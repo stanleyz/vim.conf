@@ -22,6 +22,36 @@
   Send "{Up}"
 }
 
+!a::
+{
+  Send "^a"
+}
+
+!b::
+{
+  Send "^b"
+}
+
+!c::
+{
+  Send "^c"
+}
+
+!d::
+{
+  Send "^d"
+}
+
+!e::
+{
+  Send "^e"
+}
+
+!f::
+{
+  Send "^f"
+}
+
 <!i::
 {
   Send "^i"
@@ -32,49 +62,28 @@
   Send "^+i"
 }
 
-!c::
+!k::
 {
-  Send "^c"
+  Send "^k"
 }
 
-!v::
+!l::
 {
-  Send "^v"
+  Send "^l"
 }
 
-!t::
+<!m::
 {
-  Send "<^t"
+  Send "^m"
 }
 
-!+t::
+!p::
 {
-  Send "^+t"
+  Send "^p"
 }
-
-!f::
+!+p::
 {
-  Send "^f"
-}
-
-!LButton::
-{
-  Send "^{LButton}"
-}
-
-!s::
-{
-  Send "^s"
-}
-
-!a::
-{
-  Send "^a"
-}
-
-!w::
-{
-  Send "^w"
+  Send "^+p"
 }
 
 !q::
@@ -91,19 +100,44 @@
   Send "^r"
 }
 
+!s::
+{
+  Send "^s"
+}
+
+!t::
+{
+  Send "<^t"
+}
+
+!+t::
+{
+  Send "^+t"
+}
+
 !u::
 {
   Send "^u"
 }
 
-!k::
+!v::
 {
-  Send "^k"
+  Send "^v"
 }
 
-!l::
+!w::
 {
-  Send "^l"
+  Send "^w"
+}
+
+!z::
+{
+  Send "^z"
+}
+
+!LButton::
+{
+  Send "^{LButton}"
 }
 
 !1::
@@ -144,35 +178,6 @@
 <!+]::
 {
   Send "^{PgDn}"
-}
-
-!z::
-{
-  Send "^z"
-}
-
-!b::
-{
-  Send "^b"
-}
-
-!d::
-{
-  Send "^d"
-}
-
-!e::
-{
-  Send "^e"
-}
-
-!p::
-{
-  Send "^p"
-}
-!+p::
-{
-  Send "^+p"
 }
 
 *Alt::
