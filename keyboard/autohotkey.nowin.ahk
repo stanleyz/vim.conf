@@ -58,6 +58,26 @@ vkFF & u::
   Send "{Home}"
 }
 
+vkFF & Left::
+{
+  Send("#{Left}")  
+}
+
+vkFF & Right::
+{
+  Send("#{Right}")  
+}
+
+vkFF & Up::
+{
+  Send("#{Up}")  
+}
+
+vkFF & Down::
+{
+  Send("#{Down}")  
+}
+
 !a::
 {
   Send "^a"
