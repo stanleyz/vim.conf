@@ -3,24 +3,59 @@
 #UseHook
 ;$Capslock::Esc
 
-#h::
+vkFF::
+{
+  Send "^{Esc}"
+}
+
+vkFF & h::
 {
   Send "{Left}"
 }
 
-#l::
+vkFF & l::
 {
   Send "{Right}"
 }
 
-#j::
+vkFF & j::
 {
   Send "{Down}"
 }
 
-#k::
+vkFF & k::
 {
   Send "{Up}"
+}
+
+vkFF & e::
+{
+  Run("explorer.exe")
+}
+
+vkFF & i::
+{
+  Send "{PgUp}"
+}
+
+vkFF & o::
+{
+  Send "{PgDn}"
+}
+
+vkFF & p::
+{
+  Send "{End}"
+}
+
+vkFF & q::
+{
+  DllCall("LockWorkStation")
+}
+
+vkFF & u::
+{
+  Send "{Home}"
 }
 
 !a::
