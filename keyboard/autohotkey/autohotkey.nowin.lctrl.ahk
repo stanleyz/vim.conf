@@ -1,0 +1,120 @@
+;; This key map doesn't use Win key and also use Alt as Ctrl
+#Requires AutoHotKey >=2.0
+#SingleInstance Force
+#UseHook
+;$Capslock::Esc
+RCtrl::RAlt
+
+vkFF::Send "^{Esc}"
+vkFF & h::Send "{Left}"
+vkFF & l::Send "{Right}"
+vkFF & j::Send "{Down}"
+vkFF & k::Send "{Up}"
+
+vkFF & e::Run("explorer.exe")
+
+vkFF & i::Send "{PgUp}"
+vkFF & o::Send "{PgDn}"
+vkFF & p::Send "{End}"
+vkFF & q::DllCall("LockWorkStation")
+vkFF & u::Send "{Home}"
+
+vkFF & Left::Send("#{Left}")
+vkFF & Right::Send("#{Right}")  
+vkFF & Up::Send("#{Up}")  
+vkFF & Enter::Send("#{Up}")
+vkFF & Down::Send("#{Down}")  
+vkFF & Space::Send("#{Space}")
+
+^q::
+{
+  global AltDown
+  
+  if AltDown
+    Send "{Ctrl up}"
+  Send "^{f4}"
+  Send "{Ctrl down}"
+}
+
+AltTabMode := false
+AltUsedAsModifier := false
+AltDown := false
+CapsLockUsedAsCtrl := false
+CapsLockDown := false
+Alt::
+{
+  global AltUsedAsModifier, AltDown
+
+  AltUsedAsModifier := false
+  AltDown := true
+  Send "{Ctrl down}"
+  InputHookObj.Start()
+}
+
+Alt up::
+{
+  global AltTabMode, AltDown, InputHookObj
+  
+  AltDown := false
+  InputHookObj.Stop()
+  ; additional physical state check on the alt key
+  if AltTabMode and !GetKeyState("Alt", "P") {
+    AltTabMode := false
+    SendInput("{Alt up}")
+  } else {
+    Send("{Ctrl up}")
+    if !AltUsedAsModifier {
+      Send "{Escape}"
+    }
+  }
+}
+
+*Tab::
+{
+  global AltTabMode
+  if GetKeyState("Ctrl") {
+    if !AltTabMode {
+      SendInput("{Ctrl up}")
+      AltTabMode := true
+      SendInput("{Blind}{Alt down}{Tab}")
+      return
+    }
+  }
+  Send("{Blind}{Tab}")
+}
+
+CapsLock::
+{
+  global CapsLockUsedAsCtrl, CapsLockDown, InputHookObj
+  
+  CapsLockUsedAsCtrl := false
+  CapsLockDown := true
+  Send "{Ctrl down}"
+  InputHookObj.Start()
+}
+
+CapsLock up::
+{
+  global CapsLockUsedAsCtrl, CapsLockDown, InputHookObj
+  
+  CapsLockDown := false
+  InputHookObj.Stop()
+  Send "{Ctrl up}"
+  if !CapsLockUsedAsCtrl {
+    Send "{Escape}"
+  }
+}
+
+InputHookObj := InputHook()
+InputHookObj.KeyOpt("{All}", "N")
+InputHookObj.OnKeyDown := CheckKeyDown
+CheckKeyDown(ihObj, vk, scanCode)
+{
+  global AltUsedAsModifier, AltDown, CapsLockUsedAsCtrl, CapsLockDown
+  if AltDown and vk != 0x12
+    AltUsedAsModifier := true
+  if CapsLockDown and vk != 0x14
+    CapsLockUsedAsCtrl := true
+  Send(vk)
+  ihObj.Stop()  ; stop listening after detecting modifier usage
+}

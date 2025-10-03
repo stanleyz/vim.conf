@@ -1,3 +1,4 @@
+;; This doesn't use Win key
 #Requires AutoHotKey >=2.0
 #SingleInstance Force
 #UseHook
