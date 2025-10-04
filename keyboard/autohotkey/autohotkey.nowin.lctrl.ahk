@@ -20,7 +20,7 @@ vkFF & q::DllCall("LockWorkStation")
 vkFF & u::Send "{Home}"
 
 vkFF & Left::Send("#{Left}")
-vkFF & Right::Send("#{Right}")  
+vkFF & Right::Send("#{Right}")
 vkFF & Up::Send("#{Up}")  
 vkFF & Enter::Send("#{Up}")
 vkFF & Down::Send("#{Down}")  
@@ -35,6 +35,9 @@ vkFF & Space::Send("#{Space}")
   Send "^{f4}"
   Send "{Ctrl down}"
 }
+
+^+[::Send "^{PgUp}"
+^+]::Send "^{PgDn}"
 
 AltTabMode := false
 AltUsedAsModifier := false
@@ -62,9 +65,9 @@ Alt up::
     AltTabMode := false
     SendInput("{Alt up}")
   } else {
-    Send("{Ctrl up}")
+    SendInput("{Ctrl up}")
     if !AltUsedAsModifier {
-      Send "{Escape}"
+      SendInput "{Escape}"
     }
   }
 }
@@ -99,9 +102,9 @@ CapsLock up::
   
   CapsLockDown := false
   InputHookObj.Stop()
-  Send "{Ctrl up}"
+  SendInput "{Ctrl up}"
   if !CapsLockUsedAsCtrl {
-    Send "{Escape}"
+    SendInput "{Escape}"
   }
 }
 
@@ -111,10 +114,12 @@ InputHookObj.OnKeyDown := CheckKeyDown
 CheckKeyDown(ihObj, vk, scanCode)
 {
   global AltUsedAsModifier, AltDown, CapsLockUsedAsCtrl, CapsLockDown
-  if AltDown and vk != 0x12
+  if AltDown and vk != 0x12 {
     AltUsedAsModifier := true
-  if CapsLockDown and vk != 0x14
+    ;SendInput("{" . "vk" vk . "}")
+  }
+  if CapsLockDown and vk != 0x14 {
     CapsLockUsedAsCtrl := true
-  Send(vk)
-  ihObj.Stop()  ; stop listening after detecting modifier usage
+    ;SendInput("{" . "vk" vk . "}")
+  }
 }
