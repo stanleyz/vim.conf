@@ -18,5 +18,4 @@ unmap('d');
 map('d', 'x'); // close the current page
 // This doesn't work since it forms a loop with o
 map('t', 'on'); // open a new tab
-map('<Alt-h>', '<Alt-s>')
-map('<Alt-n>', '<Alt-i>')
+map('<Ctrl-0>', '<Alt-s>')
