@@ -26,14 +26,15 @@ vkFF & Enter::Send("#{Up}")
 vkFF & Down::Send("#{Down}")  
 vkFF & Space::Send("#{Space}")
 
+BypassInputHook := false
+
 ^q::
 {
-  global AltDown
+  global BypassInputHook
   
-  if AltDown
-    Send "{Ctrl up}"
+  ;; This bypass the InputHookObj configured below
+  BypassInputHook := true
   Send "^{f4}"
-  Send "{Ctrl down}"
 }
 
 ^+[::Send "^{PgUp}"
@@ -46,17 +47,18 @@ CapsLockUsedAsCtrl := false
 CapsLockDown := false
 Alt::
 {
-  global AltUsedAsModifier, AltDown
+  global AltUsedAsModifier, AltDown, BypassInputHook
 
   AltUsedAsModifier := false
   AltDown := true
+  BypassInputHook := false
   Send "{Ctrl down}"
   InputHookObj.Start()
 }
 
 Alt up::
 {
-  global AltTabMode, AltDown, InputHookObj
+  global AltTabMode, AltDown, InputHookObj, BypassInputHook
   
   AltDown := false
   InputHookObj.Stop()
@@ -66,7 +68,7 @@ Alt up::
     SendInput("{Alt up}")
   } else {
     SendInput("{Ctrl up}")
-    if !AltUsedAsModifier {
+    if !AltUsedAsModifier and !BypassInputHook {
       SendInput "{Escape}"
     }
   }
@@ -88,22 +90,23 @@ Alt up::
 
 CapsLock::
 {
-  global CapsLockUsedAsCtrl, CapsLockDown, InputHookObj
+  global CapsLockUsedAsCtrl, CapsLockDown, InputHookObj, BypassInputHook
   
   CapsLockUsedAsCtrl := false
   CapsLockDown := true
+  BypassInputHook := false
   Send "{Ctrl down}"
   InputHookObj.Start()
 }
 
 CapsLock up::
 {
-  global CapsLockUsedAsCtrl, CapsLockDown, InputHookObj
+  global CapsLockUsedAsCtrl, CapsLockDown, InputHookObj, BypassInputHook
   
   CapsLockDown := false
   InputHookObj.Stop()
   SendInput "{Ctrl up}"
-  if !CapsLockUsedAsCtrl {
+  if !CapsLockUsedAsCtrl and !BypassInputHook {
     SendInput "{Escape}"
   }
 }
