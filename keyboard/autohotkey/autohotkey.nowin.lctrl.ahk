@@ -28,13 +28,80 @@ vkFF & Space::Send("#{Space}")
 
 BypassInputHook := false
 
-^q::
+*b::
 {
-  global BypassInputHook
-  
-  ;; This bypass the InputHookObj configured below
-  BypassInputHook := true
-  Send "^{f4}"
+  global AltUsedAsModifier
+  if GetKeyState("LAlt", "P") {
+    AltUsedAsModifier := true
+    Send "{Ctrl up}"
+    Send "{Blind}!b"
+  } else {
+    Send "{Blind}b"
+  }
+}
+
+*i::
+{
+  global AltUsedAsModifier
+  if GetKeyState("LAlt", "P") {
+    AltUsedAsModifier := true
+    Send "{Ctrl up}"
+    Send "{Blind}!i"
+  } else {
+    Send "{Blind}i"
+  }
+}
+
+*k::
+{
+  global AltUsedAsModifier
+  if GetKeyState("Alt", "P") {
+    AltUsedAsModifier := true
+    Send "{Ctrl up}"
+    Send "{Blind}!k"
+  } else {
+    Send "{Blind}k"
+  }
+}
+
+*q::
+{
+  global AltUsedAsModifier
+  if GetKeyState("LAlt", "P") {
+    AltUsedAsModifier := true
+    Send "{Ctrl up}"
+    Send "!{f4}"
+  } else {
+    Send "{Blind}q"
+  }
+}
+
+*m::
+{
+  global AltUsedAsModifier
+  if GetKeyState("Alt", "P") {
+    AltUsedAsModifier := true
+    Send "{Ctrl up}"
+    Send "{Blind}!m"
+  } else {
+    Send "{Blind}m"
+  }
+}
+
+*w::
+{
+  global AltUsedAsModifier
+  if GetKeyState("LAlt", "P") {
+    AltUsedAsModifier := true
+    Send "{Ctrl up}"
+    If WinActive("ahk_exe WindowsTerminal.exe")
+      Send "{Blind}!w"
+    else
+      Send "{Blind}^w"
+  } else {
+    Send "{Blind}w"
+  }
+
 }
 
 ^+[::Send "^{PgUp}"
