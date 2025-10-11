@@ -29,6 +29,12 @@ map('i', '<leader>O', '<Esc>O', options)
 map('i', '<leader>re', '<Esc>:e!<CR>', options)
 map('i', '<leader>rg', '<Esc>:Rg ', options)
 
+map('n', '<leader>z', '<C-w>|<C-w>_', options)
+map('i', '<leader>z', '<Esc><C-w>|<C-w>_', options)
+
+map('n', '<leader>w', ':Windows<CR>', options)
+map('i', '<leader>w', '<Esc>:Windows<CR>', options)
+
 -- sudo and write
 map('c', 'sw', 'w !sudo tee >/dev/null %', options)
 -- ctrl-r to search history
@@ -51,6 +57,22 @@ map('n', '<leader>gpr', ':Git pull --rebase<CR>', options)
 map('n', '<leader>gbl', ':Git blame<CR>', options)
 map('n', '<leader>gaa', ':Git add *<CR>', options)
 map('n', '<leader>gac', ':Git add %<CR>', options)
+
+map('n', '<A-i>', ':CopilotChat<CR>', {})
+map('i', '<A-i>', '<Esc>:CopilotChat<CR>', {})
+require("CopilotChat").setup({
+  mappings = {
+    submit_prompt = {
+      -- <C-j> makes <C-Enter> work ??
+      insert = "<C-j>",
+    },
+    complete = "<Tab>",
+  }
+})
+
+local comment = require('Comment').setup()
+
+comment.autohotkey = ";"
 
 -- Set the tabstop, Shiftwidth, and expandtab options
 vim.o.tabstop = 2
@@ -131,23 +153,109 @@ require("nvim-tree").setup({
   on_attach = nvim_tree_on_attach,
 })
 
--- Setup language servers.
-local lspconfig = require('lspconfig')
--- Add additional capabilities supported by nvim-cmp
+-- Setup language servers using modern vim.lsp.config
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
--- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = { 'ts_ls' }
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    -- on_attach = my_custom_on_attach,
-    capabilities = capabilities,
-  }
-end
 
-lspconfig['ltex'].setup{
+-- TypeScript/JavaScript LSP
+vim.lsp.config('ts_ls', {
+  capabilities = capabilities,
+})
+
+-- Python LSP (using pylsp)
+vim.lsp.config('pylsp', {
+  capabilities = capabilities,
+  filetypes = { 'python' },
+  cmd = { 'pylsp' },
+  autostart = true,
+  settings = {
+    pylsp = {
+      plugins = {
+        pycodestyle = { enabled = false },
+        mccabe = { enabled = false },
+        pyflakes = { enabled = false },
+        pylint = { enabled = false },
+        autopep8 = { enabled = false },
+        yapf = { enabled = false },
+        black = { enabled = true },
+        isort = { enabled = true },
+        rope_autoimport = { enabled = true },
+      }
+    }
+  }
+})
+
+-- Auto-start LSP for Python files
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'python',
+  callback = function()
+    vim.lsp.start({
+      name = 'pylsp',
+      cmd = { 'pylsp' },
+      capabilities = capabilities,
+      settings = {
+        pylsp = {
+          plugins = {
+            pycodestyle = { enabled = false },
+            mccabe = { enabled = false },
+            pyflakes = { enabled = false },
+            pylint = { enabled = false },
+            autopep8 = { enabled = false },
+            yapf = { enabled = false },
+            black = { enabled = true },
+            isort = { enabled = true },
+            rope_autoimport = { enabled = true },
+          }
+        }
+      }
+    })
+  end,
+})
+
+-- LTeX LSP for markdown/text
+vim.lsp.config('ltex', {
   cmd = { 'ltex-ls' },
   filetypes = { 'markdown', 'text' },
-}
+})
+
+-- LSP key mappings for navigating method calls
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+  callback = function(ev)
+    local opts = { buffer = ev.buf }
+    
+    -- Go to definition (drill into method)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    
+    -- Go to declaration
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+    
+    -- Find all references (who calls this method)
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+    
+    -- Go to implementation
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+    
+    -- Go to type definition
+    vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, opts)
+    
+    -- Show hover documentation
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    
+    -- Show function signature help
+    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+    
+    -- Rename symbol
+    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+    
+    -- Code actions
+    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+    
+    -- Format code
+    vim.keymap.set('n', '<leader>fm', function()
+      vim.lsp.buf.format { async = true }
+    end, opts)
+  end,
+})
 
 -- luasnip setup
 local luasnip = require 'luasnip'
@@ -193,3 +301,5 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+
