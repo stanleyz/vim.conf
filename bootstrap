@@ -17,5 +17,5 @@ EOBAHP
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 mkdir -p ~/.config/nvim
-cp "$cur_dir/neovim/init.lua" "$HOME/.config/nvim/
+cp "$cur_dir/neovim/init.lua" "$HOME/.config/nvim/"
 cp -a "$cur_dir/neovim/lua/" "$HOME/.config/nvim/lua/"
