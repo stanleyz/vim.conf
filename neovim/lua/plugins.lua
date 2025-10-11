@@ -21,13 +21,6 @@ return require('packer').startup(function(use)
   use 'nvim-lualine/lualine.nvim' -- status line
   use 'numToStr/Comment.nvim'
   
-  use { "anuvyklack/windows.nvim",
-   requires = "anuvyklack/middleclass",
-   config = function()
-      require('windows').setup()
-   end
-}
-
   use 'neovim/nvim-lspconfig'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'

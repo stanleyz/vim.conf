@@ -34,6 +34,7 @@ alias kd='kubectl describe'
 alias kns='kubectl-ns'
 alias kx=kubectx
 alias h=helm
+alias v=nvim
 
 # general export --------------------------------------------------------------
 export EDITOR='nvim'
