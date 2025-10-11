@@ -30,7 +30,8 @@ BypassInputHook := false
 
 *b::
 {
-  global AltUsedAsModifier
+  global AltUsedAsModifier, ByPassInputHook
+  ByPassInputHook := true
   if GetKeyState("LAlt", "P") {
     AltUsedAsModifier := true
     Send "{Ctrl up}"
@@ -42,7 +43,8 @@ BypassInputHook := false
 
 *c::
 {
-  global AltUsedAsModifier
+  global AltUsedAsModifier, ByPassInputHook
+  ByPassInputHook := true
   if GetKeyState("LAlt", "P") {
     AltUsedAsModifier := true
     Send "{Ctrl up}"
@@ -57,7 +59,8 @@ BypassInputHook := false
 
 *i::
 {
-  global AltUsedAsModifier
+  global AltUsedAsModifier, ByPassInputHook
+  ByPassInputHook := true
   if GetKeyState("LAlt", "P") {
     AltUsedAsModifier := true
     Send "{Ctrl up}"
@@ -69,11 +72,15 @@ BypassInputHook := false
 
 *k::
 {
-  global AltUsedAsModifier
+  global AltUsedAsModifier, ByPassInputHook
+  ByPassInputHook := true
   if GetKeyState("Alt", "P") {
     AltUsedAsModifier := true
     Send "{Ctrl up}"
-    Send "{Blind}!k"
+    If WinActive("ahk_exe WindowsTerminal.exe")
+      Send "{Blind}!k"
+    else
+      Send "{Blind}^k"
   } else {
     Send "{Blind}k"
   }
@@ -81,7 +88,8 @@ BypassInputHook := false
 
 *q::
 {
-  global AltUsedAsModifier
+  global AltUsedAsModifier, ByPassInputHook
+  ByPassInputHook := true
   if GetKeyState("LAlt", "P") {
     AltUsedAsModifier := true
     Send "{Ctrl up}"
@@ -93,7 +101,8 @@ BypassInputHook := false
 
 *m::
 {
-  global AltUsedAsModifier
+  global AltUsedAsModifier, ByPassInputHook
+  ByPassInputHook := true
   if GetKeyState("Alt", "P") {
     AltUsedAsModifier := true
     Send "{Ctrl up}"
@@ -105,7 +114,8 @@ BypassInputHook := false
 
 *v::
 {
-  global AltUsedAsModifier
+  global AltUsedAsModifier, ByPassInputHook
+  ByPassInputHook := true
   if GetKeyState("LAlt", "P") {
     AltUsedAsModifier := true
     Send "{Ctrl up}"
@@ -120,7 +130,8 @@ BypassInputHook := false
 
 *w::
 {
-  global AltUsedAsModifier
+  global AltUsedAsModifier, ByPassInputHook
+  ByPassInputHook := true
   if GetKeyState("LAlt", "P") {
     AltUsedAsModifier := true
     Send "{Ctrl up}"
@@ -165,7 +176,7 @@ Alt up::
   } else {
     SendInput("{Ctrl up}")
     if !AltUsedAsModifier and !BypassInputHook {
-      SendInput "{Escape}"
+      SendInput "{Escape}{Escape}"
     }
   }
 }
@@ -203,7 +214,7 @@ CapsLock up::
   InputHookObj.Stop()
   SendInput "{Ctrl up}"
   if !CapsLockUsedAsCtrl and !BypassInputHook {
-    SendInput "{Escape}"
+    SendInput "{Escape}{Escape}"
   }
 }
 
