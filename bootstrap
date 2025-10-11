@@ -2,5 +2,20 @@
 cur_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 cp "$cur_dir/.gitconfig" "$HOME/.gitconfig"
-cp "$cur_dir/shell/.common-*" "$HOME/"
 cp "$cur_dir/.tmux.conf" "$HOME/.tmux.conf"
+
+cp "$cur_dir/shell/.common-zbashrc" "$HOME/"
+cp "$cur_dir/shell/.common-bashrc" "$HOME/"
+cp "$cur_dir/shell/.common-zshrc" "$HOME/"
+
+cat << EOBAHP >> "$HOME/.bash_profile"
+. ~/.common-zbashrc
+. ~/.common-bashrc
+eval "$(fzf --bash)"
+EOBAHP
+
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+mkdir -p ~/.config/nvim
+cp "$cur_dir/neovim/init.lua" "$HOME/.config/nvim/
+cp -a "$cur_dir/neovim/lua/" "$HOME/.config/nvim/lua/"
