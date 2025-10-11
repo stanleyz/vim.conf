@@ -40,6 +40,21 @@ BypassInputHook := false
   }
 }
 
+*c::
+{
+  global AltUsedAsModifier
+  if GetKeyState("LAlt", "P") {
+    AltUsedAsModifier := true
+    Send "{Ctrl up}"
+    If WinActive("ahk_exe WindowsTerminal.exe")
+      Send "{Blind}!c"
+    else
+      Send "{Blind}^c"
+  } else {
+    Send "{Blind}c"
+  }
+}
+
 *i::
 {
   global AltUsedAsModifier
@@ -88,6 +103,21 @@ BypassInputHook := false
   }
 }
 
+*v::
+{
+  global AltUsedAsModifier
+  if GetKeyState("LAlt", "P") {
+    AltUsedAsModifier := true
+    Send "{Ctrl up}"
+    If WinActive("ahk_exe WindowsTerminal.exe")
+      Send "{Blind}!v"
+    else
+      Send "{Blind}^v"
+  } else {
+    Send "{Blind}v"
+  }
+}
+
 *w::
 {
   global AltUsedAsModifier
@@ -101,7 +131,6 @@ BypassInputHook := false
   } else {
     Send "{Blind}w"
   }
-
 }
 
 ^+[::Send "^{PgUp}"
