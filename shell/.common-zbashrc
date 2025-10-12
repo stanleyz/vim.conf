@@ -77,7 +77,7 @@ _fzf_compgen_dir() {
 }
 
 # Include ~/bin if it's not in the PATH variable
-[[ "$PATH" == *~/bin* ]] || export PATH="~/bin:$PATH"
+[[ "$PATH" == *~/.local/bin* ]] || export PATH="~/.local/bin:$PATH"
 
 # Virtualenvwrapper
 # load virtualenvwrapper for python (after custom PATHs)

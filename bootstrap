@@ -1,12 +1,12 @@
 #!/bin/sh
 cur_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-cp "$cur_dir/.gitconfig" "$HOME/.gitconfig"
-cp "$cur_dir/.tmux.conf" "$HOME/.tmux.conf"
+ln -s "$cur_dir/.gitconfig" "$HOME/.gitconfig"
+ln -s "$cur_dir/.tmux.conf" "$HOME/.tmux.conf"
 
-cp "$cur_dir/shell/.common-zbashrc" "$HOME/"
-cp "$cur_dir/shell/.common-bashrc" "$HOME/"
-cp "$cur_dir/shell/.common-zshrc" "$HOME/"
+ln -s "$cur_dir/shell/.common-zbashrc" "$HOME/"
+ln -s "$cur_dir/shell/.common-bashrc" "$HOME/"
+ln -s "$cur_dir/shell/.common-zshrc" "$HOME/"
 
 cat << EOBAHP >> "$HOME/.bash_profile"
 . ~/.common-zbashrc
@@ -17,5 +17,6 @@ EOBAHP
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 mkdir -p ~/.config/nvim
-cp "$cur_dir/neovim/init.lua" "$HOME/.config/nvim/"
-cp -a "$cur_dir/neovim/lua/" "$HOME/.config/nvim/lua/"
+ln -s "$cur_dir/neovim/init.lua" "$HOME/.config/nvim/"
+mkdir -p "$HOME/.config/nvim/lua"
+ln -s "$cur_dir/neovim/lua/plugins.lua" "$HOME/.config/nvim/lua/plugins.lua"
