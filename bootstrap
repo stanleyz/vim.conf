@@ -11,7 +11,7 @@ ln -s "$cur_dir/shell/.common-zshrc" "$HOME/"
 cat << EOBAHP >> "$HOME/.bash_profile"
 . ~/.common-zbashrc
 . ~/.common-bashrc
-eval '"$(fzf --bash)"'
+eval "\$(fzf --bash)"
 EOBAHP
 
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\

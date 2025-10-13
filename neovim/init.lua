@@ -67,6 +67,9 @@ require("CopilotChat").setup({
       insert = "<C-j>",
     },
     complete = "<Tab>",
+    close = {
+      normal = "<Esc>",
+    }
   }
 })
 
