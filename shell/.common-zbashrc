@@ -25,7 +25,6 @@ alias vboxm="VBoxManage"
 alias vml="VBoxManage list vms"
 alias vmlr="VBoxManage list runningvms"
 alias vim='nvim'
-alias k=kubectl
 alias kg='kubectl get'
 alias kgy='kubectl get -oyaml'
 alias kga='kubectl get -A'
@@ -35,6 +34,9 @@ alias kns='kubectl-ns'
 alias kx=kubectx
 alias h=helm
 alias v=nvim
+alias k=kubectl
+alias a=assume
+alias ac="assume -c --bp Default"
 
 # general export --------------------------------------------------------------
 export EDITOR='nvim'

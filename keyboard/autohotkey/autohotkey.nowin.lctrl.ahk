@@ -77,7 +77,7 @@ BypassInputHook := false
   if GetKeyState("Alt", "P") {
     AltUsedAsModifier := true
     Send "{Ctrl up}"
-    If WinActive("ahk_exe WindowsTerminal.exe")
+    If WinActive("ahk_exe Code.exe")
       Send "{Blind}!k"
     else
       Send "{Blind}^k"
@@ -106,7 +106,10 @@ BypassInputHook := false
   if GetKeyState("Alt", "P") {
     AltUsedAsModifier := true
     Send "{Ctrl up}"
-    Send "{Blind}!m"
+    If WinActive("ahk_exe Code.exe")
+      Send "{Blind}!m"
+    else
+      Send "{Blind}^m"
   } else {
     Send "{Blind}m"
   }
