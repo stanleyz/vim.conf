@@ -24,6 +24,7 @@ local altI = hs.hotkey.new({'alt'}, 'i', keyCode('pageup'),  nil,   keyCode('pag
 local altO = hs.hotkey.new({'alt'}, 'o', keyCode('pagedown'),  nil,   keyCode('pagedown'))
 local altU = hs.hotkey.new({'alt'}, 'u', keyCode('home'))
 local altP = hs.hotkey.new({'alt'}, 'p', keyCode('end'))
+local altQ = hs.hotkey.bind({'alt'}, 'q', function() hs.caffeinate.lockScreen() end)
 
 local function toggleGlobalDirectionKeys(enabled)
 	if enabled then
