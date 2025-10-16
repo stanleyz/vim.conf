@@ -56,6 +56,7 @@ map('n', '<leader>gps', ':Git push<CR>', options)
 map('n', '<leader>gco', ':Git checkout ', options)
 map('n', '<leader>gpr', ':Git pull --rebase<CR>', options)
 map('n', '<leader>gbl', ':Git blame<CR>', options)
+map('n', '<leader>gbc', ':Git branch ', options)
 map('n', '<leader>gaa', ':Git add *<CR>', options)
 map('n', '<leader>gac', ':Git add %<CR>', options)
 map('n', '<leader>glg', ':Git log<CR>', options)
@@ -241,8 +242,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- Go to implementation
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
     
-    -- Go to type definition
-    vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, opts)
+    -- -- Go to type definition
+    -- vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, opts)
     
     -- Show hover documentation
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)

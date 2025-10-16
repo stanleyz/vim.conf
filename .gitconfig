@@ -9,7 +9,7 @@
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	lga = log --color --graph --all --oneline --decorate --abbrev-commit
 	pr = pull --rebase --all --prune
-	comm = commit -a -c HEAD
+	comm = commit -a
 	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
 	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
 	lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
@@ -33,7 +33,7 @@
 	cp = cherry-pick
 	st = status -s
 	cl = clone
-	ci = commit
+	cci = commit -c HEAD
 	co = checkout
 	br = branch --all 
 	diff = diff --word-diff
