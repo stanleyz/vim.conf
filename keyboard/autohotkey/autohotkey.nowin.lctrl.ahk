@@ -147,6 +147,20 @@ BypassInputHook := false
   }
 }
 
+*4::
+{
+  global AltUsedAsModifier, ByPassInputHook
+  ByPassInputHook := true
+  if GetKeyState("LAlt", "P") and GetKeyState("Shift", "P") {
+    AltUsedAsModifier := true
+    Send "{Ctrl up}"
+    Send "#+S"
+  } else {
+    Send "{Blind}4"
+  }
+}
+
+
 *`::
 {
   global AltUsedAsModifier, ByPassInputHook
