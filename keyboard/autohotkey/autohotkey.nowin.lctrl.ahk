@@ -147,6 +147,45 @@ BypassInputHook := false
   }
 }
 
+*`::
+{
+  global AltUsedAsModifier, ByPassInputHook
+  ByPassInputHook := true
+  if GetKeyState("LAlt", "P") {
+    AltUsedAsModifier := true
+    Send "{Ctrl up}"
+    Send "{Blind}!``"
+  } else {
+    Send "{Blind}``"
+  }
+}
+
+*Enter::
+{
+  global AltUsedAsModifier, ByPassInputHook
+  ByPassInputHook := true
+  if GetKeyState("LAlt", "P") {
+    AltUsedAsModifier := true
+    Send "{Ctrl up}"
+    If WinActive("ahk_class CabinetWClass") ; File Explorer
+      Send "{Blind}{Enter}"
+    else
+      Send "{Blind}^{Enter}"
+  } else {
+    If WinActive("ahk_class CabinetWClass") { ; File Explorer
+      ; Get the focused control class name
+      focusedControlClass :=  ControlGetClassNN(ControlGetFocus("A"))
+      
+      ; Check if focused on input controls (address bar, search box)
+      if (focusedControlClass == "DirectUIHWND2") {
+        Send "{f2}"
+        return
+      }
+    }
+    Send "{Blind}{Enter}"
+  }
+}
+
 ^+[::Send "^{PgUp}"
 ^+]::Send "^{PgDn}"
 

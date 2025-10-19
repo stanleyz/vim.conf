@@ -35,6 +35,8 @@ alias kx=kubectx
 alias h=helm
 alias v=nvim
 alias k=kubectl
+alias f=flux
+alias fg='flux get'
 alias a=assume
 alias ac="assume -c --bp Default"
 
