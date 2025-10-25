@@ -1,8 +1,13 @@
 [user]
 	name = "Stanley Zhang"
 	email = stanley.zhang@ityin.net
+  signingkey = stanley.zhang@ityn.net
+[commit]
+  gpgSign = true
+#[core]
+#  sshCommand = "ssh -i ~/.ssh/test.key"
 #[includeIf "gitdir:~/Documents/XXX/"]
-#  path = XXX/config
+#  path = ~/Documents/XXX/config
 [mergetool]
 	keepBackup = false
 [alias]
