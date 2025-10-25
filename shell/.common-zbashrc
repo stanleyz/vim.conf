@@ -3,7 +3,7 @@
 #set -o vi
 #bind '"\C-a": beginning-of-line'
 #bind '"\C-e": end-of-line'
-#bind '"\C-k": kill-line'
+#Bind '"\C-k": kill-line'
 #bind '"\C-p": previous-history'
 #bind '"\C-n": next-history'
 #bind '"\C-l": clear-screen'
@@ -81,7 +81,7 @@ _fzf_compgen_dir() {
 }
 
 # Include ~/bin if it's not in the PATH variable
-[[ "$PATH" == *~/.local/bin* ]] || export PATH="~/.local/bin:$PATH"
+#[[ "$PATH" == *~/.local/bin* ]] || export PATH="~/.local/bin:$PATH"
 
 # Virtualenvwrapper
 # load virtualenvwrapper for python (after custom PATHs)
