@@ -24,7 +24,7 @@ alias xs='tmux-cssh'
 alias vboxm="VBoxManage"
 alias vml="VBoxManage list vms"
 alias vmlr="VBoxManage list runningvms"
-alias vim='nvim'
+#alias vim='nvim'
 alias kg='kubectl get'
 alias kgy='kubectl get -oyaml'
 alias kga='kubectl get -A'
@@ -36,7 +36,7 @@ alias h=helm
 alias v=nvim
 alias k=kubectl
 alias f=flux
-alias fg='flux get'
+#alias fg='flux get'
 alias a=assume
 alias ac="assume -c --bp Default"
 
