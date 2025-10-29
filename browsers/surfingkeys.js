@@ -3,6 +3,7 @@ const { map, unmap } = api;
 map(';B', 'b');     // open bookmarks
 map('b', 'e');      // scroll half page up
 map(';o', 'f');     // open a link
+unmap('f')
 map('f', 'd');      // scroll half page down
 map('h', 'E');      // Go one tab left
 map('l', 'R');      // Go to right tab
@@ -20,4 +21,3 @@ map('d', 'x'); // close the current page
 map('t', 'on'); // open a new tab
 map('<Ctrl-9>', '<Alt-s>')
 unmap('x')
-unmap('f')

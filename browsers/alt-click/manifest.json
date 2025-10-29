@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Alt-click → Ctrl-click (open in background)",
+  "version": "1.0",
+  "description": "Make Alt/Option + Click open links in a background tab (like Ctrl+Click).",
+  "permissions": [
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "48": "icon48.png"
+  }
+}

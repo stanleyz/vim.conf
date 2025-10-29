@@ -1,5 +1,5 @@
 # Vi mode bash key bindings
-#stty -ixon
+stty -ixon
 #set -o vi
 #bind '"\C-a": beginning-of-line'
 #bind '"\C-e": end-of-line'
