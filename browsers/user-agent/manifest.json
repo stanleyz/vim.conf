@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "ChromOS for Teams/Outlook",
+  "version": "1.0",
+  "description": "Use ChromOS User-Agent for Microsoft Teams and Outlook web apps.",
+  "permissions": [
+    "declarativeNetRequest",
+    "storage"
+  ],
+  "host_permissions": [
+      "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}

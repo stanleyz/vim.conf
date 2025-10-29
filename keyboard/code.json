@@ -111,7 +111,7 @@
     {
         "key": "alt+c",
         "command": "editor.action.clipboardCopyAction",
-        "when": "editorTextFocus && !terminalFocus"
+        "when": "!terminalFocus"
     },
     {
         "key": "ctrl+c",
@@ -120,7 +120,7 @@
     {
         "key": "alt+v",
         "command": "editor.action.clipboardPasteAction",
-        "when": "editorTextFocus && !terminalFocus"
+        "when": "!terminalFocus"
     },
     {
         "key": "ctrl+v",
@@ -167,7 +167,7 @@
         "when": "chatAttachmentResource"
     },
     {
-        "key": "ctrl+c",
+        "key": "alt+c",
         "command": "filesExplorer.copy",
         "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !inputFocus"
     },
@@ -208,5 +208,15 @@
     {
         "key": "ctrl+shift+f",
         "command": "-workbench.action.findInFiles"
+    },
+    {
+        "key": "alt+v",
+        "command": "filesExplorer.paste",
+        "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceReadonly && !inputFocus"
+    },
+    {
+        "key": "ctrl+v",
+        "command": "-filesExplorer.paste",
+        "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceReadonly && !inputFocus"
     }
 ]
