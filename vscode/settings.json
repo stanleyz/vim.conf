@@ -1,0 +1,10 @@
+{
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "terminal.integrated.commandsToSkipShell": [
+        "workbench.panel.chat"
+    ],
+    "terminal.integrated.altClickMovesCursor": false,
+}
