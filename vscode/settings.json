@@ -4,7 +4,8 @@
         "asvetliakov.vscode-neovim": 1
     },
     "terminal.integrated.commandsToSkipShell": [
-        "workbench.panel.chat"
+        "workbench.panel.chat",
+        "workbench.action.toggleSidebarVisibility"
     ],
     "terminal.integrated.altClickMovesCursor": false,
 }
