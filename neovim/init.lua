@@ -56,7 +56,7 @@ map('n', '<leader>gps', ':Git push<CR>', options)
 map('n', '<leader>gco', ':Git checkout ', options)
 map('n', '<leader>gpr', ':Git pull --rebase<CR>', options)
 map('n', '<leader>gbl', ':Git blame<CR>', options)
-map('n', '<leader>gbc', ':Git branch ', options)
+map('n', '<leader>gbc', ':Git checkout -b ', options)
 map('n', '<leader>gaa', ':Git add *<CR>', options)
 map('n', '<leader>gac', ':Git add %<CR>', options)
 map('n', '<leader>glg', ':Git log<CR>', options)
@@ -100,6 +100,10 @@ vim.o.ignorecase = true
 -- display line number
 vim.o.nu = true
 vim.g.EasyMotion_verbose = 0
+
+-- enable folding
+vim.o.foldmethod = "indent"
+vim.o.foldlevel = 99
 
 -- undo files
 vim.o.undodir = home .. '/.vim/undo'

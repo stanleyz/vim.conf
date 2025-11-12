@@ -8,4 +8,5 @@
         "workbench.action.toggleSidebarVisibility"
     ],
     "terminal.integrated.altClickMovesCursor": false,
+    "editor.inlayHints.enabled": "offUnlessPressed",
 }
