@@ -103,7 +103,11 @@ vim.g.EasyMotion_verbose = 0
 
 -- enable folding
 vim.o.foldmethod = "indent"
-vim.o.foldlevel = 99
+--vim.o.foldlevel = 99
+
+-- highlight current line and column
+vim.o.cursorline = true
+vim.o.cursorcolumn = true
 
 -- undo files
 vim.o.undodir = home .. '/.vim/undo'

@@ -26,7 +26,7 @@ Plug 'fatih/vim-go'
 
 Plug 'rstacruz/sparkup'
 Plug 'vim-syntastic/syntastic'
-Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi'
 Plug 'sjl/gundo.vim'
 Plug 'Shougo/neocomplcache.vim'
 Plug 'tpope/vim-fugitive'
