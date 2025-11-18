@@ -22,6 +22,7 @@ return require('packer').startup(function(use)
   use 'numToStr/Comment.nvim'
   
   use 'mg979/vim-visual-multi'
+  use 'sindrets/diffview.nvim'
 
   use 'neovim/nvim-lspconfig'
   use 'hrsh7th/cmp-nvim-lsp'
