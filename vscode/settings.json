@@ -10,4 +10,7 @@
     "terminal.integrated.altClickMovesCursor": false,
     "editor.inlayHints.enabled": "offUnlessPressed",
     "python.defaultInterpreterPath": "/home/linuxbrew/.linuxbrew/bin/python3",
+    "vim.leader": ",",
+    "vim.easymotion": true,
+    "window.autoDetectColorScheme": true,
 }

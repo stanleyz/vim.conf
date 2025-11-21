@@ -11,7 +11,7 @@ map('v', '<leader><leader>', '<Esc>', options)
 map('c', '<leader><leader>', '<Esc>', options)
 
 map('n', '<leader>q', ':q!<CR>', options)
-map('i', '<leader>q', '<Esc>q!<CR>', options)
+map('i', '<leader>q', '<Esc>:q!<CR>', options)
 
 map('n', '<leader>h', '<C-w>h', options)
 map('n', '<leader>j', '<C-w>j', options)
@@ -26,8 +26,17 @@ map('i', '<leader>k', '<C-w>k', options)
 map('i', '<leader>l', '<C-w>l', options)
 map('i', '<leader>o', '<Esc>o', options)
 map('i', '<leader>O', '<Esc>O', options)
+
+map('n', '<leader>re', ':e!<CR>', options)
 map('i', '<leader>re', '<Esc>:e!<CR>', options)
+map('n', '<leader>rg', ':Rg ', options)
 map('i', '<leader>rg', '<Esc>:Rg ', options)
+
+map('n', '<leader>tc', ':tabc<CR>', options)
+map('i', '<leader>tc', '<Esc>:tabc<CR>', options)
+
+map('n', '<leader>ch', ':History:<CR>', options)
+map('i', '<leader>ch', '<Esc>:History:<CR>', options)
 
 map('n', '<leader>z', '<C-w>|<C-w>_', options)
 map('i', '<leader>z', '<Esc><C-w>|<C-w>_', options)
@@ -108,7 +117,7 @@ vim.g.EasyMotion_verbose = 0
 
 -- enable folding
 vim.o.foldmethod = "indent"
---vim.o.foldlevel = 99
+vim.o.foldlevel = 99
 
 -- highlight current line and column
 vim.o.cursorline = true
