@@ -51,6 +51,7 @@
 	rh2 = reset HEAD^^ --hard
 [push]
 	default = upstream
+	autoSetupRemote = true
 [diff]
 	tool = vimdiff
 [core]
