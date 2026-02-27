@@ -324,3 +324,20 @@ fix_docker_host_sock() {
   sudo ln -sf /Users/$USER/.docker/run/docker.sock /var/run/docker.sock
   export TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE=/var/run/docker.sock
 }
+
+aws_vms() {
+  if [ "X$1" == "X" ]; then
+    aws ec2 describe-instances --query \
+    'Reservations[*].Instances[*].{InstanceId:InstanceId,
+    InstanceType:InstanceType, ImageId:ImageId, Name:Tags[?Key==`Name`].Value |
+    [0], LaunchTime:LaunchTime, State:State.Name}' --output table
+  else
+    aws ec2 describe-instances --query \
+    'Reservations[*].Instances[*].{InstanceId:InstanceId, 
+    InstanceType:InstanceType, ImageId:ImageId, Name:Tags[?Key==`Name`].Value |
+    [0], LaunchTime:LaunchTime, State:State.Name}' --output json | jq --arg \
+    vault "$1" -r '.[][] | select(.Name | test($vault; "i")) | 
+    [.InstanceId, .InstanceType, .ImageId, .Name, .LaunchTime, .State] | @tsv' 
+  fi
+}
+

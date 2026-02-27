@@ -45,7 +45,7 @@ map('n', '<leader>w', ':Windows<CR>', options)
 map('i', '<leader>w', '<Esc>:Windows<CR>', options)
 
 -- sudo and write
-map('c', 'sw', 'w !sudo tee >/dev/null %', options)
+map('n', '<leader>csw', ':w !sudo tee >/dev/null %', options)
 -- ctrl-r to search history
 map('c', '<C-r>', '<C-f>', options)
 -- ctrl-f to forward

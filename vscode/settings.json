@@ -13,4 +13,7 @@
     "vim.leader": ",",
     "vim.easymotion": true,
     "window.autoDetectColorScheme": true,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
 }
