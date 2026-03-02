@@ -199,6 +199,18 @@ BypassInputHook := false
     Send "{Blind}{Enter}"
   }
 }
+*Space::
+{
+  global AltUsedAsModifier, ByPassInputHook
+  ByPassInputHook := true
+  if GetKeyState("LAlt", "P") {
+    AltUsedAsModifier := true
+    Send "{Ctrl up}"
+    Send "{Blind}^{ESC}"
+  } else {
+    Send "{Blind}{Space}"
+  }
+}
 
 ^+[::Send "^{PgUp}"
 ^+]::Send "^{PgDn}"
