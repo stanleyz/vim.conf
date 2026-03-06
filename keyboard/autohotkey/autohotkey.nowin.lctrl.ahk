@@ -181,6 +181,11 @@ BypassInputHook := false
   if GetKeyState("LAlt", "P") {
     AltUsedAsModifier := true
     Send "{Ctrl up}"
+    if GetKeyState("Shift", "P") {
+      ; Maximize the current window if it's not maximized, otherwise restore it
+      Send "#{Up}"
+      return
+    }
     If WinActive("ahk_class CabinetWClass") ; File Explorer
       Send "{Blind}{Enter}"
     else
@@ -199,6 +204,7 @@ BypassInputHook := false
     Send "{Blind}{Enter}"
   }
 }
+
 *Space::
 {
   global AltUsedAsModifier, ByPassInputHook
@@ -209,6 +215,55 @@ BypassInputHook := false
     Send "{Blind}^{ESC}"
   } else {
     Send "{Blind}{Space}"
+  }
+}
+
+*Up::
+{
+  global AltUsedAsModifier, ByPassInputHook
+  ByPassInputHook := true
+  if GetKeyState("LAlt", "P") and GetKeyState("Shift", "P") {
+    AltUsedAsModifier := true
+    Send "{Ctrl up}"
+    Send "#{Up}"
+  } else {
+    Send "{Blind}{Up}"
+  }
+}
+*Down::
+{
+  global AltUsedAsModifier, ByPassInputHook
+  ByPassInputHook := true
+  if GetKeyState("LAlt", "P") and GetKeyState("Shift", "P") {
+    AltUsedAsModifier := true
+    Send "{Ctrl up}"
+    Send "#{Down}"
+  } else {
+    Send "{Blind}{Down}"
+  }
+}
+*Left::
+{
+  global AltUsedAsModifier, ByPassInputHook
+  ByPassInputHook := true
+  if GetKeyState("LAlt", "P") and GetKeyState("Shift", "P") {
+    AltUsedAsModifier := true
+    Send "{Ctrl up}"
+    Send "#{Left}"
+  } else {
+    Send "{Blind}{Left}"
+  }
+}
+*Right::
+{
+  global AltUsedAsModifier, ByPassInputHook
+  ByPassInputHook := true
+  if GetKeyState("LAlt", "P") and GetKeyState("Shift", "P") {
+    AltUsedAsModifier := true
+    Send "{Ctrl up}"
+    Send "#{Right}"
+  } else {
+    Send "{Blind}{Right}"
   }
 }
 
