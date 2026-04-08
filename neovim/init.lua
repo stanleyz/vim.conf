@@ -32,8 +32,16 @@ map('i', '<leader>re', '<Esc>:e!<CR>', options)
 map('n', '<leader>rg', ':Rg ', options)
 map('i', '<leader>rg', '<Esc>:Rg ', options)
 
+map('n', '<leader>dfn', ':diffthis<CR>', options)
+map('i', '<leader>dfn', '<Esc>:diffthis<CR>', options)
+map('n', '<leader>dff', ':diffoff<CR> ', options)
+map('i', '<leader>dff', '<Esc>:diffoff<CR>', options)
+
+
 map('n', '<leader>tc', ':tabc<CR>', options)
 map('i', '<leader>tc', '<Esc>:tabc<CR>', options)
+map('n', '<leader>tq', ':qa<CR>', options)
+map('i', '<leader>tq', '<Esc>:qa<CR>', options)
 
 map('n', '<leader>ch', ':History:<CR>', options)
 map('i', '<leader>ch', '<Esc>:History:<CR>', options)
@@ -127,10 +135,12 @@ vim.o.undodir = home .. '/.vim/undo'
 vim.o.undofile = true
 
 -- config status line
+local lualine_theme = require('lualine.themes.powerline_dark')
+lualine_theme.inactive = lualine_theme.normal
 require('lualine').setup({
   options = {
-    theme = 'powerline_dark',
-    path = 3,
+    theme = lualine_theme,
+    path = 4,
   }
 })
 

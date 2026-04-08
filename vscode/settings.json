@@ -16,4 +16,5 @@
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter"
     },
+    "chat.viewSessions.orientation": "stacked",
 }
