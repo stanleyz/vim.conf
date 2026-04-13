@@ -9,11 +9,6 @@ return require('packer').startup(function(use)
   use 'easymotion/vim-easymotion'
   use 'nvim-tree/nvim-tree.lua'
 
-  use 'github/copilot.vim'
-  -- Required for CopilotChat.nvim
-  use "nvim-lua/plenary.nvim"
-  use 'CopilotC-Nvim/CopilotChat.nvim'
-
   use 'tpope/vim-fugitive' -- For Git
   use 'tpope/vim-surround' -- To change surroundings
   use 'jiangmiao/auto-pairs' -- auto pairs
@@ -36,4 +31,18 @@ return require('packer').startup(function(use)
   -- Terraform
   use 'hashivim/vim-terraform'
   use 'juliosueiras/vim-terraform-completion'
+
+  -- Github
+  use 'github/copilot.vim'
+  -- Required for CopilotChat.nvim
+  use "nvim-lua/plenary.nvim"
+  use 'CopilotC-Nvim/CopilotChat.nvim'
+  use {
+    'pwntester/octo.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+      'nvim-tree/nvim-web-devicons',
+    }
+  } 
 end)

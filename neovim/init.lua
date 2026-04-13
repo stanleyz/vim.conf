@@ -73,6 +73,7 @@ map('n', '<leader>gco', ':Git checkout ', options)
 map('n', '<leader>gbl', ':Git blame<CR>', options)
 map('n', '<leader>gci', ':Git commit -a<CR>', options)
 map('n', '<leader>gst', ':Git status<CR>', options)
+map('n', '<leader>gha', ':Octo actions<CR>', options)
 map('n', '<leader>gpb', ':Git push --set-upstream origin ', options)
 map('n', '<leader>gps', ':Git push<CR>', options)
 map('n', '<leader>gpr', ':Git pull --rebase<CR>', options)
@@ -340,4 +341,17 @@ cmp.setup {
   },
 }
 
-
+require('octo').setup({
+  mappings = {
+    runs = {
+      open_in_browser = { lhs = 'ob', desc = 'Open in Browser' },
+      reruns = { lhs = 'rr', desc = 'Rerun' },
+      rerun_failed = { lhs = 'rf', desc = 'Rerun Failed' },
+      cancel = { lhs = 'cc', desc = 'Cancel' },
+      refresh = { lhs = 'R', desc = 'Refresh' },
+    },
+    pull_request = {
+      open_in_browser = { lhs = 'ob', desc = 'Open in Browser' },
+    },
+  },
+})
