@@ -63,6 +63,8 @@ map('c', '<C-b>', '<Left>', options)
 
 map('n', '<leader>p', ':NvimTreeFindFileToggle!<CR>', options)
 
+map('n', '<leader>b', ':Buffers<CR>', options)
+map('i', '<leader>b', '<Esc>:Buffers<CR>', options)
 map('n', '<leader>f', ':Files<CR>', options)
 map('i', '<leader>f', '<Esc>:Files<CR>', options)
 
