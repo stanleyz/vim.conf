@@ -19,3 +19,36 @@ export PS1='\[$(tput bold)\]\[$(tput setaf 2)\]\u@\[$(tput setaf 4)\]\h \[$(tput
 export GRANTED_ENABLE_AUTO_REASSUME=true
 
 shopt -s histappend                      # append to history, don't overwrite it
+export NODE_EXTRA_CA_CERTS="/etc/ssl/certs/ca-certificates.crt"
+
+aws_ssm_tunnel() {
+  aws ssm start-session \
+    --target $1 \
+    --document-name AWS-StartPortForwardingSession \
+    --parameters "{\"portNumber\":[\"$2\"],\"localPortNumber\":[\"$3\"]}"
+}
+aws_ssm() {
+  aws ssm start-session --target $1 
+}
+ssm() {
+  id=$(aws ec2 describe-instances \
+    --filters "Name=tag:hostname,Values=$1" "Name=instance-state-name,Values=running" \
+    --query "Reservations[*].Instances[*].InstanceId" \
+    --output text)
+  aws ssm start-session --target $id
+}
+aws_vms() {
+  if [ "X$1" == "X" ]; then
+    aws ec2 describe-instances --query \
+    'Reservations[*].Instances[*].{InstanceId:InstanceId,
+    InstanceType:InstanceType, ImageId:ImageId, Name:Tags[?Key==`Name`].Value |
+    [0], LaunchTime:LaunchTime, State:State.Name}' --output table
+  else
+    aws ec2 describe-instances --query \
+    'Reservations[*].Instances[*].{InstanceId:InstanceId, 
+    InstanceType:InstanceType, ImageId:ImageId, Name:Tags[?Key==`Name`].Value |
+    [0], LaunchTime:LaunchTime, State:State.Name}' --output json | jq --arg \
+    vault "$1" -r '.[][] | select(.Name | test($vault; "i")) | 
+    [.InstanceId, .InstanceType, .ImageId, .Name, .LaunchTime, .State] | @tsv' 
+  fi
+}
