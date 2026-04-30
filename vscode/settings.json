@@ -18,4 +18,5 @@
     },
     "chat.viewSessions.orientation": "stacked",
     "chat.mcp.gallery.enabled": true,
+    "git.enableSmartCommit": true,
 }
