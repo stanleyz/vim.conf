@@ -19,4 +19,9 @@
     "chat.viewSessions.orientation": "stacked",
     "chat.mcp.gallery.enabled": true,
     "git.enableSmartCommit": true,
+    "files.exclude": {
+        "**/.git": true,
+        "**/__pycache__": true,
+        "**/*.egg-info": true,
+    }
 }

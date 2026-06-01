@@ -37,6 +37,17 @@ ssm() {
     --output text)
   aws ssm start-session --target $id
 }
+ssm_tunnel() {
+  id=$(aws ec2 describe-instances \
+    --filters "Name=tag:hostname,Values=$1" "Name=instance-state-name,Values=running" \
+    --query "Reservations[*].Instances[*].InstanceId" \
+    --output text)
+  echo "Connecting to instance $id"
+  aws ssm start-session \
+    --target $id \
+    --document-name AWS-StartPortForwardingSession \
+    --parameters "{\"portNumber\":[\"$2\"],\"localPortNumber\":[\"$3\"]}"
+}
 aws_vms() {
   if [ "X$1" == "X" ]; then
     aws ec2 describe-instances --query \
@@ -51,4 +62,7 @@ aws_vms() {
     vault "$1" -r '.[][] | select(.Name | test($vault; "i")) | 
     [.InstanceId, .InstanceType, .ImageId, .Name, .LaunchTime, .State] | @tsv' 
   fi
+}
+aws_clean_envs() {
+  unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN AWS_PROFILE
 }

@@ -6,6 +6,8 @@ options = { noremap = true }
 
 vim.g.mapleader=","
 
+vim.env.NODE_EXTRA_CA_CERTS = "/etc/ssl/certs/ca-certificates.crt"
+
 map('i', '<leader><leader>', '<Esc>', options)
 map('v', '<leader><leader>', '<Esc>', options)
 map('c', '<leader><leader>', '<Esc>', options)

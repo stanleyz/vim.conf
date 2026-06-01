@@ -38,6 +38,7 @@ alias k=kubectl
 alias f=flux
 #alias fg='flux get'
 alias a=assume
+alias ua='unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN AWS_PROFILE'
 alias ac="assume -c --bp Default"
 
 # general export --------------------------------------------------------------
