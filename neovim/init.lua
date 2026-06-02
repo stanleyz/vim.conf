@@ -91,6 +91,7 @@ map('n', '<leader>gdfh', ':DiffviewFileHistory<CR>', options)
 map('n', '<A-i>', ':CopilotChatToggle<CR>', {})
 map('i', '<A-i>', '<Esc>:CopilotChatToggle<CR>', {})
 require("CopilotChat").setup({
+  model = "gpt-5-mini",
   mappings = {
     submit_prompt = {
       -- <C-j> makes <C-Enter> work ??

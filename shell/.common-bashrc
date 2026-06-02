@@ -13,6 +13,8 @@ bind '"\C-q": forward-search-history'
 bind '"\C-f": forward-word'
 bind '"\C-b": backward-word'
 
+. /usr/share/bash-completion/completions/git
+
 # PS1 -------------------------------------------------------------------------
 export PS1='\[$(tput bold)\]\[$(tput setaf 2)\]\u@\[$(tput setaf 4)\]\h \[$(tput setaf 5)\]\D{%F %T} \[$(tput setaf 3)\]\W\[$(tput setaf 2)\]$(__git_ps1) \\$ \[$(tput sgr0)\]'
 
