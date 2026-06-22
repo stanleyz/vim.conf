@@ -17,6 +17,7 @@ vkFF & i::Send "{PgUp}"
 vkFF & o::Send "{PgDn}"
 vkFF & p::Send "{End}"
 vkFF & q::DllCall("LockWorkStation")
+vkFF & r::Send "#r"
 vkFF & u::Send "{Home}"
 
 vkFF & Left::Send("#{Left}")

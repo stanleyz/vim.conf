@@ -14,7 +14,7 @@ return require('packer').startup(function(use)
   use 'jiangmiao/auto-pairs' -- auto pairs
   use 'airblade/vim-gitgutter' -- git status on the left column
   use 'nvim-lualine/lualine.nvim' -- status line
-  use 'numToStr/Comment.nvim'
+  -- use 'numToStr/Comment.nvim'
   
   use 'mg979/vim-visual-multi'
   use 'sindrets/diffview.nvim'

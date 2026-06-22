@@ -104,9 +104,8 @@ require("CopilotChat").setup({
   }
 })
 
-local comment = require('Comment').setup()
-
-comment.autohotkey = ";"
+-- local comment = require('Comment').setup()
+-- comment.autohotkey = ";"
 
 -- Set the tabstop, Shiftwidth, and expandtab options
 vim.o.tabstop = 2
