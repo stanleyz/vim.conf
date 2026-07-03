@@ -19,6 +19,7 @@ bind '"\C-b": backward-word'
 export PS1='\[$(tput bold)\]\[$(tput setaf 2)\]\u@\[$(tput setaf 4)\]\h \[$(tput setaf 5)\]\D{%F %T} \[$(tput setaf 3)\]\W\[$(tput setaf 2)\]$(__git_ps1) \\$ \[$(tput sgr0)\]'
 
 export GRANTED_ENABLE_AUTO_REASSUME=true
+export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 
 shopt -s histappend                      # append to history, don't overwrite it
 export NODE_EXTRA_CA_CERTS="/etc/ssl/certs/ca-certificates.crt"
@@ -68,3 +69,14 @@ aws_vms() {
 aws_clean_envs() {
   unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN AWS_PROFILE
 }
+# vagrant(){
+#   docker run -it --rm \
+#     -e LIBVIRT_DEFAULT_URI \
+#     -v /var/run/libvirt/:/var/run/libvirt/ \
+#     -v ~/.vagrant.d:/.vagrant.d \
+#     -v $(realpath "${PWD}"):${PWD} \
+#     -w "${PWD}" \
+#     --network host \
+#     vagrantlibvirt/vagrant-libvirt:latest \
+#       vagrant $@
+# }
