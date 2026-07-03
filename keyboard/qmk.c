@@ -1,3 +1,5 @@
+# include in the keymap.c in the folder keyboards/keychron/k3_pro/ansi/rgb/default
+# make keychron/k3_pro/ansi/rgb:default ALLOW_WARNINGS=yes WERROR=no EXTRAFLAGS="-D__errno_r\(x\)=errno" LINKFLAGS=""
 const key_override_t alt_h_left = ko_make_basic(MOD_MASK_ALT, KC_H, KC_LEFT);
 const key_override_t alt_l_right = ko_make_basic(MOD_MASK_ALT, KC_L, KC_RIGHT);
 const key_override_t alt_j_down = ko_make_basic(MOD_MASK_ALT, KC_J, KC_DOWN);
@@ -14,14 +16,25 @@ const key_override_t rctrl_e_end = ko_make_basic(MOD_BIT(KC_RCTL), KC_E, KC_END)
 //const key_override_t rctrl_p_previous = ko_make_basic(MOD_BIT(KC_RCTL), KC_P, KC_UP);
 //upon testing, 4 is the Windows layer, 2 is the MAC.
 //I don't see how to switch the other layer for each OS although following the doc.
-const key_override_t lctrl_f4_alt_f4 = ko_make_with_layers(MOD_BIT(KC_LCTL), KC_F4, LALT(KC_F4), 4);
-const key_override_t lctrl_right_bracket_cycle_forward = ko_make_with_layers(MOD_BIT(KC_LCTL) | MOD_BIT(KC_LSFT), KC_RBRC, RCTL(KC_TAB), 4);
-const key_override_t lctrl_left_bracket_cycle_back = ko_make_with_layers(MOD_BIT(KC_LCTL) | MOD_BIT(KC_LSFT), KC_LBRC, RCTL(LSFT(KC_TAB)), 4);
-const key_override_t lalt_rctrl_left = ko_make_with_layers(MOD_BIT(KC_RCTL) | MOD_BIT(KC_LALT), KC_LEFT, LWIN(KC_LEFT), 4);
-const key_override_t lalt_rctrl_right = ko_make_with_layers(MOD_BIT(KC_RCTL) | MOD_BIT(KC_LALT), KC_RIGHT, LWIN(KC_RIGHT), 4);
-const key_override_t lalt_rctrl_up = ko_make_with_layers(MOD_BIT(KC_RCTL) | MOD_BIT(KC_LALT), KC_UP, LWIN(KC_UP), 4);
-const key_override_t lalt_rctrl_down = ko_make_with_layers(MOD_BIT(KC_RCTL) | MOD_BIT(KC_LALT), KC_DOWN, LWIN(KC_DOWN), 4);
-const key_override_t lalt_rctrl_enter = ko_make_with_layers(MOD_BIT(KC_RCTL) | MOD_BIT(KC_LALT), KC_ENTER, LWIN(KC_UP), 4);
+const key_override_t lctrl_f4_alt_f4 = ko_make_with_layers(MOD_BIT(KC_LCTL), KC_Q, LALT(KC_F4), 4);
+const key_override_t lctrl_right_bracket_cycle_forward = ko_make_with_layers(MOD_BIT(KC_LCTL) | MOD_BIT(KC_LSFT), KC_RBRC, RCTL(KC_PAGE_DOWN), 4);
+const key_override_t lctrl_left_bracket_cycle_back = ko_make_with_layers(MOD_BIT(KC_LCTL) | MOD_BIT(KC_LSFT), KC_LBRC, RCTL(KC_PAGE_UP), 4);
+// Move around
+const key_override_t lctrl_lshift_left = ko_make_with_layers(MOD_BIT(KC_LCTL) | MOD_BIT(KC_LSFT), KC_LEFT, LWIN(KC_LEFT), 4);
+const key_override_t lctrl_lshift_right = ko_make_with_layers(MOD_BIT(KC_LCTL) | MOD_BIT(KC_LSFT), KC_RIGHT, LWIN(KC_RIGHT), 4);
+const key_override_t lctrl_lshift_up = ko_make_with_layers(MOD_BIT(KC_LCTL) | MOD_BIT(KC_LSFT), KC_UP, LWIN(KC_UP), 4);
+const key_override_t lctrl_lshift_down = ko_make_with_layers(MOD_BIT(KC_LCTL) | MOD_BIT(KC_LSFT), KC_DOWN, LWIN(KC_DOWN), 4);
+const key_override_t lctrl_lshift_enter = ko_make_with_layers(MOD_BIT(KC_LCTL) | MOD_BIT(KC_LSFT), KC_ENTER, LWIN(KC_UP), 4);
+
+const key_override_t lalt_left = ko_make_with_layers(MOD_BIT(KC_LALT), KC_LEFT, LWIN(KC_LEFT), 4);
+const key_override_t lalt_right = ko_make_with_layers(MOD_BIT(KC_LALT), KC_RIGHT, LWIN(KC_RIGHT), 4);
+const key_override_t lalt_up = ko_make_with_layers(MOD_BIT(KC_LALT), KC_UP, LWIN(KC_UP), 4);
+const key_override_t lalt_down = ko_make_with_layers(MOD_BIT(KC_LALT), KC_DOWN, LWIN(KC_DOWN), 4);
+const key_override_t lalt_enter = ko_make_with_layers(MOD_BIT(KC_LALT), KC_ENTER, LWIN(KC_UP), 4);
+
+const key_override_t lctrl_space_ctrl_esc = ko_make_with_layers(MOD_BIT(KC_LCTL), KC_SPACE, RCTL(KC_ESC), 4);
+const key_override_t lalt_e_win_e = ko_make_with_layers(MOD_BIT(KC_LALT), KC_E, LWIN(KC_E), 4);
+const key_override_t lalt_r_win_r = ko_make_with_layers(MOD_BIT(KC_LALT), KC_R, LWIN(KC_R), 4);
 
 const key_override_t **key_overrides = (const key_override_t *[]) {
     &alt_h_left,
@@ -42,11 +55,19 @@ const key_override_t **key_overrides = (const key_override_t *[]) {
     &lctrl_f4_alt_f4,
     &lctrl_right_bracket_cycle_forward,
     &lctrl_left_bracket_cycle_back,
-    &lalt_rctrl_left,
-    &lalt_rctrl_right,
-    &lalt_rctrl_up,
-    &lalt_rctrl_down,
-    &lalt_rctrl_enter,
+    &lctrl_lshift_left,
+    &lctrl_lshift_right,
+    &lctrl_lshift_up,
+    &lctrl_lshift_down,
+    &lctrl_lshift_enter,
+    &lalt_left,
+    &lalt_right,
+    &lalt_up,
+    &lalt_down,
+    &lalt_enter,
+    &lctrl_space_ctrl_esc,
+    &lalt_e_win_e,
+    &lalt_r_win_r,
     NULL
 };
 
