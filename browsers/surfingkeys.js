@@ -1,5 +1,8 @@
 const { map, unmap } = api;
 
+unmap('<Ctrl-h>')
+unmap('<Ctrl-j>')
+
 map(';B', 'b');     // open bookmarks
 map('b', 'e');      // scroll half page up
 map(';o', 'f');     // open a link
