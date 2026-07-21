@@ -58,6 +58,23 @@ BypassInputHook := false
   }
 }
 
+*f::
+{
+  global AltUsedAsModifier, ByPassInputHook
+  ByPassInputHook := true
+  if GetKeyState("LAlt", "P") {
+    AltUsedAsModifier := true
+    Send "{Ctrl up}"
+    If WinActive("ahk_exe Code.exe")
+      Send "{Blind}!f"
+    else
+      Send "{Blind}^f"
+  } else {
+    Send "{Blind}f"
+  }
+}
+
+
 *i::
 {
   global AltUsedAsModifier, ByPassInputHook
