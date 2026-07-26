@@ -12,8 +12,8 @@ map('i', '<leader><leader>', '<Esc>', options)
 map('v', '<leader><leader>', '<Esc>', options)
 map('c', '<leader><leader>', '<Esc>', options)
 
-map('n', '<leader>q', ':q!<CR>', options)
-map('i', '<leader>q', '<Esc>:q!<CR>', options)
+map('n', '<leader>q', ':q<CR>', options)
+map('i', '<leader>q', '<Esc>:q<CR>', options)
 
 map('n', '<leader>h', '<C-w>h', options)
 map('n', '<leader>j', '<C-w>j', options)
